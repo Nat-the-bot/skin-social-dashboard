@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skin Social — Command Center</title>
+  <style>
+    :root {
+      --cream: #faf7f2;
+      --blush: #f5e6e0;
+      --blush-dark: #e8c9be;
+      --gold: #c9a96e;
+      --gold-light: #e8d5b0;
+      --gold-dark: #a07840;
+      --text-dark: #2c2018;
+      --text-mid: #6b4e37;
+      --text-light: #9e7d68;
+      --white: #ffffff;
+      --red: #c0392b;
+      --red-light: #fdecea;
+      --yellow: #d4900a;
+      --yellow-light: #fef9ec;
+      --green: #27ae60;
+      --green-light: #eafaf1;
+      --shadow: 0 4px 20px rgba(44,32,24,0.08);
+      --shadow-hover: 0 8px 32px rgba(44,32,24,0.15);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia','Times New Roman',serif; background: var(--cream); color: var(--text-dark); line-height: 1.6; }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #2c2018 0%, #5a3825 50%, #8b5a3a 100%);
+      color: #fff;
+      padding: 48px 32px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a96e' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='0' cy='0' r='10'/%3E%3Ccircle cx='60' cy='60' r='10'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hc { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+    .eyebrow { font-family: Arial,sans-serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; }
+    header h1 { font-size: clamp(26px,5vw,50px); font-weight: normal; color: #fff; margin-bottom: 6px; }
+    header h1 span { color: var(--gold); }
+    .sub { font-family: Arial,sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+
+    /* TABS */
+    .tabs { display: flex; justify-content: center; gap: 0; margin-top: 28px; background: rgba(0,0,0,0.2); border-radius: 30px; padding: 4px; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .tab-btn {
+      flex: 1; padding: 10px 20px; border: none; cursor: pointer;
+      background: transparent; color: rgba(255,255,255,0.6);
+      font-family: Arial,sans-serif; font-size: 13px; font-weight: bold;
+      border-radius: 26px; transition: all 0.2s; letter-spacing: 0.3px;
+    }
+    .tab-btn.active { background: var(--gold); color: var(--text-dark); }
+    .tab-btn:hover:not(.active) { color: #fff; }
+
+    /* LAYOUT */
+    main { max-width: 1100px; margin: 0 auto; padding: 40px 20px 80px; }
+    section { margin-bottom: 52px; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .section-title {
+      font-size: 22px; font-weight: normal; color: var(--text-dark);
+      border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-bottom: 28px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title .icon {
+      width: 32px; height: 32px; background: var(--gold); border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+    }
+
+    /* CAMPAIGN CARDS */
+    .campaign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 8px; }
+    .campaign-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px;
+      box-shadow: var(--shadow); border: 1px solid rgba(201,169,110,0.2);
+      position: relative; overflow: hidden;
+    }
+    .campaign-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--blush-dark));
+    }
+    .campaign-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+    .campaign-name { font-size: 17px; color: var(--text-dark); max-width: 220px; line-height: 1.3; }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--green-light); color: var(--green);
+      font-family: Arial,sans-serif; font-size: 11px; font-weight: bold;
+      padding: 4px 10px; border-radius: 12px; letter-spacing: 0.5px; flex-shrink: 0;
+    }
+    .status-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .metric { background: var(--cream); border-radius: 10px; padding: 12px 14px; }
+    .metric-label { font-family: Arial,sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-light); margin-bottom: 4px; }
+    .metric-value { font-size: 20px; color: var(--text-dark); }
+    .metric-value.big { font-size: 24px; }
+    .metric-note { font-family: Arial,sans-serif; font-size: 10px; color: var(--green); margin-top: 2px; font-weight: bold; }
+    .metric.highlight { background: linear-gradient(135deg, #eafaf1, #d5f5e3); border: 1px solid #a9dfbf; }
+
+    /* CREATIVES */
+    .creative-section-header { margin-bottom: 8px; }
+    .creative-section-label {
+      font-family: Arial,sans-serif; font-size: 12px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-light); margin-bottom: 6px;
+    }
+    .creative-section-sub { font-family: Arial,sans-serif; font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+    .creative-campaign-title {
+      font-family: Arial,sans-serif; font-size: 13px; font-weight: bold;
+      color: var(--gold-dark); text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 14px; margin-top: 28px; padding-bottom: 6px;
+      border-bottom: 1px solid var(--blush-dark);
+    }
+    .creatives-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 10px; }
+    .creative-card {
+      background: var(--white); border-radius: var(--radius-sm); padding: 18px 16px;
+      box-shadow: var(--shadow); border: 1px solid rgba(201,169,110,0.15);
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .creative-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+    .creative-icon { font-size: 26px; margin-bottom: 10px; }
+    .creative-name { font-family: Arial,sans-serif; font-size: 12px; color: var(--text-mid); margin-bottom: 14px; line-height: 1.4; flex: 1; }
+    .preview-btn {
+      display: inline-block; background: var(--gold); color: var(--text-dark);
+      font-family: Arial,sans-serif; font-size: 12px; font-weight: bold;
+      padding: 8px 16px; border-radius: 20px; text-decoration: none;
+      transition: background 0.2s; letter-spacing: 0.3px;
+    }
+    .preview-btn:hover { background: var(--gold-dark); color: #fff; }
+
+    /* MARKETING AUDIT STYLES */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+    .card {
+      background: var(--white); border-radius: var(--radius); padding: 24px;
+      box-shadow: var(--shadow); border: 1px solid rgba(201,169,110,0.15);
+      position: relative; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+    .card::after { content: ''; position: absolute; top:0;left:0;right:0; height:3px; background: linear-gradient(90deg,var(--gold),var(--blush-dark)); }
+    .card-icon { font-size: 32px; margin-bottom: 12px; }
+    .card-title { font-size: 13px; font-family: Arial,sans-serif; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light); margin-bottom: 6px; }
+    .card-value { font-size: 28px; color: var(--text-dark); margin-bottom: 4px; }
+    .card-desc { font-family: Arial,sans-serif; font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+    .stars { color: var(--gold); font-size: 18px; margin-bottom: 4px; }
+    .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 16px; margin-top: 8px; }
+    .award-card { background: linear-gradient(135deg,var(--blush),#f9f0e8); border: 1px solid var(--blush-dark); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; }
+    .award-card .trophy { font-size: 28px; margin-bottom: 8px; }
+    .award-card .award-title { font-size: 13px; font-weight: bold; color: var(--gold-dark); margin-bottom: 4px; }
+    .award-card .award-sub { font-family: Arial,sans-serif; font-size: 11px; color: var(--text-light); letter-spacing: 0.5px; }
+    .action-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .action-item { display: flex; align-items: flex-start; gap: 14px; background: var(--white); border-radius: var(--radius-sm); padding: 18px 20px; box-shadow: var(--shadow); border: 1px solid rgba(201,169,110,0.12); }
+    .priority-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+    .priority-red { background: var(--red); box-shadow: 0 0 0 3px var(--red-light); }
+    .priority-yellow { background: var(--yellow); box-shadow: 0 0 0 3px var(--yellow-light); }
+    .action-num { width: 26px; height: 26px; background: var(--cream); border: 1px solid var(--blush-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: Arial,sans-serif; font-size: 12px; font-weight: bold; color: var(--gold-dark); flex-shrink: 0; }
+    .action-content { flex: 1; }
+    .action-title { font-size: 15px; color: var(--text-dark); margin-bottom: 2px; }
+    .action-detail { font-family: Arial,sans-serif; font-size: 12px; color: var(--text-light); }
+    .priority-label { font-family: Arial,sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; flex-shrink: 0; }
+    .label-red { background: var(--red-light); color: var(--red); }
+    .label-yellow { background: var(--yellow-light); color: var(--yellow); }
+    .platforms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 16px; }
+    .platform-card { background: var(--white); border-radius: var(--radius-sm); padding: 20px 16px; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(201,169,110,0.12); }
+    .platform-icon { font-size: 28px; margin-bottom: 10px; }
+    .platform-name { font-family: Arial,sans-serif; font-size: 13px; font-weight: bold; color: var(--text-dark); margin-bottom: 6px; }
+    .platform-status { font-family: Arial,sans-serif; font-size: 11px; padding: 4px 10px; border-radius: 12px; display: inline-block; margin-bottom: 8px; font-weight: bold; letter-spacing: 0.5px; }
+    .status-critical { background: var(--red-light); color: var(--red); }
+    .status-warning { background: var(--yellow-light); color: var(--yellow); }
+    .status-good { background: var(--green-light); color: var(--green); }
+    .status-missing { background: #f0f0f0; color: #888; }
+    .platform-detail { font-family: Arial,sans-serif; font-size: 11px; color: var(--text-light); line-height: 1.4; }
+    .platform-bar { height: 4px; border-radius: 2px; margin-top: 10px; }
+    .bar-red { background: linear-gradient(90deg,var(--red),#e74c3c); }
+    .bar-yellow { background: linear-gradient(90deg,var(--yellow),#f39c12); }
+    .bar-green { background: linear-gradient(90deg,var(--green),#2ecc71); }
+    .bar-grey { background: #ddd; }
+    .opp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 20px; }
+    .opp-card { background: var(--white); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); border: 1px solid rgba(201,169,110,0.15); border-left: 4px solid var(--gold); }
+    .opp-heading { font-size: 15px; color: var(--gold-dark); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .opp-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .opp-list li { font-family: Arial,sans-serif; font-size: 13px; color: var(--text-mid); padding-left: 14px; position: relative; }
+    .opp-list li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 11px; }
+    .services-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .service-pill { background: var(--blush); border: 1px solid var(--blush-dark); color: var(--text-mid); padding: 6px 14px; border-radius: 20px; font-family: Arial,sans-serif; font-size: 12px; }
+    .notes-block { background: var(--white); border-radius: var(--radius); padding: 28px 30px; box-shadow: var(--shadow); border: 1px solid rgba(201,169,110,0.15); }
+    .notes-section { margin-bottom: 24px; }
+    .notes-section:last-child { margin-bottom: 0; }
+    .notes-heading { font-family: Arial,sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; border-bottom: 1px solid var(--blush-dark); padding-bottom: 6px; }
+    .notes-body { font-family: Arial,sans-serif; font-size: 13px; color: var(--text-mid); line-height: 1.7; }
+    .notes-body ul { padding-left: 16px; }
+    .notes-body li { margin-bottom: 4px; }
+    .tag-red { color: var(--red); font-weight: bold; }
+    .tag-yellow { color: var(--yellow); font-weight: bold; }
+    .tag-green { color: var(--green); font-weight: bold; }
+    .staff-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .staff-chip { display: flex; align-items: center; gap: 8px; background: linear-gradient(135deg,var(--blush),#faf0ea); border: 1px solid var(--blush-dark); padding: 8px 16px; border-radius: 24px; }
+    .staff-avatar { width: 30px; height: 30px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; color: white; flex-shrink: 0; }
+    .staff-name { font-family: Arial,sans-serif; font-size: 13px; color: var(--text-dark); font-weight: 600; }
+    .staff-role { font-family: Arial,sans-serif; font-size: 11px; color: var(--text-light); }
+
+    footer { background: var(--text-dark); color: rgba(255,255,255,0.5); text-align: center; padding: 24px 20px; font-family: Arial,sans-serif; font-size: 12px; letter-spacing: 1px; }
+    footer span { color: var(--gold); }
+
+    @media (max-width: 700px) {
+      header { padding: 36px 16px 28px; }
+      main { padding: 28px 14px 60px; }
+      .campaign-grid { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .creatives-grid { grid-template-columns: repeat(2, 1fr); }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .platforms-grid { grid-template-columns: repeat(3,1fr); }
+      .opp-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 440px) {
+      .creatives-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hc">
+    <div class="eyebrow">Command Center</div>
+    <h1><span>Skin Social</span> — Command Center</h1>
+    <div class="sub">Sandy Springs, GA &nbsp;·&nbsp; Updated April 3, 2026</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('meta')">📊 Meta Ads</button>
+      <button class="tab-btn" onclick="switchTab('audit')">📋 Marketing Audit</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════════════ META ADS TAB ══════════════════════════ -->
+<div id="tab-meta" class="tab-content active">
+
+  <section>
+    <h2 class="section-title"><span class="icon">📊</span> Live Campaign Performance — Last 30 Days</h2>
+
+    <div class="campaign-grid">
+
+      <!-- Card 1: Lead Gen -->
+      <div class="campaign-card">
+        <div class="campaign-header">
+          <div class="campaign-name">Lead Gen — Botox / Filler</div>
+          <div class="status-badge"><span class="status-dot"></span>ACTIVE</div>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric highlight">
+            <div class="metric-label">Leads</div>
+            <div class="metric-value big">279</div>
+          </div>
+          <div class="metric highlight">
+            <div class="metric-label">Cost / Lead</div>
+            <div class="metric-value big">$6.70</div>
+            <div class="metric-note">✨ Excellent (avg $15–25)</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Spend (30d)</div>
+            <div class="metric-value">$1,867</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Impressions</div>
+            <div class="metric-value">87,546</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Reach</div>
+            <div class="metric-value">38,260</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Daily Budget</div>
+            <div class="metric-value">$60/day</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">CTR</div>
+            <div class="metric-value">2.14%</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">CPM</div>
+            <div class="metric-value">$21.34</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Frequency</div>
+            <div class="metric-value">2.3×</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Omni Awareness -->
+      <div class="campaign-card">
+        <div class="campaign-header">
+          <div class="campaign-name">Omni — Awareness</div>
+          <div class="status-badge"><span class="status-dot"></span>ACTIVE</div>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric highlight">
+            <div class="metric-label">Impressions</div>
+            <div class="metric-value big">626K</div>
+          </div>
+          <div class="metric highlight">
+            <div class="metric-label">Cost / View</div>
+            <div class="metric-value big">$0.07</div>
+            <div class="metric-note">✨ Exceptional</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Spend (30d)</div>
+            <div class="metric-value">$956</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Reach</div>
+            <div class="metric-value">282,641</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Video Views</div>
+            <div class="metric-value">14,362</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">CPM</div>
+            <div class="metric-value">$1.53</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Frequency</div>
+            <div class="metric-value">2.2×</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Link Clicks</div>
+            <div class="metric-value">491</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Objective</div>
+            <div class="metric-value" style="font-size:14px;margin-top:4px;">Awareness</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CREATIVES -->
+  <section>
+    <h2 class="section-title"><span class="icon">🎨</span> Active Ad Creatives</h2>
+    <div class="creative-section-sub">Click any ad to preview — requires Facebook Business Manager login</div>
+
+    <div class="creative-campaign-title">📣 Lead Gen — Botox / Filler (3 ads)</div>
+    <div class="creatives-grid">
+      <div class="creative-card">
+        <div class="creative-icon">🎬</div>
+        <div class="creative-name">Video — Botox + Filler (Evergreen)</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQJ8NjZiYxf9Nrdfu9kB8zi7_h5aADBEZNKttq-DdNVEPxg8yAcyYiHCloAHQ2gPfnYX4U7q1jQs7B9PRMoUfG7QMnDKokjJx574zelmkkum4vowT2RJ_zdnFz6YDIaX-hty2ei6biUN72ptZvMLNc63LC36Rm2LQdFh1_6qRC6EldByIDGaGtjqkJ3NuV3bo_UAbKaY5Zd_Ulif4Du0Won0OqngK765mxrmzJmzZ1i_K2qzFxMVQsMRZVpxJ-CWyFQjYSu8X5JcCZYhPGHq3rrInI4viHD-AV-QIhINWyfKAFMizn-pvlO6n6DMAhXytI1uYtqC1TVUrMydX7LM5zevOAw0qsu-smOnOJ83p2g_Wo0dxvGSalpknQ1V4tmGVGlI6P11mY3EJzLw0GRMHz-5vcrc_H1lW4JOoO7YOJUeUTV-_vy2yrQzH7ClfH5hRZs&t=AQKvzgcFCoG0eG4J80I" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🖼</div>
+        <div class="creative-name">Image — Botox + Filler (Evergreen)</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQJOKVyyipsdBqMtmn_EMmaHq996kWXvudXrX0Y4EnM5ubyFlgcPdd_uzCow3f4ThgKtDqYHXoAdZkpKDIv8RQdD0P4sZ-E08_VXChuzbF-6U-1T2zo7XEZDohdyr5ITdX25EgB4SPLohbEzsFVtlNY9uF1En8-SW2t_zvGGbrptYZCstN3cMkVpPsMs_05ex6btegkaDNwgJWly9zlVk4JbPJlzCgEbTukg2kPKed-o5Th64TvIGIzpF396Ik09-pqOASlLxw7uFGeMuDt3PmcJscX3A_scAAVG1RZQ-zcPZlFaSc5VTorxt9JmZfIZK31F8V0HnW4JfSx2bImcZu9YaDzxVQoXgYCaf8e32eBkEcNSoJRKnjXGHR61e5ZhTHJGd_k1OAEx_2XkeAJrUPh9WSfetfY3QPLmFajXm1ISt7DPX-7-Ui6Vb9RVz7-FLXk&t=AQIInONqoknYaFS7y5s" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🖼</div>
+        <div class="creative-name">Image — Botox + Filler V2 (Evergreen)</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQIvkauzFAZC2mrbdHXhDX24HmaXCsx_LIRoTWq9jZy0Qi9ktClEJbvD3RtbCBZwqx7cu7cY695_rELT-xEhkQxV-gqPK42pvvwlWdoKFP4AQsCrvKqhO-2I3mB4nav8pHiE-BOiKvKBItzOV0eT677oIQ70LPl1CIpKxj_6aZPxH339WhKhFGSqXQGNZYnhzp1T0p-V1R53PpZ5w29UDIQSOi_HEKZbQYMlA_Ei9061TrKloh2EbtWK_OZECJd89Inlu_zzPqDOFxEhqPTgAmpXUuyuiGova81zryxJnQ7yKWx9HYTR57Fm5KLgAgTr5vF1yCPn2pc107jV2AqNyzcpK6O-cfpKT_buXEvBTsnBvQ1YVrPJAJoSU7yFl55QmXmWDS2MMu6KZoKVXdIric_d_bNJIkObzIF3MrIQWcM-ID7f1WagxETGYtkmBX6EUGU&t=AQJQ0NOefNFxYrnCxeM" target="_blank">▶ Preview</a>
+      </div>
+    </div>
+
+    <div class="creative-campaign-title">📣 Omni — Awareness (13 ads)</div>
+    <div class="creatives-grid">
+      <div class="creative-card">
+        <div class="creative-icon">🎠</div>
+        <div class="creative-name">Value — Carousel — Consultation</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQKNOjL8_juKxWqIHHzbi_Nl_hWK5LMMDAXvfGkGZuNrQgkOg0kFiwnge2Da4VQXBiydtOSNEwRfCMIYOBB4ISI55BOsdPOfjOpWLH-fXZmJjMhSYn0Se-3Rn0Z6cubcjyGsWB9mkZy5B65de6jJPSixAcmEOj3wkc3nxvfmwNqaj1P4yOX7giVNbS1lHa7cT9yx0hk7Fi9eD0kBiEm9y5F7ObwVrSTJJ7esXh4OeeXIil3hzE9JtSFFAGhYLGhA-t0-ffhsFIa5MnoMDcqPyimjqELbF4QXucLvgLtWyJ8K8SZkb8m7NHq-pyzF93gmjgsagLBmDZQD2AtuRjpqaEUzA24Qn9sDUtvGLQ3IGETeYnpGIwtYGh_f3bRjJ2Afg4X7lnkUiyY96arTLS2LjG6L2A4z2eT8JSqVErfSnvW3wJfPfdYAHkymIXGarj_Ulek&t=AQJxMrmP2ZwoTWQ4J0Q" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">⭐</div>
+        <div class="creative-name">Testimonial — Carousel — Reviews</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQKCv6zBz3tyK_e7hnKXeILPOW_cS4QQhD519Jnco_tRoTNXVNqz0AjG142tMK7L-eS9ebDMMjMxKucva3P1Q_Xr3ievs25GRBCaPJCQFm63yHW5IzROOvTHC2ShUn_OERiEi7yvBU9gtusHSGNB9alRFEI25GysSMdtBp5nQdH0e418YK7kBwSRLjNHVnR-6Hv15UcaixrvenEBSG56gtt_CthMN6eF1PBVphE_g6SOnbF2-uYI7qs-7p-4m4oB2hB6kEWU1T5BsBveUu_qAuZb5ZqGkFjjLLCj-OtmtfaLQuE3XEOkQHQ3VIWCSmfPK2BgOJnftG7FcxmxpgrBupUETiBWl1Q_AsTNZXZw47_tKDL-L8TDGhz2yM68VwbYqoi7kmAk7nzueKELW-mZHgkm_p5I4Wxk3NKpv1qjUYnntM6fREqzuDzt-NZ0LXFeCbQ&t=AQJIbdXKg-VsaB3wFeU" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🖼</div>
+        <div class="creative-name">Value — Image — Ebook</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQKNKmRPhz64mgWbTsDZqRYCG2BKjXJl50yWtjBXJNALO2vMuTqkO2PHKGMn0a6d56pT0gc0VhwQ2erO8bxXf3gtfFinW-zGGPNlEoEu1AJ0YhhOhVrFElP_z8SvkK8SS_CnQtvT_CG9yDq9T4_fAAO39ckb78B7-wZWPnbxl5TXUXBCBCvA128zbUbUN2KM2kXmhfq0JPyzr3qkbwumx1EFtwSc9iJUoMvn93Ss7mNREMhVNFdnHAWAOCwf2x50RFNuTRglrokkfEYGsmFmWrIgzNQIU-adXb6LlvhuSbtjcPvDzGRd47Lt_V7Ox5_yYZAhmQQ_i6d6YM6MmUa5r0XNGz6fcXD0jTsl0eA1ZQoWxrymA3LXM60PZshp1v5-1Ce0DDmZFta4VMYMpKlFflcvFtui1bAZyXkq3924kBrmQmjYaiFJPWmEwDojX1l38Fk&t=AQLLc6ahgldZWuQPBok" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">⭐</div>
+        <div class="creative-name">Testimonial — Image — Results</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQKsI0Zznuis-mh3ARU_ao_GPviH59L_Ji9I3yPyIdU8xMo9sn1jXutHamEdeGOmEgXqi4IjpgUIt8LzSRTx8BzF61iRO16DsagmIIjQj6CPH0j8Wf6iufC9lQNlXZyc3wJjnNJpaZQzL4eJtTS166VdJWUA4saA7qupizzxIa51cVFc8yi2LJ11oII6MV4vWqzfPHGUC4AcTL4j3rRJJa6OVW3ngjVYqQ6NE6Wq7yrrGN6wXLT7QjCWlggDVK0bGPBZ9-RuBbRL4fL_EHqI8VAhyX3LLU6Q-WSZuDAFnknqiYckxh9R-7v-2Jt-M-oZ9-6zHkYslcWas8N187mArJZ4A480HpiHgP7046YYC2XJO0bYm4bIOkWeKa4UY7zjMTLi9AR79RUc7y9e55-MR6FJf-3-_gffuDskHWUmFd7d764n2GTGblhJ_gW3wOsnI98&t=AQKpkNDiOgXQ6OOY95s" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">📧</div>
+        <div class="creative-name">CTA — Image — Newsletters</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQIH11M4yqK6gqkbABj8XkuEka8Y4f1DB3qzj-lmyoq3km-vCD4chmfq_tC1xYZk_TXEbd4RlO06x5upYgHr34o79nSAR_DeF3Egk5g7VAvzwnUzf-BD33rxpFuILVDVbRrvfIj7eZx8B81lYjMRClGiLPm0QXAzjLYb-ZvnCbwtQytZfs2VaOamflXZosOoXCFxZ4T4AwAFPP_JXvq6rXFrOdQel5NTTmUI3PTHn1gcaSzp3z3fnbfjhtwOhzPWMevCVYa49bAM38ksAgJJ0uiPUgWacCky_E6cWu7JM5zLM0HBVEB_3Wc6q3xcNyTQ7XFlJ_05zo1KnPyOtURUnPyOeN2uTF6yWgXFRaSE1D8WS1DuXm857CCvM4aH3MhoP3ywz6yyefAweF42mkU8vmOOI_nkB6Da1jQCVbuwOgKNmDJ2NYjzQ1xJbBp-nOkgSxU&t=AQKmrX0iqFCjI4jc6io" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🖼</div>
+        <div class="creative-name">Value — Image — Microneedling</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQJWxK4lozv5o2c6ZzKQKfut1KAdmA1oSuRa_WW5BX-ldRUcIqNmT6j6XHP_3Ot-_FUvNbSDTFi6592wQkt4122_FNOioe2hjOI3OVWsH5MM_ri2jnLQgV851h42qNR-oLHVZUk2H7MTtNn28rVxApT3rFi38nCMtuuxWJVTJRrnO55XyQaN_1gU1StB2u6hjiFF4DQe7KgnT9K0JaORtAOzLlCMI7c0pdYpWUzXfYf54LbCjP5mkllvuHT2P_NhKoT780ZB9mFvuNiTczSa-xACQBdzyksGCIMHb6ppn--QY76XuV2ZefyGfa93rrvyZIMYUnFzCQAwLdjYOAYesKNr7rPJGRtGRs5TNRASufNz720ZTYRSUgd9Zq8fvZn6ZJUR4BcSVsDvqY9biyAc7tAq4xrqSyVqUV2scyeMEGUSTDF-dCfANeUtmSr8e7H3S-s&t=AQJ5GaJKqdXviYisiiU" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🎬</div>
+        <div class="creative-name">Testimonial — Video — Reviews</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQJVPFSNIQ6MA8UQxIqSQiaCJs2md-6dXg-_NjDmfCEKPI930tSdpbggJqPAlS_aAJJXanctolHclmhLlPFMoCDVCJZ2UcWT8SKs2Yy6GpkXpwB9ZnzPFUKP2WsXIDbLRavfp82zP8cCsniudNE7CYvrPnqum2lWqjm2Ds7C3BKaKhkvix6N9D-425B7SuhbBi0rNBoZI6yADpwlwzpzpXNE9RJ8MP3RWL2mZttN8CEbWJg7ztFKLr0DrO2q97OvWu3h4sSoXrxhjeXnKf1vCjgc8RwV-X3TFdtdoP0F5RkLOerAsy1BnKlTKEVs2CLvMqVwibvwXvvSx6e151GTzCA_hlQYCUYemI--TKnb9h2va2qgHmbctzrnPpQ-MR3oiku47knhTSCy0ICoEEzzL4712b5RrTXqiWncns31X_LdIaTbRki6nfCXh2ZHINMOhI8&t=AQLv_Wjus4GciIFOC6o" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🎬</div>
+        <div class="creative-name">Demonstrate — Video — Nicola</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQIO7SS0BacaDpM1mZoFExtYSPj3kV1VaX5zkmA_9MCLcHu9xuIYNyiPVSTEfZPn4zB3Y_Gcxzgq4miylGYR2ZadwsYeDPgpqftsz4W3KlSnI4x0-4ueydTHHAqswmrOwyoLJgNg5KqDHDV-d61YKp_tU8p94D8bezU8aXeYwWFUT4lSYF9qqkAZYkzMhxwpzP2IGSNw2zWLUadCQXW4rz_jX6RCTNoJU_ZfMDGTAWYJiYl3T34mMnwNWOe3xJLGvqCgQy9Pr-z2JS9fjE80BWVwxwhNdd-0nDFxLVdJ9eX-Sd4v9V19e47wPXs2p8mpBhnSgTy1jXOrdPiEZaPb0I2sakiKJEeOb-ETq7fegieSyExD8D2E5MMfBOSA7Zcoc49srXh3E-sbtxf5egLIKu510-L5_pPi6dIAF_twPF2PsxqL69XqqbBFD4h8KSO2_Tw&t=AQLsP4Hwhz0WZuLvaoE" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🎬</div>
+        <div class="creative-name">CTA — Video — Specials</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQKAQe232gnq71Iy5zyQZqx31PXBSx7TuqEl2wsZ_0R4-75wN7FKzpw9v_FORmvRZM1GcPFI3Q0zGlr-V8cD1FPnn3GyXKCV3ugCPQJulKN8GGrN8zJkGDPTBQ6EBRCocyzNMqQifIg-tKXjrwe5iUz-OMmVCN9v8rWnAeCNMLSoUpZKq_pNLhc2aikEHfRjwqlfAjs0497UIIV2R3S6cPlXpm7oMq3Jgt33Z5cvqRXB_o2DrZ7smV6o45Yk_tMbgdX31apCzmIjGPnVxJHgp-akLCBwrqLNFshtWx9kDpv9eV24-pX5BGxGQqKzFTjuo0c7UEsEorKCH_Gjk2agyxZMPTknsjR9aMQYdtzcZ4shAWjQ5v5gPL-mTFMs-PQhOaJfUYgxbcY3w0rrrApyyv5rKLRzcSZ1rB7jOtUOL_gQ8UXwvq9C2Euk_PpNjoXzEGg&t=AQIt1_PqNEs4LtUT8Ns" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🎬</div>
+        <div class="creative-name">Demonstrate — Video — Facility</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQKql7EU_Tg2OcT0s70tJMTbR7VYsg9FlZuL8wO-MzppPMfg5bPJQZnjA-p3BAQKRJwvTUAl6U9_lDobZHPVwdjZmO7mmhi_wQVmYp0rUOEFKvlC9l0f6cF_pLbX8ZFg2il2ToNLvnmwoV3HZTYOPESpc6BT3CMliUb86hzUJtd3adwDVgmPEHMz7SK7vhRYjDJsN7xZXmEY1gcxwG4T0YGwbjePWetm0XK_DnjK3BgFclx26QCF-R4W-v_PtJ0qHBvBMfMhKazSKKFz_w0vefrwcTQ9o1tzuyrgVllEI9-JZno81AIhECoanIB9zAOgHWNfv5xvUDm2iaOwfzt3ybfmWprXdor_jR5PkipLNpDZaDC0WAc3exrLsbKJPxBZzrvjhWdVP6n8tFLbppJ8IG4zwyvdiHg5MdQy8cqOBsA6unHzjEfQmI0XqC1PIgM6nR8&t=AQK-QbZYWEGIbV4jmO0" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🎬</div>
+        <div class="creative-name">Demonstrate — Video — Natalie ✨</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQKDY0qOr1z-OmNH1hmvAGzqFPbK4TuRGUAcNpyxD78QLNWismSq3vtUHIYPbBbGL92Jx25l6msW11xvBoxmZPczNpOjnGhbgNTTUhkMNA65Uu2aJl9RNjstIp25h5eozDXkrBiLAaaoUFYI-VzxeGC2szce8iPwjvP0lw3l514-RGhMr-juXvC113AVfoB6fEOe_FaP5pI1Golf9AYIqp2mTfTo-kfZpjDKV-b_r9Ogb6tG9fkVmb9Z0gfe4VpPNm9d71xQhkO19E2knvzFYECrWmsurtjHwBwSAFOdYeXFGd5-Co2jORRCjyee_LbUFkS6YiIJQO9F5E0AnTye7GdQSU2CpTlj8Y3EF7LOvpSiCnr1aF3VOtfNWRAmK1B1oiz1UBfmiyzrKVgBjsxITbAOzBsp035f5ALbh0NxnS7aeho8Re2EaYSG9n3wlc_JEww&t=AQIQ66LOhx7y-6X3YA0" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🎬</div>
+        <div class="creative-name">Demonstrate — Video — Filler</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQLIbPgLTgUeamTnReRNQAOQPOqiFEy0l7jcLWf8eq0SzPvf3f1YJZU8SdNH8IuUuodlf5BqUmrT_VVhSAxMFborJc5ZjVqxlVkBxvwlZhuJMnCgxT3TgZ-_jl7f8PGB7zV86G6ETDwQdmDWymOTvUuwiTEq0WXW0DyWSj1iCoMznRqJlWLdQ8K4L5JV5n07-Lrh4f6jXqAKCBdgpu-zXolX0WPONE_q6Enu4tsGJzc6jmEmMPKpoxa3t5GwzLdym5-hAkMljQQh0sjNu82C_za3yScqN4QTm-SkTKvTEDBMBm_XcevIQtST9HZF6mKzOoR3WBI3GoNubtHYmSb6yeR6gfv2EIpIzuhE1GYGLN8DMgU3oYRwI9TnWqbi9gr0qNSxBSQIaW35O3bxIlNYS9rw0YSvAp3SplQpaHTFRaM7ombxBVz0QF7umNRLyzF6WOw&t=AQJ2soDgk9jTB-0UMiw" target="_blank">▶ Preview</a>
+      </div>
+      <div class="creative-card">
+        <div class="creative-icon">🎬</div>
+        <div class="creative-name">Demonstrate — Video — Facial</div>
+        <a class="preview-btn" href="https://business.facebook.com/ads/api/preview_iframe.php?d=AQLzAfxdF01EgnrS8P4_mYH4q7tOSQ5AwCrl7yPj019G2Z94lfmhjM2uvAOIMTFkVukqZ2_VzRGfwlfdZoMrab1s-idWs40tLgyBQMtAqtKE71Df2t1q8V0qxQZxXxS8dlkXlUx3k31ZCpc-Z5-7K9uuVCdeCVplkLlJwxLyoTPSO2_uPoQQgVP3hvqbD_El4BlItw_L4iR7EGvzuh_c_t7gKGhUVsAcOUlDMWUwbwaY8Nb12KOpaCCtgk887kNQ5iEfVhhnfiPDuSVQyeAWnnkXZ-LA3zs-25yTSkN6gg36yUIESkcHJ2Xxpm0qzPagfh1obIIXUc0RYPqbPH4fZGGBFRNN6H5n3Er375fZ7O_jHSdB7XDTnHkHu6ZK-LJIyUsuLPxsp6FNRzp_t2Q9Y2aWPOK-oSi9Qjg_wyCjik1Ow-eHoWcxqXooiB9JPxNdmKA&t=AQL2l9llXPDC132xxLo" target="_blank">▶ Preview</a>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- ══════════════════════════ MARKETING AUDIT TAB ══════════════════════════ -->
+<div id="tab-audit" class="tab-content">
+
+  <section>
+    <h2 class="section-title"><span class="icon">✨</span> What's Working</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🌟</div>
+        <div class="card-title">BirdEye Reviews</div>
+        <div class="stars">★★★★★</div>
+        <div class="card-value">979</div>
+        <div class="card-desc">Perfect 5.0 star rating — rare at this volume</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <div class="card-title">Google Reviews</div>
+        <div class="stars">★★★★★</div>
+        <div class="card-value">500+</div>
+        <div class="card-desc">Mostly 5-star reviews on Google Business Profile</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <div class="card-title">Local SEO</div>
+        <div class="card-value" style="font-size:20px;margin-top:6px;">Top Ranks</div>
+        <div class="card-desc">Ranking well for "med spa Sandy Springs GA"</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💼</div>
+        <div class="card-title">Services Menu</div>
+        <div class="card-value" style="font-size:20px;margin-top:6px;">10+ Treatments</div>
+        <div class="card-desc">Injectables, PRP, HydraFacial, IV therapy &amp; more</div>
+      </div>
+    </div>
+    <div style="margin-top:24px;">
+      <div style="font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:14px;">🏆 Awards &amp; Recognition</div>
+      <div class="awards-grid">
+        <div class="award-card"><div class="trophy">🥇</div><div class="award-title">Best Facial</div><div class="award-sub">My Sandy Springs<br/>2024 &amp; 2025</div></div>
+        <div class="award-card"><div class="trophy">🥇</div><div class="award-title">Best Botox</div><div class="award-sub">Best Self Atlanta<br/>2024 &amp; 2025</div></div>
+        <div class="award-card"><div class="trophy">🌿</div><div class="award-title">Organic Filler</div><div class="award-sub">Specialty service<br/>differentiator</div></div>
+        <div class="award-card"><div class="trophy">💎</div><div class="award-title">ZO + Epicutis</div><div class="award-sub">Premium skincare<br/>retail lines</div></div>
+      </div>
+    </div>
+    <div style="margin-top:24px;">
+      <div style="font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:14px;">👩‍⚕️ Staff Recognized by Name in Reviews</div>
+      <div class="staff-row">
+        <div class="staff-chip"><div class="staff-avatar">A</div><div><div class="staff-name">Amanda</div><div class="staff-role">Highly praised</div></div></div>
+        <div class="staff-chip"><div class="staff-avatar">N</div><div><div class="staff-name">Nicola</div><div class="staff-role">Highly praised</div></div></div>
+        <div class="staff-chip"><div class="staff-avatar">A</div><div><div class="staff-name">Anna</div><div class="staff-role">Highly praised</div></div></div>
+      </div>
+    </div>
+    <div style="margin-top:24px;">
+      <div style="font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:10px;">💉 Services Offered</div>
+      <div class="services-wrap">
+        <span class="service-pill">Injectables</span><span class="service-pill">PRP</span><span class="service-pill">Radiesse</span><span class="service-pill">Organic Filler</span><span class="service-pill">HydraFacial</span><span class="service-pill">PDO Threads</span><span class="service-pill">Agnes RF</span><span class="service-pill">IV Therapy</span><span class="service-pill">Weight Loss</span><span class="service-pill">ZO Skincare</span><span class="service-pill">Epicutis Skincare</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title"><span class="icon">🎯</span> Top 5 Action Items</h2>
+    <ul class="action-list">
+      <li class="action-item"><div class="priority-dot priority-red"></div><div class="action-num">1</div><div class="action-content"><div class="action-title">Merge Duplicate Facebook Pages</div><div class="action-detail">Two live pages: /100540559790583 &amp; /100094763828370 — 281 likes, no recent posts. Merge via Facebook Business Support.</div></div><span class="priority-label label-red">Critical</span></li>
+      <li class="action-item"><div class="priority-dot priority-red"></div><div class="action-num">2</div><div class="action-content"><div class="action-title">Claim BirdEye Profile</div><div class="action-detail">979 reviews sitting unclaimed — free social proof going unmanaged. Claim at birdeye.com now.</div></div><span class="priority-label label-red">Critical</span></li>
+      <li class="action-item"><div class="priority-dot priority-yellow"></div><div class="action-num">3</div><div class="action-content"><div class="action-title">Fix Wrong Phone on medspadirectory.org</div><div class="action-detail">Currently shows (907) 654-9257 — an Alaska number. Damages local SEO and loses patient calls.</div></div><span class="priority-label label-yellow">High</span></li>
+      <li class="action-item"><div class="priority-dot priority-yellow"></div><div class="action-num">4</div><div class="action-content"><div class="action-title">Post Consistently on Instagram</div><div class="action-detail">4,299 followers, following 803. Push Reels, before/afters, staff POV content 4–5×/week.</div></div><span class="priority-label label-yellow">High</span></li>
+      <li class="action-item"><div class="priority-dot priority-yellow"></div><div class="action-num">5</div><div class="action-content"><div class="action-title">Add Public Pricing / Services Page</div><div class="action-detail">Services guide is gated — Google can't index it. Ungated page captures SEO traffic and reduces new patient friction.</div></div><span class="priority-label label-yellow">High</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title"><span class="icon">📊</span> Platform Status</h2>
+    <div class="platforms-grid">
+      <div class="platform-card"><div class="platform-icon">📘</div><div class="platform-name">Facebook</div><span class="platform-status status-critical">Critical</span><div class="platform-detail">281 likes · 2 duplicate pages · no recent posts</div><div class="platform-bar bar-red"></div></div>
+      <div class="platform-card"><div class="platform-icon">📸</div><div class="platform-name">Instagram</div><span class="platform-status status-warning">Needs Work</span><div class="platform-detail">4,299 followers · 631 posts · following 803</div><div class="platform-bar bar-yellow"></div></div>
+      <div class="platform-card"><div class="platform-icon">👁️</div><div class="platform-name">BirdEye</div><span class="platform-status status-critical">Unclaimed</span><div class="platform-detail">979 reviews · 5.0★ · not claimed</div><div class="platform-bar bar-red"></div></div>
+      <div class="platform-card"><div class="platform-icon">🎵</div><div class="platform-name">TikTok</div><span class="platform-status status-missing">Not Present</span><div class="platform-detail">No account — major missed opportunity</div><div class="platform-bar bar-grey"></div></div>
+      <div class="platform-card"><div class="platform-icon">🔍</div><div class="platform-name">Google</div><span class="platform-status status-warning">Access Needed</span><div class="platform-detail">500+ reviews · good rankings · GBP access needed</div><div class="platform-bar bar-yellow"></div></div>
+      <div class="platform-card"><div class="platform-icon">🌐</div><div class="platform-name">Website</div><span class="platform-status status-warning">Gaps</span><div class="platform-detail">Good SEO base · pricing gated · no blog</div><div class="platform-bar bar-yellow"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title"><span class="icon">💡</span> Growth Opportunities</h2>
+    <div class="opp-grid">
+      <div class="opp-card"><div class="opp-heading">✍️ Content Calendar</div><ul class="opp-list"><li>Build a 30-day editorial calendar</li><li>Reels: before/afters, treatment demos</li><li>Staff POV &amp; "day in the life" posts</li><li>Patient testimonial spotlights</li><li>Seasonal promotions &amp; launches</li></ul></div>
+      <div class="opp-card"><div class="opp-heading">📝 SEO Blog Topics</div><ul class="opp-list"><li>"Botox vs Xeomin — What's the Difference?"</li><li>"What is Sculptra and How Does it Work?"</li><li>"Best Facials for Acne in Atlanta"</li><li>"HydraFacial vs Traditional Facial"</li><li>"What is Agnes RF? Sandy Springs Guide"</li></ul></div>
+      <div class="opp-card"><div class="opp-heading">📱 Instagram Growth</div><ul class="opp-list"><li>Reduce following:follower ratio</li><li>Post 4–5× per week minimum</li><li>Engage with local Atlanta/Sandy Springs tags</li><li>Collab posts with local wellness brands</li><li>Use trending audio on Reels</li></ul></div>
+      <div class="opp-card"><div class="opp-heading">🎵 TikTok Launch</div><ul class="opp-list"><li>Create account and brand the profile</li><li>Repurpose top Instagram Reels to TikTok</li><li>Trending sound + treatment transformations</li><li>"Myth vs fact" about Botox, fillers, etc.</li><li>Provider-led educational content</li></ul></div>
+      <div class="opp-card"><div class="opp-heading">💰 Meta Ads Strategy</div><ul class="opp-list"><li>Fix organic first before spending on ads</li><li>Audit existing creative &amp; audiences</li><li>Verify conversion tracking (pixel/CAPI)</li><li>Test lead gen forms for consultations</li><li>Retargeting: website visitors + video viewers</li></ul></div>
+      <div class="opp-card"><div class="opp-heading">🗺️ Directory Cleanup</div><ul class="opp-list"><li>Fix phone on medspadirectory.org</li><li>Claim Georgia Business Journal listing</li><li>Audit ClassPass ROI</li><li>Ensure NAP consistency across all listings</li><li>Get GBP admin access for analytics</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title"><span class="icon">📋</span> Full Audit Notes</h2>
+    <div class="notes-block">
+      <div class="notes-section">
+        <div class="notes-heading">✅ The Good</div>
+        <div class="notes-body"><ul>
+          <li><strong>979 BirdEye reviews at 5.0 stars</strong> — extraordinary volume at a perfect rating</li>
+          <li><strong>500+ Google reviews</strong> (mostly 5-star) — strong trust signal for new patients</li>
+          <li><strong>Staff praised by name</strong>: Amanda, Nicola, Anna — powerful word-of-mouth indicators</li>
+          <li><strong>Awards:</strong> Best Facial (My Sandy Springs 2024 &amp; 2025), Best Botox (Best Self Atlanta 2024 &amp; 2025)</li>
+          <li><strong>Ranks well</strong> for "med spa Sandy Springs GA" — solid organic local SEO foundation</li>
+          <li><strong>Strong service menu:</strong> Injectables, PRP, Radiesse, organic filler, HydraFacial, PDO threads, Agnes RF, IV therapy, weight loss, ZO + Epicutis skincare</li>
+        </ul></div>
+      </div>
+      <div class="notes-section">
+        <div class="notes-heading">⚠️ Gaps &amp; Priorities</div>
+        <div class="notes-body"><ul>
+          <li><span class="tag-red">🔴 Critical:</span> <strong>Facebook nearly dead</strong> — 281 likes, two duplicate pages, no recent posts</li>
+          <li><span class="tag-red">🔴 Critical:</span> <strong>BirdEye profile unclaimed</strong> — 979 reviews without an owner response</li>
+          <li><span class="tag-yellow">🟡 High:</span> <strong>Instagram underperforming</strong> — 4,299 followers, following 803, no TikTok</li>
+          <li><span class="tag-yellow">🟡 High:</span> <strong>Wrong phone on medspadirectory.org</strong> — shows (907) 654-9257 (Alaska number)</li>
+          <li><span class="tag-yellow">🟡 High:</span> <strong>Services guide is gated</strong> — Google can't index pricing</li>
+          <li><span class="tag-yellow">🟡 High:</span> <strong>No blog/content marketing</strong> — missing organic traffic from informational queries</li>
+          <li><span class="tag-yellow">🟡 Monitor:</span> <strong>ClassPass</strong> — evaluate ROI; may attract deal-seekers vs. loyal patients</li>
+        </ul></div>
+      </div>
+      <div class="notes-section">
+        <div class="notes-heading">💡 Opportunities Summary</div>
+        <div class="notes-body">Build a content calendar · Launch SEO blog · Execute Instagram growth strategy · Launch TikTok · Run Meta Ads (fix organic first, then audit creative/audiences/tracking) · Secure Google Business Profile admin access · Clean up all directory listings for NAP consistency</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end audit tab -->
+
+</main>
+
+<footer>
+  <span>Skin Social</span> &nbsp;·&nbsp; Command Center &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; April 2026
+</footer>
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
