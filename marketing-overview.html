@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Skin Social — Marketing Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --oat: #F5EFE6;
+    --cream: #EDE4D4;
+    --tan: #C4A882;
+    --pink: #E8C4C0;
+    --dark: #2C2420;
+    --green: #4CAF7D;
+    --red: #E05252;
+    --blue: #5B8FD4;
+    --yellow: #F0C050;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Poppins',sans-serif; background:var(--oat); color:var(--dark); min-height:100vh; padding:24px; }
+  h1 { font-size:22px; font-weight:600; margin-bottom:4px; }
+  .subtitle { font-size:13px; color:#888; margin-bottom:28px; }
+  .updated { font-size:11px; color:#aaa; float:right; margin-top:4px; }
+
+  /* Grid */
+  .grid { display:grid; gap:16px; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  @media(max-width:700px){ .grid-3,.grid-2 { grid-template-columns:1fr; } }
+
+  /* Cards */
+  .card { background:#fff; border-radius:16px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+  .card-title { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:#aaa; margin-bottom:12px; }
+  .card h2 { font-size:32px; font-weight:700; }
+  .card .label { font-size:12px; color:#888; margin-top:4px; }
+  .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600; }
+  .badge.green { background:#E8F5EE; color:var(--green); }
+  .badge.red { background:#FDECEC; color:var(--red); }
+  .badge.blue { background:#EBF2FC; color:var(--blue); }
+  .badge.yellow { background:#FEF8E7; color:#C0850A; }
+  .badge.gray { background:#F0F0F0; color:#888; }
+
+  /* Section */
+  .section-title { font-size:14px; font-weight:600; margin:28px 0 12px; display:flex; align-items:center; gap:8px; }
+  .section-title .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+
+  /* Platform row */
+  .platform-row { display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid var(--oat); }
+  .platform-row:last-child { border-bottom:none; }
+  .platform-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  .platform-icon.meta { background:#EBF2FC; }
+  .platform-icon.google { background:#E8F5EE; }
+  .platform-icon.ig { background:#FEF0F8; }
+  .platform-icon.groupon { background:#FEF8E7; }
+  .platform-body { flex:1; }
+  .platform-name { font-size:13px; font-weight:600; }
+  .platform-detail { font-size:12px; color:#888; margin-top:1px; }
+  .platform-right { text-align:right; }
+  .platform-right .amount { font-size:15px; font-weight:700; }
+  .platform-right .sub { font-size:11px; color:#aaa; }
+
+  /* Metric row */
+  .metric-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--oat); }
+  .metric-row:last-child { border-bottom:none; }
+  .metric-label { font-size:13px; color:#666; }
+  .metric-value { font-size:14px; font-weight:600; }
+
+  /* Action items */
+  .action { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--oat); }
+  .action:last-child { border-bottom:none; }
+  .action-icon { font-size:16px; margin-top:1px; }
+  .action-text { font-size:13px; flex:1; }
+  .action-text strong { display:block; margin-bottom:2px; }
+  .action-text span { color:#888; font-size:12px; }
+
+  /* Progress bar */
+  .progress-wrap { margin-top:8px; }
+  .progress-bg { background:var(--oat); border-radius:6px; height:8px; overflow:hidden; }
+  .progress-fill { height:100%; border-radius:6px; }
+
+  .header-flex { display:flex; justify-content:space-between; align-items:flex-start; }
+  .status-pill { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:500; padding:5px 12px; border-radius:20px; }
+  .status-pill.live { background:#E8F5EE; color:var(--green); }
+  .status-pill.live::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--green); display:inline-block; }
+</style>
+</head>
+<body>
+
+<div class="header-flex">
+  <div>
+    <h1>Skin Social — Marketing Command Center</h1>
+    <div class="subtitle">All channels · All spend · One view</div>
+  </div>
+  <div class="updated">Last updated: April 6, 2026</div>
+</div>
+
+<!-- TOP KPI ROW -->
+<div class="grid grid-3" style="margin-bottom:16px;">
+  <div class="card">
+    <div class="card-title">Total Ad Spend / Month</div>
+    <h2>~$2,550</h2>
+    <div class="label">Meta $1,800 · Google $750</div>
+    <div style="margin-top:10px"><span class="badge green">↑ Active</span></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Meta Lead Gen CPL</div>
+    <h2>$6.70</h2>
+    <div class="label">279 leads in last 30 days</div>
+    <div style="margin-top:10px"><span class="badge green">🔥 Excellent</span></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Google Ads</div>
+    <h2>Day 1</h2>
+    <div class="label">Launched April 6, 2026</div>
+    <div style="margin-top:10px"><span class="status-pill live">Live Now</span></div>
+  </div>
+</div>
+
+<!-- PLATFORM BREAKDOWN -->
+<div class="section-title"><span class="dot" style="background:#5B8FD4"></span>Active Channels</div>
+<div class="card">
+  <!-- META LEAD GEN -->
+  <div class="platform-row">
+    <div class="platform-icon meta">📘</div>
+    <div class="platform-body">
+      <div class="platform-name">Meta — Lead Gen (Botox/Filler)</div>
+      <div class="platform-detail">Campaign ID: 120239469005810735 · 3 ads active · <span class="badge green">ACTIVE</span></div>
+      <div style="margin-top:6px;font-size:12px;color:#666;">279 leads · 2.14% CTR · 87K impressions (30d)</div>
+    </div>
+    <div class="platform-right">
+      <div class="amount">$60/day</div>
+      <div class="sub">$1,800/mo</div>
+    </div>
+  </div>
+  <!-- META AWARENESS -->
+  <div class="platform-row">
+    <div class="platform-icon meta">📘</div>
+    <div class="platform-body">
+      <div class="platform-name">Meta — Omni Awareness</div>
+      <div class="platform-detail">13 ads · <span class="badge green">ACTIVE</span></div>
+      <div style="margin-top:6px;font-size:12px;color:#666;">626K impressions · $1.53 CPM · 14K video views (30d)</div>
+    </div>
+    <div class="platform-right">
+      <div class="amount">~$32/day</div>
+      <div class="sub">~$956/mo</div>
+    </div>
+  </div>
+  <!-- GOOGLE ADS -->
+  <div class="platform-row">
+    <div class="platform-icon google">🔍</div>
+    <div class="platform-body">
+      <div class="platform-name">Google Search — Botox & Filler</div>
+      <div class="platform-detail">Campaign: 23723818797 · 12 keywords · <span class="badge green">LIVE</span></div>
+      <div style="margin-top:6px;font-size:12px;color:#666;">Atlanta metro · 15-mile radius · data in 48hrs</div>
+    </div>
+    <div class="platform-right">
+      <div class="amount">$25/day</div>
+      <div class="sub">~$750/mo</div>
+    </div>
+  </div>
+  <!-- INSTAGRAM -->
+  <div class="platform-row">
+    <div class="platform-icon ig">📸</div>
+    <div class="platform-body">
+      <div class="platform-name">Instagram @skinsocialspa</div>
+      <div class="platform-detail">4,323 followers · 634 posts · <span class="badge yellow">Organic only</span></div>
+      <div style="margin-top:6px;font-size:12px;color:#666;">145K reach · 274 website clicks · 0 net follower growth (30d)</div>
+    </div>
+    <div class="platform-right">
+      <div class="amount">$0/mo</div>
+      <div class="sub">Organic</div>
+    </div>
+  </div>
+  <!-- GROUPON -->
+  <div class="platform-row">
+    <div class="platform-icon groupon">🟢</div>
+    <div class="platform-body">
+      <div class="platform-name">Groupon</div>
+      <div class="platform-detail">Thread Lift + PRP deals · 4.9★ (93 reviews) · <span class="badge yellow">Declining</span></div>
+      <div style="margin-top:6px;font-size:12px;color:#666;">Low volume · PRP underperforming · high-ticket deals hard to convert</div>
+    </div>
+    <div class="platform-right">
+      <div class="amount">~50% off</div>
+      <div class="sub">Rev share</div>
+    </div>
+  </div>
+</div>
+
+<!-- LANDING PAGE + ASSETS -->
+<div class="section-title"><span class="dot" style="background:var(--tan)"></span>Digital Assets</div>
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title">Google Ads Landing Page</div>
+    <div class="metric-row">
+      <span class="metric-label">URL</span>
+      <span class="metric-value" style="font-size:12px"><a href="https://nat-the-bot.github.io/skin-social-landing/" target="_blank" style="color:var(--blue)">View Page →</a></span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">Book Button</span>
+      <span class="badge green">Boulevard ✓</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">Call Button</span>
+      <span class="badge green">(470) 823-7842 ✓</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">Reviews shown</span>
+      <span class="metric-value">600+ ⭐</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Command Center Dashboard</div>
+    <div class="metric-row">
+      <span class="metric-label">URL</span>
+      <span class="metric-value" style="font-size:12px"><a href="https://nat-the-bot.github.io/skin-social-dashboard/" target="_blank" style="color:var(--blue)">View Dashboard →</a></span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">Tab 1</span>
+      <span class="metric-value" style="font-size:12px">Meta Ads Live Data</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">Tab 2</span>
+      <span class="metric-value" style="font-size:12px">Marketing Audit</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">CEO Dashboard</span>
+      <span class="badge red">Needs Rebuild</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRIORITIES + ACTION ITEMS -->
+<div class="section-title"><span class="dot" style="background:var(--pink)"></span>Priorities & Next Steps</div>
+<div class="card">
+  <div class="action">
+    <div class="action-icon">🔴</div>
+    <div class="action-text">
+      <strong>Review Google Ads performance</strong>
+      <span>Reminder set for Wednesday April 8 at 6pm — check impressions, clicks, CPL</span>
+    </div>
+    <span class="badge yellow">Apr 8</span>
+  </div>
+  <div class="action">
+    <div class="action-icon">🟡</div>
+    <div class="action-text">
+      <strong>Rebuild CEO Financial Dashboard</strong>
+      <span>Google Sheets (P&L + Balance Sheet) → share with service account: skinsocial-dashboard@skin-social-492223.iam.gserviceaccount.com</span>
+    </div>
+    <span class="badge gray">Pending</span>
+  </div>
+  <div class="action">
+    <div class="action-icon">🟡</div>
+    <div class="action-text">
+      <strong>Instagram Reels strategy</strong>
+      <span>Zero follower growth despite good reach — needs consistent Reels. Team/personal content outperforms product 3-4x.</span>
+    </div>
+    <span class="badge gray">Pending</span>
+  </div>
+  <div class="action">
+    <div class="action-icon">🟢</div>
+    <div class="action-text">
+      <strong>Meta Lead Gen — keep running</strong>
+      <span>$6.70 CPL is excellent. Do not touch. Let Plastix manage.</span>
+    </div>
+    <span class="badge green">Healthy</span>
+  </div>
+  <div class="action">
+    <div class="action-icon">⚪</div>
+    <div class="action-text">
+      <strong>Groupon — consider strategy change</strong>
+      <span>PRP underperforming. Consider lower-ticket entry deal ($79-149) to drive foot traffic → upsell in person.</span>
+    </div>
+    <span class="badge gray">Optional</span>
+  </div>
+</div>
+
+<!-- MONTHLY BUDGET SUMMARY -->
+<div class="section-title"><span class="dot" style="background:var(--green)"></span>Monthly Budget Snapshot</div>
+<div class="card">
+  <div class="metric-row">
+    <span class="metric-label">Meta Ads (Lead Gen + Awareness)</span>
+    <span class="metric-value">~$2,756/mo</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Google Ads (Botox/Filler Search)</span>
+    <span class="metric-value">~$750/mo</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Instagram (Organic)</span>
+    <span class="metric-value">$0</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Groupon (Commission-based)</span>
+    <span class="metric-value">~50% rev share</span>
+  </div>
+  <div class="metric-row" style="border-top:2px solid var(--oat);margin-top:4px;padding-top:14px;">
+    <span class="metric-label" style="font-weight:600;">Total Monthly Ad Spend</span>
+    <span class="metric-value" style="font-size:18px;color:var(--dark);">~$3,506/mo</span>
+  </div>
+  <div class="progress-wrap" style="margin-top:12px;">
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:#aaa;margin-bottom:4px;">
+      <span>Meta 79%</span><span>Google 21%</span>
+    </div>
+    <div class="progress-bg">
+      <div class="progress-fill" style="width:79%;background:linear-gradient(90deg,#5B8FD4,#4CAF7D);"></div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;font-size:11px;color:#ccc;margin-top:28px;padding-bottom:20px;">
+  Skin Social Med Spa · 5840 Roswell Rd, Sandy Springs, GA · (470) 823-7842
+</div>
+
+</body>
+</html>
