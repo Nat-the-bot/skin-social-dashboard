@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skin Social — CEO Dashboard</title>
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #FBF7F2;
+      --blush:   #E8C5B8;
+      --gold:    #C9A96E;
+      --gold-lt: #DEC28F;
+      --gold-dk: #A3804A;
+      --charcoal:#3D2B1F;
+      --charcoal-lt: #6B4E3D;
+      --white:   #FFFFFF;
+      --green:   #4A7C59;
+      --red:     #B85042;
+      --orange:  #C97B2E;
+      --shadow:  0 4px 24px rgba(61,43,31,0.10);
+      --radius:  14px;
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      background: linear-gradient(135deg, var(--charcoal) 0%, #5C3D2E 60%, var(--charcoal-lt) 100%);
+      padding: 48px 40px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: -60px; right: -60px; bottom: -20px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-ornament {
+      font-size: 11px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      opacity: 0.85;
+    }
+    .header h1 {
+      font-size: clamp(26px, 5vw, 44px);
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: 2px;
+      line-height: 1.2;
+    }
+    .header h1 span {
+      color: var(--gold);
+      font-style: italic;
+    }
+    .header-subtitle {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--blush);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 300;
+    }
+    .gold-line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 20px auto 0;
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      margin-top: 40px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold-dk);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 500;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--blush), transparent);
+    }
+
+    /* ─── KPI Cards ─── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .kpi-grid { grid-template-columns: 1fr; } }
+
+    .kpi-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px 24px;
+      box-shadow: var(--shadow);
+      border-top: 3px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(61,43,31,0.15);
+    }
+    .kpi-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at bottom right, rgba(201,169,110,0.08), transparent 70%);
+    }
+    .kpi-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--charcoal-lt);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .kpi-value {
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+    .kpi-sub {
+      margin-top: 8px;
+      font-size: 12px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: var(--charcoal-lt);
+    }
+    .kpi-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 600;
+    }
+    .badge-warn  { background: #FFF0E0; color: var(--orange); }
+    .badge-green { background: #EBF5EE; color: var(--green); }
+    .badge-gold  { background: #FAF3E7; color: var(--gold-dk); }
+
+    /* ─── Revenue Bar Chart ─── */
+    .bar-chart {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px 24px;
+      box-shadow: var(--shadow);
+    }
+    .bar-grid {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      height: 200px;
+    }
+    @media (max-width: 600px) { .bar-grid { gap: 5px; } }
+
+    .bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+    }
+    .bar-amount {
+      font-size: 10px;
+      color: var(--gold-dk);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 600;
+      margin-bottom: 4px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    @media (max-width: 600px) { .bar-amount { font-size: 8px; } }
+
+    .bar {
+      width: 100%;
+      border-radius: 6px 6px 0 0;
+      background: linear-gradient(180deg, var(--gold-lt) 0%, var(--gold) 60%, var(--gold-dk) 100%);
+      transition: opacity 0.2s;
+      cursor: default;
+      position: relative;
+      min-height: 4px;
+    }
+    .bar.peak {
+      background: linear-gradient(180deg, #F0D99A 0%, var(--gold) 40%, #9A7035 100%);
+      box-shadow: 0 0 18px rgba(201,169,110,0.35);
+    }
+    .bar-label {
+      margin-top: 8px;
+      font-size: 11px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: var(--charcoal-lt);
+      text-align: center;
+    }
+
+    .chart-yaxis {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      padding: 0 0 0 0;
+      border-top: 1px solid #EDE5DE;
+      padding-top: 6px;
+    }
+    .chart-note {
+      font-size: 11px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: var(--charcoal-lt);
+      font-style: italic;
+      margin-top: 12px;
+    }
+
+    /* ─── P&L Table ─── */
+    .pl-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .pl-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    .pl-table th {
+      background: var(--charcoal);
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 14px 20px;
+      text-align: left;
+      font-weight: 500;
+    }
+    .pl-table th:last-child { text-align: right; }
+    .pl-table td {
+      padding: 13px 20px;
+      font-size: 14px;
+      border-bottom: 1px solid #F3EDE8;
+    }
+    .pl-table td:last-child { text-align: right; }
+    .pl-table tr:last-child td { border-bottom: none; }
+
+    .row-header td {
+      background: #FAF3EA;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--charcoal);
+      padding-top: 16px;
+      padding-bottom: 8px;
+    }
+    .row-sales td { font-weight: 700; font-size: 15px; color: var(--charcoal); }
+    .row-subtotal td { background: #FAF5EF; font-weight: 600; }
+    .row-total td { background: var(--charcoal); color: var(--cream); font-weight: 700; font-size: 15px; }
+
+    .pct-green { color: var(--green); font-weight: 600; }
+    .pct-red   { color: var(--red); font-weight: 600; }
+    .pct-orange{ color: var(--orange); font-weight: 600; }
+    .pct-gold  { color: var(--gold-dk); font-weight: 600; }
+
+    .indent { padding-left: 36px !important; color: var(--charcoal-lt); }
+
+    /* ─── Margin Trend ─── */
+    .margin-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px 24px;
+      box-shadow: var(--shadow);
+    }
+    .margin-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .margin-month {
+      font-size: 12px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: var(--charcoal);
+      width: 36px;
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+    .margin-bar-wrap {
+      flex: 1;
+      background: #F3EDE8;
+      border-radius: 6px;
+      height: 26px;
+      position: relative;
+      overflow: visible;
+    }
+    .margin-bar-inner {
+      height: 100%;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-size: 11px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 700;
+      color: var(--white);
+      position: relative;
+      transition: width 0.4s ease;
+      min-width: 50px;
+    }
+    .goal-line {
+      position: absolute;
+      top: -6px;
+      bottom: -6px;
+      width: 2px;
+      background: var(--green);
+      z-index: 2;
+    }
+    .goal-label {
+      position: absolute;
+      top: -22px;
+      transform: translateX(-50%);
+      font-size: 9px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: var(--green);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .margin-pct {
+      font-size: 12px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 700;
+      width: 52px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .alert-tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: #FDECEA;
+      color: var(--red);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ─── Insights ─── */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 800px) { .insights-grid { grid-template-columns: 1fr; } }
+
+    .insight-card {
+      border-radius: var(--radius);
+      padding: 26px 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .insight-card.positive {
+      background: linear-gradient(135deg, #EEF7F2 0%, #E0F0E8 100%);
+      border-left: 4px solid var(--green);
+    }
+    .insight-card.alert {
+      background: linear-gradient(135deg, #FDF2F0 0%, #FAE6E3 100%);
+      border-left: 4px solid var(--red);
+    }
+    .insight-card.goal {
+      background: linear-gradient(135deg, #FAF5E8 0%, #F5EDD8 100%);
+      border-left: 4px solid var(--gold);
+    }
+    .insight-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .insight-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--charcoal);
+    }
+    .insight-text strong {
+      font-size: 15px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid var(--blush);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      color: var(--charcoal-lt);
+      letter-spacing: 2px;
+    }
+    .footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<div class="header">
+  <div class="header-ornament">Confidential · CEO View</div>
+  <h1><span>Skin Social</span> — CEO Dashboard</h1>
+  <div class="header-subtitle">2025 Financial Performance &nbsp;·&nbsp; Jan–Aug</div>
+  <div class="gold-line"></div>
+</div>
+
+<div class="container">
+
+  <!-- ══════════════ KPI CARDS ══════════════ -->
+  <div class="section">
+    <div class="section-title">Key Performance Indicators</div>
+    <div class="kpi-grid">
+
+      <div class="kpi-card">
+        <div class="kpi-label">YTD Revenue</div>
+        <div class="kpi-value">$570,701</div>
+        <div class="kpi-sub">Jan – Aug 2025</div>
+        <span class="kpi-badge badge-gold">57% to $1M goal</span>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">YTD Gross Margin</div>
+        <div class="kpi-value">$168,609</div>
+        <div class="kpi-sub">After product cost &amp; payroll</div>
+        <span class="kpi-badge badge-warn">29.5% of sales</span>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Prime Cost %</div>
+        <div class="kpi-value">70.5%</div>
+        <div class="kpi-sub">Product cost + Payroll</div>
+        <span class="kpi-badge badge-warn">Goal: &lt;60%</span>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Monthly Revenue</div>
+        <div class="kpi-value">$71,338</div>
+        <div class="kpi-sub">Need $83K/mo to hit $1M</div>
+        <span class="kpi-badge badge-warn">$12K gap to goal</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ REVENUE BAR CHART ══════════════ -->
+  <div class="section">
+    <div class="section-title">Monthly Revenue</div>
+    <div class="bar-chart">
+      <div class="bar-grid">
+
+        <!-- Max = $85,403.50 (June). Heights as % of 200px container. -->
+
+        <div class="bar-col">
+          <div class="bar-amount">$50K</div>
+          <div class="bar" style="height: calc(200px * 50020 / 85404)"></div>
+          <div class="bar-label">Jan</div>
+        </div>
+
+        <div class="bar-col">
+          <div class="bar-amount">$72K</div>
+          <div class="bar" style="height: calc(200px * 71894 / 85404)"></div>
+          <div class="bar-label">Feb</div>
+        </div>
+
+        <div class="bar-col">
+          <div class="bar-amount">$75K</div>
+          <div class="bar" style="height: calc(200px * 75456 / 85404)"></div>
+          <div class="bar-label">Mar</div>
+        </div>
+
+        <div class="bar-col">
+          <div class="bar-amount">$73K</div>
+          <div class="bar" style="height: calc(200px * 72982 / 85404)"></div>
+          <div class="bar-label">Apr</div>
+        </div>
+
+        <div class="bar-col">
+          <div class="bar-amount">$76K</div>
+          <div class="bar" style="height: calc(200px * 75813 / 85404)"></div>
+          <div class="bar-label">May</div>
+        </div>
+
+        <div class="bar-col">
+          <div class="bar-amount">$85K ★</div>
+          <div class="bar peak" style="height: calc(200px * 85404 / 85404)"></div>
+          <div class="bar-label">Jun</div>
+        </div>
+
+        <div class="bar-col">
+          <div class="bar-amount">$67K</div>
+          <div class="bar" style="height: calc(200px * 67187 / 85404)"></div>
+          <div class="bar-label">Jul</div>
+        </div>
+
+        <div class="bar-col">
+          <div class="bar-amount">$72K</div>
+          <div class="bar" style="height: calc(200px * 71946 / 85404)"></div>
+          <div class="bar-label">Aug</div>
+        </div>
+
+      </div>
+      <p class="chart-note">★ June peak: $85,403 &nbsp;|&nbsp; January dip: $50,021 &nbsp;|&nbsp; YTD Total: $570,702</p>
+    </div>
+  </div>
+
+  <!-- ══════════════ P&L TABLE ══════════════ -->
+  <div class="section">
+    <div class="section-title">P&amp;L Summary · YTD Jan–Aug 2025</div>
+    <div class="pl-card">
+      <table class="pl-table">
+        <thead>
+          <tr>
+            <th>Line Item</th>
+            <th style="text-align:right">Amount</th>
+            <th style="text-align:right">% of Sales</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr class="row-sales">
+            <td>Total Revenue</td>
+            <td>$570,701.56</td>
+            <td><span class="pct-green">100.0%</span></td>
+          </tr>
+
+          <tr class="row-header">
+            <td colspan="3">Cost of Sales</td>
+          </tr>
+          <tr>
+            <td class="indent">Cost of Injectables</td>
+            <td>$184,360.55</td>
+            <td><span class="pct-red">32.3%</span></td>
+          </tr>
+          <tr>
+            <td class="indent">Cost of Skincare Products</td>
+            <td>$23,143.11</td>
+            <td><span class="pct-orange">4.1%</span></td>
+          </tr>
+          <tr class="row-subtotal">
+            <td><strong>Total Product Cost</strong></td>
+            <td><strong>$207,503.66</strong></td>
+            <td><span class="pct-red">36.4%</span></td>
+          </tr>
+          <tr>
+            <td class="indent">Payroll &amp; Labor</td>
+            <td>$194,589.35</td>
+            <td><span class="pct-red">34.1%</span></td>
+          </tr>
+          <tr class="row-subtotal">
+            <td><strong>Prime Cost (Product + Payroll)</strong></td>
+            <td><strong>$402,093.01</strong></td>
+            <td><span class="pct-red">70.5%</span></td>
+          </tr>
+          <tr style="background:#EBF5EE;">
+            <td><strong>Gross Margin</strong></td>
+            <td><strong>$168,608.55</strong></td>
+            <td><span class="pct-green">29.5%</span></td>
+          </tr>
+
+          <tr class="row-header">
+            <td colspan="3">Operating Expenses</td>
+          </tr>
+          <tr>
+            <td class="indent">Marketing &amp; Advertising</td>
+            <td>$49,690.12</td>
+            <td><span class="pct-orange">8.7%</span></td>
+          </tr>
+          <tr>
+            <td class="indent">Rent &amp; Occupancy</td>
+            <td>$52,134.84</td>
+            <td><span class="pct-orange">9.1%</span></td>
+          </tr>
+          <tr>
+            <td class="indent">Equipment Rental</td>
+            <td>$23,670.75</td>
+            <td><span class="pct-orange">4.1%</span></td>
+          </tr>
+          <tr>
+            <td class="indent">Insurance</td>
+            <td>$3,612.35</td>
+            <td><span class="pct-gold">0.6%</span></td>
+          </tr>
+          <tr>
+            <td class="indent">Software &amp; Apps</td>
+            <td>$5,915.30</td>
+            <td><span class="pct-gold">1.0%</span></td>
+          </tr>
+          <tr class="row-subtotal">
+            <td><strong>Total Operating Expenses</strong></td>
+            <td><strong>$209,240.48</strong></td>
+            <td><span class="pct-red">36.7%</span></td>
+          </tr>
+
+          <tr class="row-total">
+            <td>Net Operating Income (EBITDA est.)</td>
+            <td>$(40,631.93)</td>
+            <td>-7.1%</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════ MARGIN TREND ══════════════ -->
+  <div class="section">
+    <div class="section-title">Prime Cost % by Month</div>
+    <div class="margin-card">
+      <p style="font-family:'Helvetica Neue',Arial,sans-serif; font-size:12px; color:var(--charcoal-lt); margin-bottom:24px;">
+        Green line = 60% goal. Bars exceeding 100% indicate payroll &amp; product costs exceeded revenue for that month.
+      </p>
+
+      <!-- Goal line is at 60% of the 100%-wide bar wrap = left: 60% -->
+
+      <div class="margin-row">
+        <div class="margin-month">Jan</div>
+        <div class="margin-bar-wrap">
+          <div class="goal-line" style="left:60%"><div class="goal-label">Goal 60%</div></div>
+          <div class="margin-bar-inner" style="width:40.7%; background:linear-gradient(90deg,#4A7C59,#5E9E72);">40.7%</div>
+        </div>
+        <div class="margin-pct" style="color:var(--green)">40.7%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-month">Feb</div>
+        <div class="margin-bar-wrap">
+          <div class="goal-line" style="left:60%"></div>
+          <div class="margin-bar-inner" style="width:78.7%; background:linear-gradient(90deg,var(--gold-dk),var(--orange));">78.7%</div>
+        </div>
+        <div class="margin-pct" style="color:var(--orange)">78.7%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-month">Mar</div>
+        <div class="margin-bar-wrap">
+          <div class="goal-line" style="left:60%"></div>
+          <div class="margin-bar-inner" style="width:77.8%; background:linear-gradient(90deg,var(--gold-dk),var(--orange));">77.8%</div>
+        </div>
+        <div class="margin-pct" style="color:var(--orange)">77.8%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-month">Apr</div>
+        <div class="margin-bar-wrap">
+          <div class="goal-line" style="left:60%"></div>
+          <div class="margin-bar-inner" style="width:60.8%; background:linear-gradient(90deg,var(--gold-dk),var(--orange));">60.8%</div>
+        </div>
+        <div class="margin-pct" style="color:var(--orange)">60.8%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-month">May</div>
+        <div class="margin-bar-wrap">
+          <div class="goal-line" style="left:60%"></div>
+          <div class="margin-bar-inner" style="width:57%; background:linear-gradient(90deg,#4A7C59,#5E9E72);">57.0%</div>
+        </div>
+        <div class="margin-pct" style="color:var(--green)">57.0%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-month">Jun</div>
+        <div class="margin-bar-wrap">
+          <div class="goal-line" style="left:60%"></div>
+          <div class="margin-bar-inner" style="width:52.4%; background:linear-gradient(90deg,#3A6B49,#4A7C59);">52.4%</div>
+        </div>
+        <div class="margin-pct" style="color:var(--green)">52.4% ✅</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-month">Jul</div>
+        <div class="margin-bar-wrap">
+          <div class="goal-line" style="left:60%"></div>
+          <div class="margin-bar-inner" style="width:85.9%; background:linear-gradient(90deg,var(--red),#D4604E);">85.9%</div>
+        </div>
+        <div class="margin-pct" style="color:var(--red)">85.9%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-month">Aug</div>
+        <div class="margin-bar-wrap">
+          <div class="goal-line" style="left:60%"></div>
+          <!-- Aug is 106.2% — cap bar at 100% visually but show real value -->
+          <div class="margin-bar-inner" style="width:100%; background:linear-gradient(90deg,#8B1A10,var(--red));">106.2% 🚨</div>
+        </div>
+        <div class="margin-pct" style="color:var(--red)">106.2%</div>
+        <div class="alert-tag">ALERT</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ INSIGHTS ══════════════ -->
+  <div class="section">
+    <div class="section-title">CEO Insights</div>
+    <div class="insights-grid">
+
+      <div class="insight-card positive">
+        <span class="insight-icon">✅</span>
+        <div class="insight-text">
+          <strong>June: Strongest Month</strong>
+          $85K revenue with 52.4% prime cost — the only month hitting target. June's model should be studied and replicated.
+        </div>
+      </div>
+
+      <div class="insight-card alert">
+        <span class="insight-icon">🚨</span>
+        <div class="insight-text">
+          <strong>August Alert: 106% Prime Cost</strong>
+          Costs exceeded revenue. A payroll spike needs immediate investigation. Review provider commissions and scheduling efficiency.
+        </div>
+      </div>
+
+      <div class="insight-card goal">
+        <span class="insight-icon">🎯</span>
+        <div class="insight-text">
+          <strong>$1M Revenue Goal</strong>
+          $570K earned Jan–Aug. Hitting $1M requires averaging $83K/month Sept–Dec — that's $12K above current run rate.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <span>Skin Social Med Spa</span> &nbsp;·&nbsp; Confidential CEO Dashboard &nbsp;·&nbsp; 2025 Financial Data &nbsp;·&nbsp; Generated by Nat The Bot
+</div>
+
+</body>
+</html>
