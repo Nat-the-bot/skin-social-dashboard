@@ -1,4 +1,4 @@
-# Skin Social Financials — March 2026
+# Skin Social Financials — March 2026 (UPDATED — includes Trailing 12 Months Apr 2025–Mar 2026)
 
 ## Balance Sheet
 
