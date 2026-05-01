@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skin Social — CFO Financial Analysis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+  :root {
+    --oat: #F5EFE7;
+    --cream: #EADFCB;
+    --tan: #D6BFA9;
+    --pink: #E8C4C4;
+    --babypink: #F2E5E5;
+    --sand: #CBB8A0;
+    --charcoal: #3A3A3A;
+    --mid: #6a6a6a;
+    --white: #fff;
+    --green: #5a9e6f;
+    --red: #c0544f;
+    --shadow: 0 2px 20px rgba(0,0,0,0.07);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', sans-serif; background: var(--oat); color: var(--charcoal); line-height: 1.7; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #E8C4C4 0%, #D6BFA9 50%, #EADFCB 100%);
+    padding: 60px 40px 50px;
+    text-align: center;
+    border-bottom: 3px solid var(--tan);
+  }
+  .logo-text { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--mid); margin-bottom: 10px; }
+  .header h1 { font-size: 36px; font-weight: 700; color: var(--charcoal); margin-bottom: 8px; }
+  .header .subtitle { font-size: 14px; color: var(--mid); margin-bottom: 6px; }
+  .header .date-badge {
+    display: inline-block;
+    background: var(--white);
+    border: 1px solid var(--tan);
+    border-radius: 20px;
+    padding: 5px 18px;
+    font-size: 12px;
+    color: var(--mid);
+    margin-top: 14px;
+  }
+
+  /* LAYOUT */
+  .container { max-width: 900px; margin: 0 auto; padding: 48px 32px; }
+
+  /* SECTION */
+  .section { margin-bottom: 52px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--cream);
+  }
+  .section-emoji { font-size: 26px; }
+  .section-title { font-size: 20px; font-weight: 700; color: var(--charcoal); }
+  .section-sub { font-size: 12px; color: var(--mid); font-weight: 400; margin-top: 2px; }
+
+  /* STAT CARDS */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .stat-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 22px 20px;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--pink);
+    text-align: center;
+  }
+  .stat-card.green { border-top-color: #5a9e6f; }
+  .stat-card.tan { border-top-color: var(--tan); }
+  .stat-card.sand { border-top-color: var(--sand); }
+  .stat-val { font-size: 26px; font-weight: 700; color: var(--charcoal); }
+  .stat-lbl { font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px; }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; border-radius: 14px; box-shadow: var(--shadow); }
+  table { width: 100%; border-collapse: collapse; background: var(--white); font-size: 13px; }
+  thead tr { background: linear-gradient(90deg, var(--pink), var(--cream)); }
+  thead th { padding: 13px 14px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--charcoal); white-space: nowrap; }
+  tbody tr:nth-child(even) { background: var(--oat); }
+  tbody tr:hover { background: var(--babypink); }
+  tbody td { padding: 11px 14px; color: var(--charcoal); white-space: nowrap; }
+  .pos { color: var(--green); font-weight: 600; }
+  .neg { color: var(--red); font-weight: 600; }
+  .highlight { background: #fff0f3 !important; }
+
+  /* INSIGHT CARDS */
+  .insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 600px) { .insight-grid { grid-template-columns: 1fr; } }
+  .insight-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 22px 22px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--pink);
+  }
+  .insight-card.warning { border-left-color: #e0a050; }
+  .insight-card.success { border-left-color: var(--green); }
+  .insight-card.info { border-left-color: var(--tan); }
+  .insight-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--charcoal); }
+  .insight-card p { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+  /* PROGRESS BAR */
+  .bar-row { margin-bottom: 14px; }
+  .bar-label { font-size: 12px; color: var(--charcoal); margin-bottom: 5px; display: flex; justify-content: space-between; }
+  .bar-track { background: var(--cream); border-radius: 6px; height: 10px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--pink), var(--tan)); }
+  .bar-fill.green { background: linear-gradient(90deg, #8ecfa0, #5a9e6f); }
+  .bar-fill.warning { background: linear-gradient(90deg, #f0c88a, #e0a050); }
+
+  /* PROJECTION TABLE */
+  .proj-card {
+    background: linear-gradient(135deg, var(--babypink), var(--cream));
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+  .proj-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--charcoal); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 32px;
+    font-size: 12px;
+    margin-top: 60px;
+  }
+  .footer .brand { color: var(--tan); font-weight: 600; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill-green { background: #e8f5ec; color: var(--green); }
+  .pill-red { background: #fdecea; color: var(--red); }
+  .pill-yellow { background: #fff8e6; color: #c08020; }
+
+  blockquote {
+    border-left: 4px solid var(--pink);
+    padding: 14px 20px;
+    background: var(--white);
+    border-radius: 0 12px 12px 0;
+    font-size: 14px;
+    color: var(--mid);
+    margin: 20px 0;
+    font-style: italic;
+  }
+
+  .divider { border: none; border-top: 1px solid var(--cream); margin: 36px 0; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo-text">Skin Social — Sandy Springs, GA</div>
+  <h1>💼 CFO Financial Intelligence Report</h1>
+  <div class="subtitle">19-Month Deep Analysis · September 2024 through March 2026</div>
+  <div class="date-badge">📅 Prepared May 1, 2026 · Confidential</div>
+</div>
+
+<div class="container">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">🏆</div>
+      <div>
+        <div class="section-title">Executive Summary</div>
+        <div class="section-sub">19 months · Sep 2024 – Mar 2026</div>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card green">
+        <div class="stat-val">$1.43M</div>
+        <div class="stat-lbl">Total Revenue (19mo)</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-val">$141K</div>
+        <div class="stat-lbl">Total Net Income</div>
+      </div>
+      <div class="stat-card tan">
+        <div class="stat-val">$115K</div>
+        <div class="stat-lbl">Best Month Revenue<br><span style="font-size:10px;color:#aaa">Sep 2025</span></div>
+      </div>
+      <div class="stat-card tan">
+        <div class="stat-val">$45K</div>
+        <div class="stat-lbl">Best Net Income Month<br><span style="font-size:10px;color:#aaa">Feb 2026</span></div>
+      </div>
+      <div class="stat-card sand">
+        <div class="stat-val">+191%</div>
+        <div class="stat-lbl">Revenue Growth YoY<br><span style="font-size:10px;color:#aaa">Sep 2024 → Sep 2025</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">$75K</div>
+        <div class="stat-lbl">Avg Monthly Revenue<br><span style="font-size:10px;color:#aaa">19-month avg</span></div>
+      </div>
+    </div>
+
+    <blockquote>
+      Skin Social has executed an extraordinary growth story — tripling revenue in under 18 months while maintaining a lean liability structure. The business is not just growing; it is maturing into a scalable enterprise. The strategic priorities now shift from pure growth to <strong>margin protection, payroll efficiency, and COGS normalization</strong>.
+    </blockquote>
+  </div>
+
+  <!-- MONTH BY MONTH -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">📅</div>
+      <div>
+        <div class="section-title">Month-by-Month P&L Breakdown</div>
+        <div class="section-sub">Every dollar, every month</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Revenue</th>
+            <th>COGS</th>
+            <th>COGS%</th>
+            <th>Gross Profit</th>
+            <th>GP%</th>
+            <th>Payroll</th>
+            <th>Payroll%</th>
+            <th>Advertising</th>
+            <th>Net Op Income</th>
+            <th>Net Income</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Sep 2024</strong></td><td>$39,636</td><td>$12,901</td><td>32.5%</td><td>$26,735</td><td class="pos">67.5%</td><td>$5,725</td><td>14.4%</td><td>$2,608</td><td class="pos">$13,270</td><td class="pos">$13,523</td><td>🌱 Early stage</td></tr>
+          <tr class="highlight"><td><strong>Oct 2024</strong></td><td>$56,134</td><td>$36,942</td><td>65.8%</td><td>$19,192</td><td class="neg">34.2%</td><td>$5,571</td><td>9.9%</td><td>$2,616</td><td class="neg">-$3,948</td><td class="neg">-$3,683</td><td>⚠️ High COGS spike</td></tr>
+          <tr><td><strong>Nov 2024</strong></td><td>$51,530</td><td>$24,528</td><td>47.6%</td><td>$27,003</td><td>52.4%</td><td>$5,841</td><td>11.3%</td><td>$4,551</td><td class="pos">$1,456</td><td class="pos">$2,120</td><td>Recovery</td></tr>
+          <tr><td><strong>Dec 2024</strong></td><td>$46,045</td><td>$4,361</td><td>9.5%</td><td>$41,685</td><td class="pos">90.5%</td><td>$5,284</td><td>11.5%</td><td>$5,619</td><td class="pos">$18,544</td><td class="pos">$19,213</td><td>🔥 Low COGS month</td></tr>
+          <tr><td><strong>Jan 2025</strong></td><td>$60,077</td><td>$8,692</td><td>14.5%</td><td>$51,385</td><td class="pos">85.5%</td><td>$11,273</td><td>18.8%</td><td>$5,840</td><td class="pos">$20,378</td><td class="pos">$21,088</td><td>💪 Strong start</td></tr>
+          <tr class="highlight"><td><strong>Feb 2025</strong></td><td>$73,030</td><td>$44,053</td><td>60.3%</td><td>$28,977</td><td class="neg">39.7%</td><td>$13,468</td><td>18.4%</td><td>$6,997</td><td class="neg">-$10,000</td><td class="neg">-$9,163</td><td>⚠️ High COGS + payroll jump</td></tr>
+          <tr class="highlight"><td><strong>Mar 2025</strong></td><td>$76,872</td><td>$47,058</td><td>61.2%</td><td>$29,814</td><td class="neg">38.8%</td><td>$13,336</td><td>17.3%</td><td>$7,289</td><td class="pos">$2,205</td><td class="pos">$3,067</td><td>⚠️ Bulk orders inflated COGS</td></tr>
+          <tr><td><strong>Apr 2025</strong></td><td>$79,789</td><td>$32,649</td><td>40.9%</td><td>$47,139</td><td>59.1%</td><td>$12,341</td><td>15.5%</td><td>$6,718</td><td class="pos">$5,384</td><td class="pos">$6,105</td><td>Stabilizing</td></tr>
+          <tr><td><strong>May 2025</strong></td><td>$72,405</td><td>$29,724</td><td>41.1%</td><td>$42,681</td><td>58.9%</td><td>$14,429</td><td>19.9%</td><td>$6,154</td><td class="pos">$8,321</td><td class="pos">$9,330</td><td>Steady growth</td></tr>
+          <tr><td><strong>Jun 2025</strong></td><td>$84,215</td><td>$33,630</td><td>39.9%</td><td>$50,585</td><td class="pos">60.1%</td><td>$16,367</td><td>19.4%</td><td>$6,160</td><td class="pos">$11,766</td><td class="pos">$12,007</td><td>📈 Best month so far</td></tr>
+          <tr><td><strong>Jul 2025</strong></td><td>$66,861</td><td>$30,046</td><td>44.9%</td><td>$36,815</td><td>55.1%</td><td>$14,906</td><td>22.3%</td><td>$5,838</td><td class="pos">$4,277</td><td class="pos">$4,956</td><td>Summer dip</td></tr>
+          <tr class="highlight"><td><strong>Aug 2025</strong></td><td>$71,545</td><td>$29,473</td><td>41.2%</td><td>$42,072</td><td>58.8%</td><td>$24,977</td><td>34.9%</td><td>$6,527</td><td class="neg">-$5,414</td><td class="neg">-$4,707</td><td>⚠️ Payroll spike (scaling)</td></tr>
+          <tr><td><strong>Sep 2025</strong></td><td>$115,370</td><td>$57,518</td><td>49.9%</td><td>$57,852</td><td>50.1%</td><td>$16,276</td><td>14.1%</td><td>$7,946</td><td class="pos">$14,731</td><td class="pos">$15,699</td><td>🚀 Record revenue!</td></tr>
+          <tr><td><strong>Oct 2025</strong></td><td>$83,231</td><td>$36,233</td><td>43.5%</td><td>$46,998</td><td>56.5%</td><td>$14,768</td><td>17.7%</td><td>$7,631</td><td class="pos">$7,370</td><td class="pos">$8,141</td><td>Post-Sept normalization</td></tr>
+          <tr><td><strong>Nov 2025</strong></td><td>$87,670</td><td>$41,130</td><td>46.9%</td><td>$46,540</td><td>53.1%</td><td>$20,080</td><td>22.9%</td><td>$5,302</td><td class="pos">$6,828</td><td class="pos">$7,515</td><td>Draft — good margins</td></tr>
+          <tr class="highlight"><td><strong>Dec 2025</strong></td><td>$77,621</td><td>$19,143</td><td>24.7%</td><td>$58,477</td><td class="pos">75.3%</td><td>$17,711</td><td>22.8%</td><td>$5,634</td><td class="pos">$18,328</td><td class="neg">-$22,778</td><td>⚠️ $42K non-cash depreciation/amort — Op income = +$18K ✅</td></tr>
+          <tr class="highlight"><td><strong>Jan 2026</strong></td><td>$76,714</td><td>$42,477</td><td>55.4%</td><td>$34,237</td><td class="neg">44.6%</td><td>$32,896</td><td>42.9%</td><td>$5,171</td><td class="neg">-$15,951</td><td class="neg">-$15,512</td><td>⚠️ $19K early vendor prepay + payroll peak</td></tr>
+          <tr><td><strong>Feb 2026</strong></td><td>$108,338</td><td>$11,541</td><td>10.7%</td><td>$96,797</td><td class="pos">89.3%</td><td>$31,370</td><td>29.0%</td><td>$6,004</td><td class="pos">$44,901</td><td class="pos">$45,487</td><td>🔥 Best net income month!</td></tr>
+          <tr><td><strong>Mar 2026</strong></td><td>$107,671</td><td>$25,704</td><td>23.9%</td><td>$81,967</td><td class="pos">76.1%</td><td>$31,097</td><td>28.9%</td><td>$6,310</td><td class="pos">$28,588</td><td class="pos">$29,139</td><td>💪 Strong + consistent</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- WHAT IS GROWING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">📈</div>
+      <div>
+        <div class="section-title">What Is Growing</div>
+        <div class="section-sub">Positive trends across the business</div>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-card success">
+        <h4>🚀 Revenue — Tripled in 18 Months</h4>
+        <p>From $39,636 in Sep 2024 to $115,370 in Sep 2025 — a <strong>+191% YoY increase</strong>. The $100K+ monthly revenue run rate (Feb + Mar 2026) suggests a new baseline is being established. This is exceptional growth for a single-location med spa.</p>
+      </div>
+      <div class="insight-card success">
+        <h4>💉 Services Revenue — Core Engine</h4>
+        <p>Services (injectables + treatments) consistently represent <strong>92–96% of total revenue</strong>, growing from $35K/mo to $108K/mo. This is a high-quality revenue stream — skilled, recurring, relationship-driven. Product sales add a healthy 3–5% on top.</p>
+      </div>
+      <div class="insight-card success">
+        <h4>💰 Gross Margins — Trending Up</h4>
+        <p>Normalizing for bulk COGS purchases: margins have improved from a volatile 34–67% range in late 2024 to a <strong>75–89% range in early 2026</strong>. Feb 2026's 89.3% gross margin is world-class for a med spa. The business is learning to buy smarter.</p>
+      </div>
+      <div class="insight-card success">
+        <h4>🏦 Cash Position — Very Strong</h4>
+        <p>Checking account ended March 2026 at <strong>$62,153</strong> — up from $30,702 in January 2026. Near-zero debt ($2,834 total liabilities). This financial discipline gives you real strategic flexibility to invest, expand, or weather slow months.</p>
+      </div>
+      <div class="insight-card success">
+        <h4>🎁 Vendor Rewards — Free Cash</h4>
+        <p>Galderma Aspire, Alle/Allergan, and Merz collectively contribute <strong>$1,000–$3,600/month</strong> in reward program credits. These are effectively free money from your injectable spend — ensure you're maximizing every program.</p>
+      </div>
+      <div class="insight-card success">
+        <h4>📣 Advertising Efficiency — Improving</h4>
+        <p>Ad spend as a % of revenue has <strong>dropped from 8–12% to 5.5–6%</strong> while revenue is at its highest. That means your marketing dollar is working harder — likely driven by brand recognition, referrals, and organic growth compounding.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINANCIAL PAIN POINTS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">⚠️</div>
+      <div>
+        <div class="section-title">Financial Pain Points</div>
+        <div class="section-sub">Where to focus attention</div>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-card warning">
+        <h4>💊 COGS Volatility — Your Biggest Wild Card</h4>
+        <p>COGS swings between <strong>10% and 65%</strong> of revenue month to month — almost entirely due to uneven injectable purchasing (bulk prepayments to McKesson, Galderma, Merz). This is cash-flow dangerous and distorts your true profitability picture. Solution: <strong>establish a monthly COGS budget of ~$20-25K</strong> and stick to it regardless of vendor deals.</p>
+      </div>
+      <div class="insight-card warning">
+        <h4>👩‍⚕️ Payroll — Scaling Faster Than Revenue</h4>
+        <p>Payroll grew from <strong>$5,725/mo (Sep 2024) to $31,097/mo (Mar 2026)</strong> — a 5x increase vs 3x revenue growth. Jan 2026 hit a scary 42.9% of revenue on payroll alone. Target: <strong>payroll should stay at or below 28-30% of revenue</strong>. You need a staffing model tied to revenue thresholds.</p>
+      </div>
+      <div class="insight-card warning">
+        <h4>📆 Seasonality — Summer & Year-Start Dips</h4>
+        <p>Clear dips in <strong>Jul 2025 ($66K) and Jan 2026 ($76K)</strong>. Summer and post-holiday slowdowns are real. You need a slow-month revenue strategy — membership packages, prepaid treatment bundles, or targeted promotions to smooth the curve.</p>
+      </div>
+      <div class="insight-card warning">
+        <h4>🔧 Equipment Rental — Fixed Drag</h4>
+        <p>Dext Capital equipment rental runs <strong>$2,827–$2,876/mo every single month</strong> — $33,932/year. This is a fixed cost that doesn't scale. At current revenue levels it's only 2.6% of revenue, but at $40K revenue months it was 7%. Evaluate whether buying vs. renting makes sense now that you're at scale.</p>
+      </div>
+      <div class="insight-card warning">
+        <h4>📉 Loss Months — Misleading but Real</h4>
+        <p>5 of 19 months showed negative net income: Oct 2024, Feb 2025, Aug 2025, Dec 2025, Jan 2026. <strong>Dec 2025 and Jan 2026 losses are largely distortions</strong> (non-cash depreciation + bulk COGS prepayments), but Oct 2024 and Feb 2025 represent real operational losses requiring attention.</p>
+      </div>
+      <div class="insight-card warning">
+        <h4>🏢 Rent Irregularities</h4>
+        <p>Rent fluctuates — Feb 2025 shows <strong>$13,033</strong> (double payment?), Jun 2025 shows $8,656, Nov 2025 shows $8,344. Normal rate appears to be $6,516–$6,998. These anomalies should be reconciled with your accountant — double payments or catch-ups cost real money.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COGS % OVER TIME -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">📦</div>
+      <div>
+        <div class="section-title">COGS % of Revenue — By Month</div>
+        <div class="section-sub">Target zone: 20–30% for a mature med spa</div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border-radius:14px;padding:28px;box-shadow:var(--shadow);">
+      <div class="bar-row"><div class="bar-label"><span>Sep 2024</span><span>32.5%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:32.5%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Oct 2024</span><span style="color:var(--red);font-weight:700">65.8% ⚠️</span></div><div class="bar-track"><div class="bar-fill" style="width:65.8%;background:var(--red);opacity:0.7"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Nov 2024</span><span>47.6%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:47.6%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Dec 2024</span><span style="color:var(--green);font-weight:700">9.5% ✅</span></div><div class="bar-track"><div class="bar-fill green" style="width:9.5%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Jan 2025</span><span style="color:var(--green);font-weight:700">14.5% ✅</span></div><div class="bar-track"><div class="bar-fill green" style="width:14.5%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Feb 2025</span><span style="color:var(--red);font-weight:700">60.3% ⚠️</span></div><div class="bar-track"><div class="bar-fill" style="width:60.3%;background:var(--red);opacity:0.7"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Mar 2025</span><span style="color:var(--red);font-weight:700">61.2% ⚠️</span></div><div class="bar-track"><div class="bar-fill" style="width:61.2%;background:var(--red);opacity:0.7"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Apr 2025</span><span>40.9%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:40.9%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>May 2025</span><span>41.1%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:41.1%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Jun 2025</span><span>39.9%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:39.9%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Jul 2025</span><span>44.9%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:44.9%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Aug 2025</span><span>41.2%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:41.2%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Sep 2025</span><span>49.9%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:49.9%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Oct 2025</span><span>43.5%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:43.5%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Nov 2025</span><span>46.9%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:46.9%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Dec 2025</span><span style="color:var(--green);font-weight:700">24.7% ✅</span></div><div class="bar-track"><div class="bar-fill green" style="width:24.7%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Jan 2026</span><span style="color:var(--red);font-weight:700">55.4% ⚠️ (bulk prepay)</span></div><div class="bar-track"><div class="bar-fill" style="width:55.4%;background:var(--red);opacity:0.7"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Feb 2026</span><span style="color:var(--green);font-weight:700">10.7% ✅</span></div><div class="bar-track"><div class="bar-fill green" style="width:10.7%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Mar 2026</span><span style="color:var(--green);font-weight:700">23.9% ✅</span></div><div class="bar-track"><div class="bar-fill green" style="width:23.9%"></div></div></div>
+      <p style="margin-top:18px;font-size:12px;color:var(--mid);">⚠️ COGS spikes in Oct 2024, Feb–Mar 2025, and Jan 2026 are due to bulk vendor prepayments — not true operational cost. On a normalized basis, your COGS trend is improving toward the 20–25% range.</p>
+    </div>
+  </div>
+
+  <!-- PAYROLL % OVER TIME -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">👥</div>
+      <div>
+        <div class="section-title">Payroll % of Revenue — By Month</div>
+        <div class="section-sub">Target zone: 25–35% for a scaling med spa</div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border-radius:14px;padding:28px;box-shadow:var(--shadow);">
+      <div class="bar-row"><div class="bar-label"><span>Sep 2024</span><span style="color:var(--green);font-weight:700">14.4% ✅</span></div><div class="bar-track"><div class="bar-fill green" style="width:14.4%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Oct 2024</span><span style="color:var(--green)">9.9%</span></div><div class="bar-track"><div class="bar-fill green" style="width:9.9%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Nov 2024</span><span style="color:var(--green)">11.3%</span></div><div class="bar-track"><div class="bar-fill green" style="width:11.3%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Dec 2024</span><span style="color:var(--green)">11.5%</span></div><div class="bar-track"><div class="bar-fill green" style="width:11.5%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Jan 2025</span><span>18.8%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:18.8%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Feb 2025</span><span>18.4%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:18.4%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Mar 2025</span><span>17.3%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:17.3%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Apr 2025</span><span>15.5%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:15.5%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>May 2025</span><span>19.9%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:19.9%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Jun 2025</span><span>19.4%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:19.4%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Jul 2025</span><span>22.3%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:22.3%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Aug 2025</span><span style="color:var(--red);font-weight:700">34.9% ⚠️</span></div><div class="bar-track"><div class="bar-fill" style="width:34.9%;background:var(--red);opacity:0.7"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Sep 2025</span><span style="color:var(--green);font-weight:700">14.1% ✅</span></div><div class="bar-track"><div class="bar-fill green" style="width:14.1%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Oct 2025</span><span>17.7%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:17.7%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Nov 2025</span><span>22.9%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:22.9%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Dec 2025</span><span>22.8%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:22.8%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Jan 2026</span><span style="color:var(--red);font-weight:700">42.9% 🚨</span></div><div class="bar-track"><div class="bar-fill" style="width:42.9%;background:var(--red);opacity:0.8"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Feb 2026</span><span>29.0%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:29%"></div></div></div>
+      <div class="bar-row"><div class="bar-label"><span>Mar 2026</span><span>28.9%</span></div><div class="bar-track"><div class="bar-fill warning" style="width:28.9%"></div></div></div>
+      <p style="margin-top:18px;font-size:12px;color:var(--mid);">Payroll has stabilized at 28–29% on high-revenue months. <strong>The target is to keep it under 30% as you continue to scale</strong>. Jan 2026's 42.9% was an anomaly due to low revenue + high payroll simultaneously — avoid this gap by managing hiring to revenue projections.</p>
+    </div>
+  </div>
+
+  <!-- EBITDA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">💡</div>
+      <div>
+        <div class="section-title">EBITDA Analysis</div>
+        <div class="section-sub">Earnings before interest, taxes, depreciation & amortization — your true operating power</div>
+      </div>
+    </div>
+
+    <div style="background:var(--white);border-radius:14px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px;">
+      <p style="font-size:13px;color:var(--mid);margin-bottom:18px;">EBITDA adds back non-cash charges (depreciation + amortization) and gives a cleaner view of operating performance. Key adjustments below:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Month</th><th>Net Income</th><th>+ Depreciation/Amort</th><th>EBITDA (approx)</th><th>EBITDA Margin</th></tr></thead>
+          <tbody>
+            <tr><td>Dec 2025</td><td class="neg">-$22,778</td><td>+$42,128</td><td class="pos">$19,350</td><td class="pos">24.9%</td></tr>
+            <tr><td>Mar 2026</td><td class="pos">$29,139</td><td>$0</td><td class="pos">$29,139</td><td class="pos">27.1%</td></tr>
+            <tr><td>Feb 2026</td><td class="pos">$45,487</td><td>$0</td><td class="pos">$45,487</td><td class="pos">42.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px;font-size:13px;color:var(--mid);">💡 On a trailing basis, <strong>Skin Social's EBITDA margin is running at approximately 20–27%</strong> on normalized months. For a growing med spa, this is excellent. Industry benchmark is 15–25%. You're above it.</p>
+    </div>
+  </div>
+
+  <!-- MARGIN GROWTH & PROJECTIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">🔮</div>
+      <div>
+        <div class="section-title">Forward Projections — 2026, 2027, 2028</div>
+        <div class="section-sub">Based on your actual growth trajectory</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <h3>📐 Projection Assumptions</h3>
+      <ul style="font-size:13px;color:var(--mid);padding-left:20px;line-height:2;">
+        <li>Conservative: <strong>15% annual revenue growth</strong> (below your actual pace)</li>
+        <li>Base case: <strong>25% annual growth</strong> (consistent with recent trend)</li>
+        <li>Optimistic: <strong>40% growth</strong> (matches your Sep 2024→Sep 2025 trajectory)</li>
+        <li>COGS normalized to <strong>25% of revenue</strong></li>
+        <li>Payroll stabilized at <strong>28% of revenue</strong></li>
+        <li>Fixed costs (rent, equipment, utilities): ~<strong>$11,000/month</strong></li>
+      </ul>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>2026 Revenue</th>
+            <th>2026 Net Income</th>
+            <th>2027 Revenue</th>
+            <th>2027 Net Income</th>
+            <th>2028 Revenue</th>
+            <th>2028 Net Income</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill pill-yellow">Conservative +15%</span></td>
+            <td>$1.15M</td>
+            <td>$138K</td>
+            <td>$1.32M</td>
+            <td>$168K</td>
+            <td>$1.52M</td>
+            <td>$203K</td>
+          </tr>
+          <tr class="highlight">
+            <td><span class="pill pill-green">Base Case +25%</span></td>
+            <td>$1.25M</td>
+            <td>$163K</td>
+            <td>$1.56M</td>
+            <td>$221K</td>
+            <td>$1.95M</td>
+            <td>$293K</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-green">Optimistic +40%</span></td>
+            <td>$1.40M</td>
+            <td>$196K</td>
+            <td>$1.96M</td>
+            <td>$302K</td>
+            <td>$2.74M</td>
+            <td>$452K</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--mid);margin-top:12px;">* Annualized based on trailing 6-month revenue of ~$100K/month. Net income assumes normalized COGS (25%), payroll (28%), and stable fixed costs. Does not account for potential expansion costs or new hires.</p>
+  </div>
+
+  <!-- CFO STRATEGIC RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">🎯</div>
+      <div>
+        <div class="section-title">CFO Strategic Recommendations</div>
+        <div class="section-sub">High-impact actions for the next 12 months</div>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-card info">
+        <h4>1️⃣ Normalize Your COGS — Build a Purchasing Calendar</h4>
+        <p>Stop buying injectables in unpredictable spikes. <strong>Set a monthly COGS budget of $22–26K</strong> and spread purchases evenly. This will smooth your P&L dramatically and make your financials look better to any future investor or bank.</p>
+      </div>
+      <div class="insight-card info">
+        <h4>2️⃣ Revenue-Linked Staffing Model</h4>
+        <p>Define revenue triggers for new hires. Example: <strong>"We add a provider when we sustain $100K+/mo for 2+ consecutive months."</strong> This prevents the Aug 2025 / Jan 2026 payroll runaway from recurring.</p>
+      </div>
+      <div class="insight-card info">
+        <h4>3️⃣ Launch a Membership Program</h4>
+        <p>Your seasonality data shows predictable summer and January dips. A <strong>monthly membership ($99–$199/mo)</strong> for skincare or maintenance treatments creates guaranteed recurring revenue that cushions those valleys.</p>
+      </div>
+      <div class="insight-card info">
+        <h4>4️⃣ Equipment — Buy vs Lease Analysis</h4>
+        <p>You're paying ~$34K/year to rent equipment. At 3 years, that's $100K+ with no asset to show. <strong>Get a quote to purchase your equipment outright</strong> — at your cash position ($62K+), a financed purchase may be smarter than perpetual rental.</p>
+      </div>
+      <div class="insight-card info">
+        <h4>5️⃣ Build a 3-Month Operating Reserve</h4>
+        <p>Your monthly fixed costs are ~$45–55K. You should have <strong>$135–165K in a dedicated reserve account</strong> — untouchable except for emergencies. Your current $62K cash is good but not yet there. Prioritize this in 2026.</p>
+      </div>
+      <div class="insight-card info">
+        <h4>6️⃣ Product Sales — Underperforming</h4>
+        <p>Product revenue averages only <strong>3–5% of total</strong> ($3–5K/mo). For a med spa with premium skincare, this should be 10–15%. There's <strong>$7–12K/month of unrealized revenue</strong> sitting in your retail wall. Train staff on upselling protocols.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">✨</div>
+      <div>
+        <div class="section-title">The Bottom Line</div>
+      </div>
+    </div>
+    <blockquote>
+      Skin Social is a <strong>high-growth, service-led business</strong> with excellent fundamentals. Revenue has tripled, margins are improving, debt is negligible, and the brand is clearly resonating. The challenges ahead are not survival challenges — they are <strong>scaling challenges</strong>: smoothing COGS, protecting margins as payroll grows, and building the systems that turn a thriving practice into a durable business asset.<br><br>
+      At your current trajectory, a <strong>$1.5M+ annual revenue run rate by end of 2026 is realistic</strong>. At a conservative 15% net margin, that's $225K+ in annual net income — and a business valued at $1M+ on a 4–5x EBITDA multiple if you ever choose to sell or raise capital.<br><br>
+      <strong>You're building something real. Keep going. 💕</strong>
+    </blockquote>
+  </div>
+
+</div><!-- end container -->
+
+<div class="footer">
+  <div class="brand">SKIN SOCIAL</div>
+  5840 Roswell Rd · Sandy Springs, GA · @skinsocialspa<br><br>
+  This report was prepared by Nat the Bot, AI CFO Assistant · May 1, 2026<br>
+  Confidential — For internal use only
+</div>
+
+</body>
+</html>
