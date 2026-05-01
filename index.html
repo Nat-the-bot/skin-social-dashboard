@@ -659,7 +659,7 @@
     <div class="header-brand">Skin Social — Ads Command Center</div>
     <div class="header-right">
       <span class="last-updated" id="last-updated">Loading…</span>
-      <span id="countdown">Refreshing in 60s</span>
+      <span id="countdown">Updates daily</span>
     </div>
   </div>
 
@@ -861,7 +861,7 @@ const GRAPH_BASE = 'https://graph.facebook.com/v21.0';
 const TOKEN_KEY = 'ss_meta_token';
 const TOKEN_TS_KEY = 'ss_meta_token_ts';
 const TOKEN_EXPIRY_MS = 60 * 60 * 1000; // 1 hour warning
-const REFRESH_INTERVAL = 60; // seconds
+const REFRESH_INTERVAL = 86400; // seconds (once per day)
 
 let refreshTimer = null;
 let countdown = REFRESH_INTERVAL;
@@ -1457,7 +1457,6 @@ function startCountdown() {
   clearInterval(refreshTimer);
   refreshTimer = setInterval(() => {
     countdown--;
-    document.getElementById('countdown').textContent = `Refreshing in ${countdown}s`;
     if (countdown <= 0) {
       countdown = REFRESH_INTERVAL;
       const overlay = document.getElementById('refresh-overlay');
