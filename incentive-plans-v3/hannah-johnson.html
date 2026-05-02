@@ -449,6 +449,71 @@ body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(
   <!-- BONUS POOL -->
   <div class="bonus-section">
     <div class="bonus-label">How Your Bonus Is Calculated</div>
+
+    <!-- STEP 1: TWO PARTS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:18px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--tan);margin-bottom:10px;">Part 1 — Team Goals &nbsp;(80%)</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.8;">
+          The team pool is divided equally among all 6 team members.<br><br>
+          <strong style="color:var(--tan);">Example:</strong><br>
+          Pool = $1,500 &nbsp;&divide;&nbsp; 6 people = <strong style="color:white;">$250 your share</strong><br>
+          Team scores 3.75 &rarr; payout scale = 56%<br>
+          <strong style="color:white;">$250 &times; 56% = $140 team bonus</strong>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:18px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--tan);margin-bottom:10px;">Part 2 — Personal Goal &nbsp;(20%)</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.8;">
+          Your personal max = 3% of your revenue that month.<br><br>
+          <strong style="color:var(--tan);">Example:</strong><br>
+          You generate $28,000 &rarr; pool = <strong style="color:white;">$840</strong><br>
+          You score 5.0 &rarr; you earn <strong style="color:white;">$840 (100%)</strong><br>
+          You score 3.25 &rarr; you earn <strong style="color:white;">$353 (42%)</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: PAYOUT SCALE -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--tan);margin-bottom:10px;">Payout Scale — Your Score Determines Your Percentage</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 8px;text-align:center;">
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;">Score 0 – 2.99</div>
+          <div style="font-size:22px;font-weight:700;color:#d97b7b;">0%</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:3px;">No payout</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 8px;text-align:center;">
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;">Score 3.00 – 3.49</div>
+          <div style="font-size:22px;font-weight:700;color:var(--tan);">42%</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:3px;">of your max</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 8px;text-align:center;">
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;">Score 3.50 – 3.99</div>
+          <div style="font-size:22px;font-weight:700;color:var(--tan);">56%</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:3px;">of your max</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 8px;text-align:center;">
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;">Score 4.00 – 4.49</div>
+          <div style="font-size:22px;font-weight:700;color:var(--tan);">75%</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:3px;">of your max</div>
+        </div>
+        <div style="background:var(--tan);border-radius:8px;padding:12px 8px;text-align:center;">
+          <div style="font-size:10px;color:var(--charcoal);margin-bottom:4px;">Score 4.50 – 5.00</div>
+          <div style="font-size:22px;font-weight:700;color:var(--charcoal);">100%</div>
+          <div style="font-size:10px;color:var(--charcoal);margin-top:3px;">Full bonus</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: TOTAL + MIN -->
+    <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-size:13px;color:rgba(255,255,255,0.8);">Your total bonus = <strong style="color:white;">Part 1 (team) + Part 2 (personal)</strong></div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.5);text-align:right;">Minimum $25,000 personal<br>revenue required to qualify</div>
+    </div>
+
+    <!-- STEP 4: REVENUE TIERS -->
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--tan);margin-bottom:10px;">Revenue Tiers — What Determines the Team Pool Size</div>
     <div class="bonus-tiers">
       <div class="bonus-tier">
         <div class="bt-rev">Under $100K revenue</div>
@@ -471,67 +536,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(
         <div class="bt-label">Stretch / Exceptional</div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
 
-      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:18px;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--tan);margin-bottom:10px;">Part 1 — Team Goals &nbsp;(80%)</div>
-        <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.8;">
-          The team pool is divided equally among all 6 team members.<br><br>
-          <strong style="color:var(--tan);">Example:</strong><br>
-          Pool = $1,500 &nbsp;&divide;&nbsp; 6 people = <strong style="color:white;">$250 your share</strong><br>
-          Team scores 3.75 &rarr; payout scale = 56%<br>
-          <strong style="color:white;">$250 &times; 56% = $140 team bonus</strong>
-        </div>
-      </div>
-
-      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:18px;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--tan);margin-bottom:10px;">Part 2 — Personal Goal &nbsp;(20%)</div>
-        <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.8;">
-          Your personal max = 3% of your revenue that month.<br><br>
-          <strong style="color:var(--tan);">Example:</strong><br>
-          You generate $28,000 &rarr; pool = <strong style="color:white;">$840</strong><br>
-          You score 5.0 &rarr; you earn <strong style="color:white;">$840 (100%)</strong><br>
-          You score 3.25 &rarr; you earn <strong style="color:white;">$353 (42%)</strong>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-size:13px;color:rgba(255,255,255,0.8);">Your total bonus = <strong style="color:white;">Part 1 (team) + Part 2 (personal)</strong></div>
-      <div style="font-size:11px;color:rgba(255,255,255,0.5);text-align:right;">Minimum $25,000 personal<br>revenue required to qualify</div>
-    </div>
-
-    <div style="margin-top:20px;">
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--tan);margin-bottom:12px;">Payout Scale — Score to Percentage</div>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
-        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 8px;text-align:center;">
-          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;">Score 0 – 2.99</div>
-          <div style="font-size:20px;font-weight:700;color:#d97b7b;">0%</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:3px;">No payout</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 8px;text-align:center;">
-          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;">Score 3.00 – 3.49</div>
-          <div style="font-size:20px;font-weight:700;color:var(--tan);">42%</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:3px;">of maximum</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 8px;text-align:center;">
-          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;">Score 3.50 – 3.99</div>
-          <div style="font-size:20px;font-weight:700;color:var(--tan);">56%</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:3px;">of maximum</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 8px;text-align:center;">
-          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:4px;">Score 4.00 – 4.49</div>
-          <div style="font-size:20px;font-weight:700;color:var(--tan);">75%</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:3px;">of maximum</div>
-        </div>
-        <div style="background:var(--tan);border-radius:8px;padding:12px 8px;text-align:center;">
-          <div style="font-size:10px;color:var(--charcoal);margin-bottom:4px;">Score 4.50 – 5.00</div>
-          <div style="font-size:20px;font-weight:700;color:var(--charcoal);">100%</div>
-          <div style="font-size:10px;color:var(--charcoal);margin-top:3px;">Full bonus earned</div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- ESCALATION -->
