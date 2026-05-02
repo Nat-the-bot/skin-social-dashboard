@@ -581,14 +581,58 @@ Your $300 bonus maximum is split 80/20. The team portion (80%, or $240 maximum) 
         <td>Score: <input class="fill" placeholder="1–5" style="width:60px;text-align:center;"></td>
       </tr>
       <tr style="background:var(--oat);">
-        <td colspan="3" style="padding:14px 16px;">
-          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mid);margin-bottom:10px;">How to Calculate the Team Score Average</div>
-          <div style="font-size:12px;color:var(--mid);line-height:1.8;">
-            Add the four team goal scores together and divide by 4.<br>
-            <strong style="color:var(--charcoal);">Example A — All 5s:</strong> &nbsp; (5 + 5 + 5 + 5) &divide; 4 = <strong style="color:var(--charcoal);">5.0</strong> &rarr; 100% payout<br>
-            <strong style="color:var(--charcoal);">Example B — Mixed:</strong> &nbsp; (5 + 3 + 4 + 3) &divide; 4 = <strong style="color:var(--charcoal);">3.75</strong> &rarr; 56% payout<br>
-            <strong style="color:var(--charcoal);">Example C — Missed one:</strong> &nbsp; (4 + 2 + 4 + 3) &divide; 4 = <strong style="color:var(--charcoal);">3.25</strong> &rarr; 42% payout
-          </div>
+        <td colspan="3" style="padding:16px 16px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mid);margin-bottom:12px;">Team Score Average &mdash; What Each Score Pays Per Person</div>
+          <div style="font-size:11px;color:var(--mid);margin-bottom:10px;">Add the 4 team goal scores together and divide by 4. Then find your score range below to see your team payout.</div>
+          <table style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead>
+              <tr style="background:var(--cream);">
+                <th style="padding:8px 10px;text-align:left;font-weight:700;color:var(--mid);font-size:11px;">Score Range</th>
+                <th style="padding:8px 10px;text-align:left;font-weight:700;color:var(--mid);font-size:11px;">Payout %</th>
+                <th style="padding:8px 10px;text-align:center;font-weight:700;color:var(--mid);font-size:11px;">$100K–$109K pool ($500 &divide; 6 = $83 max)</th>
+                <th style="padding:8px 10px;text-align:center;font-weight:700;color:var(--mid);font-size:11px;">$110K–$124K pool ($1,500 &divide; 6 = $250 max)</th>
+                <th style="padding:8px 10px;text-align:center;font-weight:700;color:var(--mid);font-size:11px;">$125K+ pool ($2,500 &divide; 6 = $417 max)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--oat);">
+                <td style="padding:8px 10px;font-weight:700;color:var(--red);">0 &ndash; 2.99</td>
+                <td style="padding:8px 10px;color:var(--red);">0%</td>
+                <td style="padding:8px 10px;text-align:center;color:var(--red);">$0</td>
+                <td style="padding:8px 10px;text-align:center;color:var(--red);">$0</td>
+                <td style="padding:8px 10px;text-align:center;color:var(--red);">$0</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--oat);">
+                <td style="padding:8px 10px;font-weight:700;">3.00 &ndash; 3.49</td>
+                <td style="padding:8px 10px;">42%</td>
+                <td style="padding:8px 10px;text-align:center;"><strong>$35</strong></td>
+                <td style="padding:8px 10px;text-align:center;"><strong>$105</strong></td>
+                <td style="padding:8px 10px;text-align:center;"><strong>$175</strong></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--oat);">
+                <td style="padding:8px 10px;font-weight:700;">3.50 &ndash; 3.99</td>
+                <td style="padding:8px 10px;">56%</td>
+                <td style="padding:8px 10px;text-align:center;"><strong>$46</strong></td>
+                <td style="padding:8px 10px;text-align:center;"><strong>$140</strong></td>
+                <td style="padding:8px 10px;text-align:center;"><strong>$233</strong></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--oat);background:var(--babypink);">
+                <td style="padding:8px 10px;font-weight:700;">4.00 &ndash; 4.49</td>
+                <td style="padding:8px 10px;">75%</td>
+                <td style="padding:8px 10px;text-align:center;"><strong>$62</strong></td>
+                <td style="padding:8px 10px;text-align:center;"><strong>$188</strong></td>
+                <td style="padding:8px 10px;text-align:center;"><strong>$313</strong></td>
+              </tr>
+              <tr style="background:var(--babypink);">
+                <td style="padding:8px 10px;font-weight:700;color:var(--green);">4.50 &ndash; 5.00</td>
+                <td style="padding:8px 10px;color:var(--green);">100%</td>
+                <td style="padding:8px 10px;text-align:center;"><strong style="color:var(--green);">$83</strong></td>
+                <td style="padding:8px 10px;text-align:center;"><strong style="color:var(--green);">$250</strong></td>
+                <td style="padding:8px 10px;text-align:center;"><strong style="color:var(--green);">$417</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="font-size:11px;color:var(--mid);margin-top:10px;">This is your <strong>team portion only</strong> (80%). Your personal goal payout (20%) is added on top.</div>
         </td>
       </tr>
       <tr style="background:var(--babypink);">
