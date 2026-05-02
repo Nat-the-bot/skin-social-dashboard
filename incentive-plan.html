@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skin Social — Team Incentive Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+  :root {
+    --oat: #F5EFE7;
+    --cream: #EADFCB;
+    --tan: #D6BFA9;
+    --pink: #E8C4C4;
+    --babypink: #F2E5E5;
+    --sand: #CBB8A0;
+    --charcoal: #3A3A3A;
+    --mid: #6a6a6a;
+    --white: #fff;
+    --green: #6aaa7e;
+    --yellow: #e0b84a;
+    --red: #d97b7b;
+    --shadow: 0 2px 20px rgba(0,0,0,0.07);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', sans-serif; background: var(--oat); color: var(--charcoal); line-height: 1.7; }
+
+  .header {
+    background: linear-gradient(135deg, #E8C4C4 0%, #D6BFA9 60%, #EADFCB 100%);
+    padding: 56px 40px 48px;
+    text-align: center;
+    border-bottom: 3px solid var(--tan);
+  }
+  .logo-text { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--mid); margin-bottom: 10px; }
+  .header h1 { font-size: 32px; font-weight: 700; color: var(--charcoal); margin-bottom: 8px; }
+  .header p { font-size: 14px; color: var(--mid); max-width: 520px; margin: 0 auto; }
+  .header .badge { display: inline-block; background: var(--white); border: 1px solid var(--tan); border-radius: 20px; padding: 5px 18px; font-size: 12px; color: var(--mid); margin-top: 14px; }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 48px 28px 80px; }
+
+  .section { margin-bottom: 56px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--cream); }
+  .section-emoji { font-size: 28px; }
+  .section-title { font-size: 20px; font-weight: 700; }
+  .section-sub { font-size: 12px; color: var(--mid); margin-top: 2px; }
+
+  /* EXPLAINER BOX */
+  .explainer {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border-left: 5px solid var(--pink);
+  }
+  .explainer h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--charcoal); }
+  .explainer p { font-size: 13px; color: var(--mid); line-height: 1.75; }
+  .explainer.green { border-left-color: var(--green); }
+  .explainer.yellow { border-left-color: var(--yellow); }
+  .explainer.tan { border-left-color: var(--tan); }
+
+  /* STEP CARDS */
+  .step-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 28px; }
+  @media(max-width:600px){ .step-grid { grid-template-columns: 1fr; } }
+  .step-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .step-num {
+    position: absolute;
+    top: -14px;
+    left: 20px;
+    background: var(--pink);
+    color: var(--charcoal);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .step-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; margin-top: 6px; }
+  .step-card p { font-size: 13px; color: var(--mid); line-height: 1.65; }
+
+  /* REVENUE TIER VISUAL */
+  .tier-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .tier-row {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .tier-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; min-width: 70px; }
+  .tier-rev { font-size: 13px; color: var(--mid); min-width: 130px; }
+  .tier-bar-wrap { flex: 1; background: var(--oat); border-radius: 8px; height: 14px; overflow: hidden; }
+  .tier-bar { height: 100%; border-radius: 8px; background: linear-gradient(90deg, var(--pink), var(--tan)); }
+  .tier-amount { font-size: 16px; font-weight: 700; color: var(--charcoal); min-width: 70px; text-align: right; }
+  .tier-row.active { border: 2px solid var(--tan); background: var(--babypink); }
+
+  /* BUCKET VISUAL */
+  .bucket-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+  @media(max-width:600px){ .bucket-grid { grid-template-columns: 1fr 1fr; } }
+  .bucket {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 20px 16px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .bucket-icon { font-size: 28px; margin-bottom: 8px; }
+  .bucket-name { font-size: 12px; font-weight: 700; color: var(--charcoal); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .bucket-pct { font-size: 26px; font-weight: 700; color: var(--charcoal); }
+  .bucket-desc { font-size: 11px; color: var(--mid); margin-top: 4px; line-height: 1.5; }
+  .bucket-goal { font-size: 11px; font-weight: 600; color: var(--charcoal); margin-top: 8px; background: var(--oat); border-radius: 8px; padding: 4px 8px; }
+  .bucket.locked { opacity: 0.4; }
+
+  /* PERSON CARDS */
+  .person-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+  @media(max-width:600px){ .person-grid { grid-template-columns: 1fr 1fr; } }
+  .person-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 20px 16px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .person-icon { font-size: 32px; margin-bottom: 8px; }
+  .person-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--charcoal); margin-bottom: 12px; }
+  .person-metric {
+    background: var(--oat);
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    color: var(--mid);
+    text-align: left;
+  }
+  .person-metric strong { color: var(--charcoal); display: block; font-size: 12px; }
+  .person-max { margin-top: 12px; background: var(--babypink); border-radius: 8px; padding: 8px; font-size: 12px; font-weight: 700; color: var(--charcoal); }
+
+  /* SCORECARD */
+  .scorecard {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+  }
+  .scorecard-header {
+    background: linear-gradient(90deg, var(--pink), var(--cream));
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--charcoal);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1.2fr;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-size: 11px;
+  }
+  .scorecard-row {
+    padding: 14px 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1.2fr;
+    gap: 8px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--oat);
+    align-items: center;
+  }
+  .scorecard-row:nth-child(even) { background: var(--oat); }
+  .scorecard-row:last-child { border-bottom: none; }
+  .pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .pill-green { background: #e4f5e9; color: #3a8a52; }
+  .pill-yellow { background: #fff8e1; color: #b07d20; }
+  .pill-pink { background: var(--babypink); color: #a05050; }
+
+  /* GOAL TRACKER */
+  .goal-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+  .goal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .goal-title { font-size: 15px; font-weight: 700; }
+  .goal-status { font-size: 12px; font-weight: 600; }
+  .goal-tiers { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .goal-tier {
+    flex: 1;
+    min-width: 80px;
+    background: var(--oat);
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--mid);
+    border: 2px solid transparent;
+  }
+  .goal-tier.active { border-color: var(--tan); background: var(--babypink); }
+  .goal-tier .t-val { font-size: 15px; font-weight: 700; color: var(--charcoal); display: block; }
+  .goal-tier .t-bonus { font-size: 11px; color: var(--green); font-weight: 600; }
+  .goal-note { font-size: 12px; color: var(--mid); background: var(--oat); border-radius: 8px; padding: 10px 14px; }
+
+  /* FAQ */
+  .faq { margin-top: 8px; }
+  .faq-item { background: var(--white); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; box-shadow: var(--shadow); }
+  .faq-q { font-size: 14px; font-weight: 700; color: var(--charcoal); margin-bottom: 6px; }
+  .faq-a { font-size: 13px; color: var(--mid); line-height: 1.7; }
+
+  blockquote {
+    border-left: 4px solid var(--pink);
+    padding: 14px 20px;
+    background: var(--white);
+    border-radius: 0 12px 12px 0;
+    font-size: 13px;
+    color: var(--mid);
+    margin: 20px 0;
+    font-style: italic;
+    box-shadow: var(--shadow);
+  }
+
+  .footer { background: var(--charcoal); color: rgba(255,255,255,0.55); text-align: center; padding: 32px; font-size: 12px; }
+  .footer .brand { color: var(--tan); font-weight: 600; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .tag { background: var(--babypink); color: var(--charcoal); border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 600; }
+  .tag.green { background: #e4f5e9; color: #3a8a52; }
+  .tag.yellow { background: #fff8e1; color: #b07d20; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo-text">Skin Social · Sandy Springs, GA</div>
+  <h1>✨ Team Incentive Plan</h1>
+  <p>A unified monthly bonus program that rewards everyone for growing together — revenue, reviews, retention, and skincare sales.</p>
+  <div class="badge">📅 Effective May 2026 · Reviewed Monthly</div>
+</div>
+
+<div class="container">
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">💡</div>
+      <div>
+        <div class="section-title">How It Works — The Simple Version</div>
+        <div class="section-sub">Read this first. Everything else builds on this.</div>
+      </div>
+    </div>
+
+    <div class="explainer">
+      <h3>One Bonus. Four Goals. Paid Every Month.</h3>
+      <p>Every month, Skin Social sets a <strong>bonus pool</strong> based on how much revenue we bring in. The bigger the month, the bigger the pool.<br><br>
+      But here's the key: <strong>the pool is split into 4 slices</strong>. Each slice is only paid out if the team hits the matching goal that month. If we crush revenue but forget about Google reviews — we lose that slice. Every goal matters. Every person plays a role.<br><br>
+      On top of the team pool, <strong>providers and the esthetician earn individual bonuses</strong> based on their personal rebooking rate, and the social media manager earns a bonus for new patient growth.</p>
+    </div>
+
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>💰 Revenue determines the prize pool</h4>
+        <p>The higher our monthly revenue, the bigger the pool everyone splits. Hit $100K = $1,500 pool. Hit $125K = $3,500 pool. This keeps everyone invested in the big number.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>🔑 4 goals unlock 4 slices of the pool</h4>
+        <p>The pool is divided into 4 buckets. Each bucket only opens if that goal is met. Miss a goal = that money stays locked. Hit all 4 = everyone gets the full pool.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>👤 Individual bonuses reward personal performance</h4>
+        <p>Providers and the esthetician earn extra based on their own rebooking rate. The social media manager earns extra based on new patient count. These are personal — you control them.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h4>📊 We review the scorecard on the 1st of every month</h4>
+        <p>One simple scorecard. Did we hit our goals? Bonuses are calculated and paid within the first week of the following month. No guessing, no drama — just numbers.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVENUE TIERS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">💵</div>
+      <div>
+        <div class="section-title">Step 1 — Revenue Sets the Pool Size</div>
+        <div class="section-sub">The more we make together, the more everyone takes home</div>
+      </div>
+    </div>
+
+    <div class="explainer tan">
+      <h3>Why tie bonuses to revenue?</h3>
+      <p>Because bonuses should be self-funding. When Skin Social has a great month, there's real money to share. When it's a slower month, the pool is smaller — but it's still there as long as we hit $90K. This keeps the business healthy while still rewarding the team consistently.</p>
+    </div>
+
+    <div class="tier-stack">
+      <div class="tier-row">
+        <div class="tier-label" style="color:#d97b7b">Under $90K</div>
+        <div class="tier-rev">Below baseline</div>
+        <div class="tier-bar-wrap"><div class="tier-bar" style="width:0%"></div></div>
+        <div class="tier-amount" style="color:#d97b7b">$0</div>
+      </div>
+      <div class="tier-row">
+        <div class="tier-label" style="color:#e0b84a">$90K–$99K</div>
+        <div class="tier-rev">Base hit ✓</div>
+        <div class="tier-bar-wrap"><div class="tier-bar" style="width:25%"></div></div>
+        <div class="tier-amount">$500</div>
+      </div>
+      <div class="tier-row active">
+        <div class="tier-label" style="color:#6aaa7e">$100K–$109K</div>
+        <div class="tier-rev">Target 🎯 (our Feb/Mar avg)</div>
+        <div class="tier-bar-wrap"><div class="tier-bar" style="width:55%"></div></div>
+        <div class="tier-amount">$1,500</div>
+      </div>
+      <div class="tier-row">
+        <div class="tier-label" style="color:#6aaa7e">$110K–$124K</div>
+        <div class="tier-rev">Stretch 💪</div>
+        <div class="tier-bar-wrap"><div class="tier-bar" style="width:78%"></div></div>
+        <div class="tier-amount">$2,500</div>
+      </div>
+      <div class="tier-row">
+        <div class="tier-label" style="color:#6aaa7e">$125K+</div>
+        <div class="tier-rev">Crush It 🔥</div>
+        <div class="tier-bar-wrap"><div class="tier-bar" style="width:100%"></div></div>
+        <div class="tier-amount">$3,500</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--mid);">📌 Our recent baseline is $100–108K/month (Feb + Mar 2026). The $100K target is realistic and achievable every single month.</p>
+  </div>
+
+  <!-- THE 4 BUCKETS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">🔑</div>
+      <div>
+        <div class="section-title">Step 2 — 4 Keys Unlock 4 Slices</div>
+        <div class="section-sub">At $100K revenue ($1,500 pool) — here's how it breaks down</div>
+      </div>
+    </div>
+
+    <div class="explainer yellow">
+      <h3>Think of it like a combination lock</h3>
+      <p>The full $1,500 pool is sitting there waiting. But it's locked behind 4 keys. Each key is worth a percentage of the pool. Your team holds all 4 keys — the question is whether you turn them all every month.</p>
+    </div>
+
+    <div class="bucket-grid">
+      <div class="bucket">
+        <div class="bucket-icon">💰</div>
+        <div class="bucket-name">Revenue</div>
+        <div class="bucket-pct">50%</div>
+        <div class="bucket-desc">Auto-unlocked when revenue hits the tier. <strong>$750 at $100K target.</strong></div>
+        <div class="bucket-goal">Hit revenue tier</div>
+      </div>
+      <div class="bucket">
+        <div class="bucket-icon">⭐</div>
+        <div class="bucket-name">Google Reviews</div>
+        <div class="bucket-pct">20%</div>
+        <div class="bucket-desc">Unlocked when team gets <strong>40+ Google reviews</strong> in the month. <strong>$300 at $100K.</strong></div>
+        <div class="bucket-goal">40 reviews/month</div>
+      </div>
+      <div class="bucket">
+        <div class="bucket-icon">💆</div>
+        <div class="bucket-name">Skincare Sales</div>
+        <div class="bucket-pct">20%</div>
+        <div class="bucket-desc">Unlocked when skincare retail hits <strong>$5,000/month.</strong> <strong>$300 at $100K.</strong></div>
+        <div class="bucket-goal">$5,000 skincare/mo</div>
+      </div>
+      <div class="bucket">
+        <div class="bucket-icon">📅</div>
+        <div class="bucket-name">Rebooking</div>
+        <div class="bucket-pct">10%</div>
+        <div class="bucket-desc">Unlocked when practice-wide 30-day rebooking rate hits <strong>35%+.</strong> <strong>$150 at $100K.</strong></div>
+        <div class="bucket-goal">35% rebooking rate</div>
+      </div>
+    </div>
+
+    <div class="explainer green">
+      <h3>🧮 Example: We hit $100K but only 32 Google reviews</h3>
+      <p>Revenue bucket ✅ = $750 unlocked<br>
+      Google reviews ❌ = $300 locked (missed by 8 reviews)<br>
+      Skincare ✅ = $300 unlocked<br>
+      Rebooking ✅ = $150 unlocked<br><br>
+      <strong>Total pool paid out: $1,200 instead of $1,500.</strong> Those 8 missing reviews cost the team $300. This is why everyone asks for reviews — it's real money.</p>
+    </div>
+  </div>
+
+  <!-- EACH PERSON'S ROLE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">👥</div>
+      <div>
+        <div class="section-title">What Each Person Owns</div>
+        <div class="section-sub">Everyone has a role. Every role matters.</div>
+      </div>
+    </div>
+
+    <div class="person-grid">
+      <div class="person-card">
+        <div class="person-icon">💉</div>
+        <div class="person-title">Providers (×2)</div>
+        <div class="person-metric"><strong>Team Pool Share: 22% each</strong>Revenue, reviews, skincare, rebooking</div>
+        <div class="person-metric"><strong>Individual Bonus: Rebooking Rate</strong>Your personal % of patients who rebook within 30 days</div>
+        <div class="person-metric"><strong>You also influence:</strong>Google reviews (ask after treatment), skincare recommendations</div>
+        <div class="person-max">Max/mo: $1,120 · Max/yr: $13,440</div>
+      </div>
+      <div class="person-card">
+        <div class="person-icon">✨</div>
+        <div class="person-title">Esthetician</div>
+        <div class="person-metric"><strong>Team Pool Share: 15%</strong>Revenue, reviews, skincare, rebooking</div>
+        <div class="person-metric"><strong>Skincare Bucket: 40% owner</strong>You drive retail sales in the treatment room</div>
+        <div class="person-metric"><strong>Individual Bonus: Rebooking Rate</strong>Your patients rebook = your bonus goes up</div>
+        <div class="person-max">Max/mo: $875 · Max/yr: $10,500</div>
+      </div>
+      <div class="person-card">
+        <div class="person-icon">🖥️</div>
+        <div class="person-title">Front Desk (×2)</div>
+        <div class="person-metric"><strong>Team Pool Share: 15% each</strong>Revenue, reviews, skincare, rebooking</div>
+        <div class="person-metric"><strong>Google Reviews: Lead owners</strong>You ask at checkout + send follow-up texts</div>
+        <div class="person-metric"><strong>Skincare Bucket: 30% each</strong>Recommend products at checkout, keep display full</div>
+        <div class="person-max">Max/mo: $625 · Max/yr: $7,500</div>
+      </div>
+      <div class="person-card" style="grid-column: span 1;">
+        <div class="person-icon">📱</div>
+        <div class="person-title">Social Media Mgr</div>
+        <div class="person-metric"><strong>Team Pool Share: 11%</strong>Revenue, reviews, skincare, rebooking</div>
+        <div class="person-metric"><strong>Individual Bonus: New Patients</strong>Tracked in Boulevard by patient source</div>
+        <div class="person-metric"><strong>You also influence:</strong>Google review requests (monthly post), brand awareness</div>
+        <div class="person-max">Max/mo: $635 · Max/yr: $7,620</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOAL DETAILS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">🎯</div>
+      <div>
+        <div class="section-title">Each Goal — Explained in Detail</div>
+        <div class="section-sub">What counts, how it's measured, and what it pays</div>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="goal-card">
+      <div class="goal-header">
+        <div class="goal-title">⭐ Google Reviews — 40/month Goal</div>
+        <span class="pill pill-yellow">Team Goal</span>
+      </div>
+      <p style="font-size:13px;color:var(--mid);margin-bottom:14px;">Your current weekly goal is 10/week = ~40/month. This plan keeps that same target but now ties real money to it instead of a separate prize. The reviews bucket unlocks the moment you hit 40 cumulative new Google reviews in a calendar month.</p>
+      <div class="goal-tiers">
+        <div class="goal-tier">
+          <span class="t-val">0–29</span>
+          reviews
+          <span class="t-bonus" style="color:var(--red)">$0 — locked</span>
+        </div>
+        <div class="goal-tier active">
+          <span class="t-val">30–39</span>
+          reviews
+          <span class="t-bonus" style="color:var(--yellow)">50% of bucket</span>
+        </div>
+        <div class="goal-tier active">
+          <span class="t-val">40–49 ✅</span>
+          reviews
+          <span class="t-bonus">Full bucket unlocked</span>
+        </div>
+        <div class="goal-tier">
+          <span class="t-val">50+ 🔥</span>
+          reviews
+          <span class="t-bonus">Full bucket + team lunch</span>
+        </div>
+        <div class="goal-tier">
+          <span class="t-val">60+ 🚀</span>
+          reviews
+          <span class="t-bonus">Full bucket + team dinner</span>
+        </div>
+      </div>
+      <div class="goal-note">📌 <strong>How it's measured:</strong> Screenshot of Google Business review count on the 1st vs last day of the month. Net new reviews = your count. <strong>Who asks:</strong> Front desk at every checkout ("Would you mind leaving us a quick Google review? It takes 30 seconds and means the world to us.") + providers after treatment + monthly reminder post from social media.</div>
+    </div>
+
+    <!-- SKINCARE -->
+    <div class="goal-card">
+      <div class="goal-header">
+        <div class="goal-title">💆 Skincare Retail Sales — $5,000/month Goal</div>
+        <span class="pill pill-pink">Esthetician + Front Desk</span>
+      </div>
+      <p style="font-size:13px;color:var(--mid);margin-bottom:14px;">Product revenue is currently only 3–5% of total revenue (~$3,700/month). Industry standard for a med spa with an active esthetician is 10–15%. There's $5,000–$10,000/month sitting on the shelf. This goal starts at $5,000 to build the habit, with stretch rewards above that.</p>
+      <div class="goal-tiers">
+        <div class="goal-tier">
+          <span class="t-val">Under $3K</span>
+          <span class="t-bonus" style="color:var(--red)">$0 — locked</span>
+        </div>
+        <div class="goal-tier">
+          <span class="t-val">$3K–$4,999</span>
+          <span class="t-bonus" style="color:var(--yellow)">50% of bucket</span>
+        </div>
+        <div class="goal-tier active">
+          <span class="t-val">$5,000 ✅</span>
+          <span class="t-bonus">Full bucket unlocked</span>
+        </div>
+        <div class="goal-tier">
+          <span class="t-val">$7,500 💪</span>
+          <span class="t-bonus">Full + $100 extra (Esthi + FD)</span>
+        </div>
+        <div class="goal-tier">
+          <span class="t-val">$10,000 🔥</span>
+          <span class="t-bonus">Full + $200 extra (Esthi + FD)</span>
+        </div>
+      </div>
+      <div class="goal-note">📌 <strong>How it's measured:</strong> Boulevard sales report — product category total for the month. <strong>Who drives it:</strong> Esthetician recommends in treatment room (owns 40% of skincare bucket payout). Front desk suggests at checkout and keeps display fully stocked (30% each). Providers mention product pairings post-treatment.</div>
+    </div>
+
+    <!-- REBOOKING -->
+    <div class="goal-card">
+      <div class="goal-header">
+        <div class="goal-title">📅 Patient Rebooking Rate — 35% Goal (team) + Individual</div>
+        <span class="pill pill-green">Everyone</span>
+      </div>
+      <p style="font-size:13px;color:var(--mid);margin-bottom:14px;">Right now only 25.77% of patients rebook within 30 days. Industry standard is 40%+. This is the single biggest lever for revenue growth — turning one-time visitors into loyal regulars. The team goal of 35% unlocks the retention bucket for everyone. Providers and the esthetician also earn individual bonuses on their personal rebooking rate.</p>
+
+      <p style="font-size:13px;font-weight:700;color:var(--charcoal);margin:14px 0 8px;">Practice-Wide Goal (team bucket):</p>
+      <div class="goal-tiers">
+        <div class="goal-tier"><span class="t-val">Under 30%</span><span class="t-bonus" style="color:var(--red)">$0</span></div>
+        <div class="goal-tier"><span class="t-val">30–34%</span><span class="t-bonus" style="color:var(--yellow)">50% of bucket</span></div>
+        <div class="goal-tier active"><span class="t-val">35–44% ✅</span><span class="t-bonus">Full bucket</span></div>
+        <div class="goal-tier"><span class="t-val">45%+ 🔥</span><span class="t-bonus">Full + recognition</span></div>
+      </div>
+
+      <p style="font-size:13px;font-weight:700;color:var(--charcoal);margin:14px 0 8px;">Individual Bonus — Providers + Esthetician only:</p>
+      <div class="goal-tiers">
+        <div class="goal-tier"><span class="t-val">Under 35%</span><span class="t-bonus" style="color:var(--red)">$0/mo</span></div>
+        <div class="goal-tier"><span class="t-val">35–44%</span><span class="t-bonus">+$100/mo</span></div>
+        <div class="goal-tier"><span class="t-val">45–54%</span><span class="t-bonus">+$200/mo</span></div>
+        <div class="goal-tier"><span class="t-val">55–64%</span><span class="t-bonus">+$300/mo</span></div>
+        <div class="goal-tier"><span class="t-val">65%+ 🏆</span><span class="t-bonus">+$350/mo</span></div>
+      </div>
+      <div class="goal-note">📌 <strong>How it's measured:</strong> Boulevard rebooking report — % of patients seen in the month who have a future appointment booked. <strong>Who drives it:</strong> Front desk offers to book next appointment at every checkout. Providers say "I'd like to see you back in X weeks — want to book now while you're here?" The script matters.</div>
+    </div>
+
+    <!-- SOCIAL MEDIA -->
+    <div class="goal-card">
+      <div class="goal-header">
+        <div class="goal-title">📱 New Patients — Social Media Manager Individual Goal</div>
+        <span class="pill pill-pink">Social Media Manager</span>
+      </div>
+      <p style="font-size:13px;color:var(--mid);margin-bottom:14px;">The social media manager's job is new patient acquisition. This metric is tracked in Boulevard by patient source (Instagram, Google, Referral, etc.). New patients = people who visited for the first time this month.</p>
+      <div class="goal-tiers">
+        <div class="goal-tier"><span class="t-val">Under 40</span><span class="t-bonus" style="color:var(--red)">$0</span></div>
+        <div class="goal-tier"><span class="t-val">40–49</span><span class="t-bonus">+$75/mo</span></div>
+        <div class="goal-tier active"><span class="t-val">50–59 ✅</span><span class="t-bonus">+$150/mo</span></div>
+        <div class="goal-tier"><span class="t-val">60+ 🔥</span><span class="t-bonus">+$250/mo</span></div>
+      </div>
+      <div class="goal-note">📌 <strong>How it's measured:</strong> Boulevard new patient report for the month. This gives the social media manager a clear business metric tied to her creative work — not just likes or followers.</div>
+    </div>
+  </div>
+
+  <!-- MONTHLY SCORECARD -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">📊</div>
+      <div>
+        <div class="section-title">Monthly Scorecard — Review on the 1st</div>
+        <div class="section-sub">One simple check-in to calculate everyone's bonus</div>
+      </div>
+    </div>
+
+    <div class="explainer">
+      <h3>How we calculate bonuses each month</h3>
+      <p>On the 1st of every month, Natalie (or office manager) pulls 4 numbers from Boulevard + Google: monthly revenue, Google review count, skincare sales total, and practice-wide rebooking rate. That's it. Fill in the scorecard below and bonuses are calculated automatically.</p>
+    </div>
+
+    <div class="scorecard">
+      <div class="scorecard-header">
+        <div>Goal</div>
+        <div>Target</div>
+        <div>Actual</div>
+        <div>Status</div>
+        <div>Bucket $</div>
+        <div>Pool % Unlocked</div>
+      </div>
+      <div class="scorecard-row">
+        <div>💰 Monthly Revenue</div>
+        <div>$100K+</div>
+        <div style="color:var(--mid)">_______</div>
+        <div><span class="pill pill-green">✓ / ✗</span></div>
+        <div>$750</div>
+        <div>50%</div>
+      </div>
+      <div class="scorecard-row">
+        <div>⭐ Google Reviews</div>
+        <div>40/mo</div>
+        <div style="color:var(--mid)">_______</div>
+        <div><span class="pill pill-green">✓ / ✗</span></div>
+        <div>$300</div>
+        <div>20%</div>
+      </div>
+      <div class="scorecard-row">
+        <div>💆 Skincare Sales</div>
+        <div>$5,000</div>
+        <div style="color:var(--mid)">_______</div>
+        <div><span class="pill pill-green">✓ / ✗</span></div>
+        <div>$300</div>
+        <div>20%</div>
+      </div>
+      <div class="scorecard-row">
+        <div>📅 Rebooking Rate</div>
+        <div>35%+</div>
+        <div style="color:var(--mid)">_______</div>
+        <div><span class="pill pill-green">✓ / ✗</span></div>
+        <div>$150</div>
+        <div>10%</div>
+      </div>
+      <div class="scorecard-row" style="background:var(--babypink);font-weight:700;">
+        <div>TOTAL POOL UNLOCKED</div>
+        <div>$1,500</div>
+        <div></div>
+        <div></div>
+        <div style="color:var(--green)">$_____</div>
+        <div style="color:var(--green)">____%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-emoji">❓</div>
+      <div>
+        <div class="section-title">Common Questions</div>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">What happens if we have a slow month below $90K?</div>
+        <div class="faq-a">No team pool that month — but individual bonuses (rebooking + new patients) are still earnable. This protects the business during slower periods while still rewarding personal effort.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What happened to the weekly Google review prize?</div>
+        <div class="faq-a">It's been replaced by this plan. Instead of small weekly prizes that cost money regardless of how the business is doing, you now earn a much larger monthly amount tied to real business results. The weekly goal of 10/week still stands — it just feeds into the monthly 40/month target.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">When do we get paid?</div>
+        <div class="faq-a">Bonuses are calculated on the 1st of the following month and paid with the second paycheck of that month. So April's bonus is paid in early May.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I know my personal rebooking rate?</div>
+        <div class="faq-a">Boulevard tracks this per provider. You can ask to see your report any time. Natalie will share everyone's individual rate at the monthly team review — transparently, so everyone knows where they stand and can improve.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can this plan change?</div>
+        <div class="faq-a">Yes — we'll review it quarterly. If goals become too easy or too hard, we'll adjust together. The goal is for this to feel fair and motivating, not frustrating.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this in addition to my regular pay?</div>
+        <div class="faq-a">Yes. This is 100% additional compensation on top of your base salary or hourly rate. It does not replace any existing pay.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="brand">SKIN SOCIAL</div>
+  5840 Roswell Rd · Sandy Springs, GA · @skinsocialspa<br><br>
+  This document is confidential and intended for Skin Social team members only.<br>
+  Questions? Talk to Natalie. 💕
+</div>
+
+</body>
+</html>
