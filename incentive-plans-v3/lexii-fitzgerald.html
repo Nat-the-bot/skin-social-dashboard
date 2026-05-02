@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Skin Social — Lexii Fitzgerald — Incentive Plan 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+:root {
+  --oat: #F5EFE7;
+  --cream: #EADFCB;
+  --tan: #D6BFA9;
+  --pink: #E8C4C4;
+  --babypink: #F2E5E5;
+  --sand: #CBB8A0;
+  --charcoal: #3A3A3A;
+  --mid: #6a6a6a;
+  --white: #ffffff;
+  --green: #5a8a6a;
+  --shadow: 0 1px 12px rgba(0,0,0,0.07);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(--charcoal); line-height: 1.7; max-width: 760px; margin: 0 auto; }
+
+/* HEADER */
+.header { background: var(--oat); border-bottom: 3px solid var(--tan); padding: 40px 48px 32px; }
+.practice-name { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--mid); margin-bottom: 6px; }
+.employee-name { font-size: 28px; font-weight: 700; color: var(--charcoal); margin-bottom: 4px; }
+.role-line { font-size: 13px; color: var(--mid); }
+.header-meta { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+.meta-item { font-size: 12px; color: var(--mid); }
+.meta-item strong { color: var(--charcoal); display: block; font-size: 13px; }
+
+/* BODY */
+.body { padding: 40px 48px 60px; }
+
+/* INTRO */
+.intro { background: var(--oat); border-radius: 10px; padding: 20px 24px; margin-bottom: 32px; font-size: 13px; color: var(--mid); line-height: 1.8; }
+.intro p + p { margin-top: 10px; }
+
+/* SECTION */
+.section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--tan); margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--cream); }
+
+/* GOAL BLOCK */
+.goal { margin-bottom: 24px; border: 1px solid var(--cream); border-radius: 10px; overflow: hidden; }
+.goal-header { background: var(--cream); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+.goal-title { font-size: 14px; font-weight: 700; color: var(--charcoal); }
+.goal-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--mid); }
+.goal-tag.personal { color: var(--charcoal); background: var(--tan); padding: 3px 10px; border-radius: 20px; }
+.goal-body { padding: 16px 20px; }
+.goal-why { font-size: 13px; color: var(--mid); margin-bottom: 14px; line-height: 1.7; }
+.goal-targets { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.target { background: var(--oat); border-radius: 8px; padding: 10px 14px; flex: 1; min-width: 120px; }
+.target-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--mid); margin-bottom: 3px; }
+.target-value { font-size: 16px; font-weight: 700; color: var(--charcoal); }
+.goal-track { font-size: 11px; color: var(--mid); background: var(--oat); border-radius: 6px; padding: 8px 12px; }
+.goal-track strong { color: var(--charcoal); }
+
+/* RETENTION BLOCK */
+.retention-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 13px; }
+.retention-table th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--mid); padding: 6px 10px; border-bottom: 1px solid var(--cream); font-weight: 600; }
+.retention-table td { padding: 10px 10px; border-bottom: 1px solid var(--oat); color: var(--charcoal); }
+.retention-table tr:last-child td { border-bottom: none; }
+.retention-table .current { font-size: 11px; color: var(--mid); }
+
+/* BONUS TABLE */
+.bonus-section { background: var(--charcoal); border-radius: 10px; padding: 24px 28px; margin: 32px 0; }
+.bonus-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--tan); margin-bottom: 16px; }
+.bonus-tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+.bonus-tier { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 10px; text-align: center; }
+.bonus-tier.highlight { background: var(--tan); }
+.bt-rev { font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+.bt-rev.hl { color: var(--charcoal); }
+.bt-pool { font-size: 18px; font-weight: 700; color: var(--tan); }
+.bt-pool.hl { color: var(--charcoal); }
+.bt-label { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 3px; }
+.bt-label.hl { color: var(--charcoal); }
+.bonus-note { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+/* MONTHLY SUMMARY */
+.summary-table { width: 100%; border-collapse: collapse; font-size: 13px; border: 1px solid var(--cream); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+.summary-table th { background: var(--oat); text-align: left; padding: 10px 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--mid); font-weight: 700; border-bottom: 1px solid var(--cream); }
+.summary-table td { padding: 12px 16px; border-bottom: 1px solid var(--oat); }
+.summary-table tr:last-child td { border-bottom: none; background: var(--babypink); font-weight: 700; font-size: 14px; }
+.fill { width: 160px; height: 28px; border: 1.5px solid var(--cream); border-radius: 6px; font-family: 'Poppins', sans-serif; font-size: 13px; padding: 0 10px; background: var(--oat); }
+
+/* ESCALATION */
+.escalation { border: 1px solid var(--tan); border-radius: 10px; padding: 18px 22px; margin-bottom: 28px; }
+.escalation h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--charcoal); margin-bottom: 8px; }
+.escalation p { font-size: 13px; color: var(--mid); line-height: 1.7; }
+
+/* SIGNATURES */
+.sig-section { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 40px; }
+.sig-block { border-top: 1px solid var(--charcoal); padding-top: 8px; font-size: 11px; color: var(--mid); }
+
+/* FOOTER */
+.footer { background: var(--oat); border-top: 1px solid var(--cream); padding: 18px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--mid); }
+.footer-brand { font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 11px; color: var(--charcoal); }
+
+@media print {
+  body { background: white; }
+  .goal, .summary-table, .bonus-section { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="practice-name">Skin Social &nbsp;·&nbsp; Sandy Springs, Georgia</div>
+  <div class="employee-name">Lexii Fitzgerald</div>
+  <div class="role-line">Esthetician &nbsp;·&nbsp; Aesthetic Services</div>
+  <div class="header-meta">
+    <div class="meta-item"><strong>Plan Year</strong>2026</div>
+    <div class="meta-item"><strong>Maximum Bonus</strong>0.5% of practice monthly revenue</div>
+    <div class="meta-item"><strong>Effective</strong>May 2026</div>
+    <div class="meta-item"><strong>Review Cycle</strong>Monthly, on the 1st</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="intro">
+    <p>This document outlines your individual incentive plan for 2026. It is designed to be straightforward: there are four team goals that the entire Skin Social team works toward together, and one personal goal that reflects your specific role and contribution.</p>
+    <p>Your bonus has two components. Eighty percent comes from the team goals — meaning your bonus is directly tied to how well the practice performs as a whole. Twenty percent comes from your personal goal — the one area where your individual effort has the most direct impact. Both are measured monthly and paid together.</p>
+    <p>This plan is built to grow with you. As Skin Social grows, the bonus pool grows. As your performance improves, your payout increases. There are no tricks and no fine print — just clear targets and a direct path to earning more.</p>
+  </div>
+
+  <!-- TEAM GOALS -->
+  <div class="section-label">Team Goals &nbsp;&mdash;&nbsp; 80% of Your Bonus</div>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.7;">These four goals belong to the entire team. Every person at Skin Social contributes to each one. When the team hits these targets, every team member receives the same payout — regardless of role. The team wins together.</p>
+
+  <!-- GOAL 1: REVENUE -->
+  <div class="goal">
+    <div class="goal-header">
+      <div class="goal-title">Goal 1 &nbsp;&mdash;&nbsp; Monthly Practice Revenue</div>
+      <div class="goal-tag">Team Goal</div>
+    </div>
+    <div class="goal-body">
+      <div class="goal-why">Revenue is the result of everything the team does well — full schedules, strong patient experience, effective marketing, and smooth front desk operations. When revenue grows, the entire bonus pool grows with it.</div>
+      <div class="goal-targets">
+        <div class="target">
+          <div class="target-label">Minimum to Earn</div>
+          <div class="target-value">$90,000</div>
+        </div>
+        <div class="target">
+          <div class="target-label">Target</div>
+          <div class="target-value">$100,000</div>
+        </div>
+        <div class="target">
+          <div class="target-label">Stretch</div>
+          <div class="target-value">$110,000</div>
+        </div>
+        <div class="target">
+          <div class="target-label">Exceptional</div>
+          <div class="target-value">$125,000+</div>
+        </div>
+      </div>
+      <div class="goal-track"><strong>How it is tracked:</strong> Boulevard monthly revenue report, pulled on the 1st of the following month.</div>
+    </div>
+  </div>
+
+  <!-- GOAL 2: RETENTION -->
+  <div class="goal">
+    <div class="goal-header">
+      <div class="goal-title">Goal 2 &nbsp;&mdash;&nbsp; Patient Retention</div>
+      <div class="goal-tag">Team Goal</div>
+    </div>
+    <div class="goal-body">
+      <div class="goal-why">Patient retention measures how many of our patients return for follow-up appointments. It is the single most important indicator of a healthy practice. Retaining an existing patient costs far less than acquiring a new one — and retained patients spend more, refer more, and leave more reviews. We track retention at three intervals to see the full picture: how many patients come back within 30 days, 60 days, and 90 days of their last visit.</div>
+      <table class="retention-table">
+        <thead>
+          <tr>
+            <th>Window</th>
+            <th>What It Measures</th>
+            <th>Where We Are Now</th>
+            <th>Our Target</th>
+            <th>Industry Standard</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>30-Day</strong></td>
+            <td>Patients who rebook within 30 days of their visit</td>
+            <td class="current">25.8%</td>
+            <td><strong>30%</strong></td>
+            <td>40%</td>
+          </tr>
+          <tr>
+            <td><strong>60-Day</strong></td>
+            <td>Patients who rebook within 60 days of their visit</td>
+            <td class="current">34.0%</td>
+            <td><strong>40%</strong></td>
+            <td>50%</td>
+          </tr>
+          <tr>
+            <td><strong>90-Day</strong></td>
+            <td>Patients who rebook within 90 days of their visit</td>
+            <td class="current">37.0%</td>
+            <td><strong>45%</strong></td>
+            <td>55%</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:13px;color:var(--mid);margin-bottom:12px;line-height:1.7;">To earn this goal, the team must hit <strong>at least two of the three targets</strong> in a given month. Hitting all three earns the maximum retention score.</p>
+      <div class="goal-track"><strong>How it is tracked:</strong> Boulevard rebooking report, pulled on the 1st of the following month. Measured practice-wide.</div>
+    </div>
+  </div>
+
+  <!-- GOAL 3: REVIEWS -->
+  <div class="goal">
+    <div class="goal-header">
+      <div class="goal-title">Goal 3 &nbsp;&mdash;&nbsp; New Google Reviews</div>
+      <div class="goal-tag">Team Goal</div>
+    </div>
+    <div class="goal-body">
+      <div class="goal-why">Google is Skin Social's single largest source of new patients — responsible for over $127,000 in revenue year-to-date in 2026. New reviews improve our search ranking and build trust with prospective patients before they ever walk through the door. Every team member plays a role: providers ask at the end of a treatment, front desk asks at checkout, and our social media manager runs monthly review campaigns.</div>
+      <div class="goal-targets">
+        <div class="target">
+          <div class="target-label">Minimum to Earn</div>
+          <div class="target-value">25 reviews</div>
+        </div>
+        <div class="target">
+          <div class="target-label">Target</div>
+          <div class="target-value">40 reviews</div>
+        </div>
+        <div class="target">
+          <div class="target-label">Exceptional</div>
+          <div class="target-value">55+ reviews</div>
+        </div>
+      </div>
+      <div class="goal-track"><strong>How it is tracked:</strong> Net new Google reviews on our Google Business profile, counted on the 1st vs. last day of the month.</div>
+    </div>
+  </div>
+
+  <!-- GOAL 4: RETAIL -->
+  <div class="goal">
+    <div class="goal-header">
+      <div class="goal-title">Goal 4 &nbsp;&mdash;&nbsp; Skincare Retail Sales</div>
+      <div class="goal-tag">Team Goal</div>
+    </div>
+    <div class="goal-body">
+      <div class="goal-why">Product sales are currently 3–5% of our total revenue. For a practice our size, industry standard is 10–15%. That gap represents $5,000 to $10,000 per month in revenue that we are leaving on the table. Our esthetician leads retail in the treatment room. Providers recommend products that complement their treatments. Front desk presents options at checkout. When we all make retail part of the conversation, patients benefit and the practice grows.</div>
+      <div class="goal-targets">
+        <div class="target">
+          <div class="target-label">Minimum to Earn</div>
+          <div class="target-value">$3,000</div>
+        </div>
+        <div class="target">
+          <div class="target-label">Target</div>
+          <div class="target-value">$5,000</div>
+        </div>
+        <div class="target">
+          <div class="target-label">Exceptional</div>
+          <div class="target-value">$7,500+</div>
+        </div>
+      </div>
+      <div class="goal-track"><strong>How it is tracked:</strong> Boulevard product sales report, monthly total, pulled on the 1st of the following month.</div>
+    </div>
+  </div>
+
+  <!-- PERSONAL GOAL -->
+  <div class="section-label" style="margin-top:32px;">Personal Goal &nbsp;&mdash;&nbsp; 20% of Your Bonus</div>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.7;">This goal is yours alone. It reflects the area of the practice where your role has the most direct impact. Your personal goal score is calculated independently from the team score — a strong personal performance earns your personal bonus regardless of how the team month goes.</p>
+
+  <div class="goal">
+    <div class="goal-header">
+      <div class="goal-title">Skincare Retail Sales and Personal Rebooking Rate</div>
+      <div class="goal-tag personal">Personal Goal</div>
+    </div>
+    <div class="goal-body">
+      <div class="goal-why">Your role gives you two unique advantages that no other team member has: you spend extended one-on-one time with patients in the treatment room, and you have deep product knowledge that patients trust. Your personal goal combines retail sales — the skincare products you recommend and sell directly from your treatment room — with your personal rebooking rate. Both reflect how well you are building lasting patient relationships and making each visit count. You are the primary driver of retail revenue at Skin Social, and your rebooking rate reflects whether patients are leaving already excited to return.</div>
+      <div class="goal-targets">
+        <div class="target"><div class="target-label">Retail Minimum</div><div class="target-value">$1,500</div></div><div class="target"><div class="target-label">Retail Target</div><div class="target-value">$2,500</div></div><div class="target"><div class="target-label">Rebooking Target</div><div class="target-value">35%</div></div><div class="target"><div class="target-label">Exceptional</div><div class="target-value">Retail $3,500+ and Rebooking 45%+</div></div>
+      </div>
+      <div class="goal-track"><strong>How it is tracked:</strong> Boulevard product sales report (filtered by provider) and Boulevard rebooking report (filtered by provider), both pulled on the 1st of the following month.</div>
+    </div>
+  </div>
+
+  <!-- BONUS POOL -->
+  <div class="bonus-section">
+    <div class="bonus-label">How Your Bonus Is Calculated</div>
+    <div class="bonus-tiers">
+      <div class="bonus-tier">
+        <div class="bt-rev">Under $90K revenue</div>
+        <div class="bt-pool" style="color:#d97b7b">$0</div>
+        <div class="bt-label">No pool</div>
+      </div>
+      <div class="bonus-tier">
+        <div class="bt-rev">$90K–$99K revenue</div>
+        <div class="bt-pool">$500</div>
+        <div class="bt-label">Team pool</div>
+      </div>
+      <div class="bonus-tier highlight">
+        <div class="bt-rev hl">$100K–$109K revenue</div>
+        <div class="bt-pool hl">$1,500</div>
+        <div class="bt-label hl">Target — our baseline</div>
+      </div>
+      <div class="bonus-tier">
+        <div class="bt-rev">$110K–$124K revenue</div>
+        <div class="bt-pool">$2,500</div>
+        <div class="bt-label">Stretch</div>
+      </div>
+    </div>
+    <div class="bonus-note">The team pool shown above is the 80% portion shared equally by all six team members. Your personal 20% is calculated separately based on your individual goal result. Both are added together to determine your total bonus for the month. A score below the minimum threshold on any goal reduces — but does not eliminate — your payout unless practice revenue falls below $90,000.</div>
+  </div>
+
+  <!-- ESCALATION -->
+  <div class="escalation">
+    <h4>Goal Escalation Policy</h4>
+    <p>All goals in this plan will be reviewed and stepped up when Skin Social sustains $125,000 or more in monthly revenue for two consecutive months. This plan is designed to scale with the growth of the practice. Goal adjustments will be discussed in advance during your monthly review with Natalie.</p>
+  </div>
+
+  <!-- MONTHLY SUMMARY -->
+  <div class="section-label">Monthly Review Summary</div>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Employee</td><td><strong>Lexii Fitzgerald</strong></td></tr>
+      <tr><td>Role</td><td>Esthetician</td></tr>
+      <tr><td>Month Being Reviewed</td><td><input class="fill" placeholder="e.g. May 2026"></td></tr>
+      <tr><td>Practice Revenue This Month</td><td><input class="fill" placeholder="$"></td></tr>
+      <tr><td>30-Day Retention Rate</td><td><input class="fill" placeholder="%"></td></tr>
+      <tr><td>60-Day Retention Rate</td><td><input class="fill" placeholder="%"></td></tr>
+      <tr><td>90-Day Retention Rate</td><td><input class="fill" placeholder="%"></td></tr>
+      <tr><td>New Google Reviews</td><td><input class="fill" placeholder="count"></td></tr>
+      <tr><td>Skincare Retail Sales</td><td><input class="fill" placeholder="$"></td></tr>
+      <tr><td>Personal Goal Result</td><td><input class="fill" placeholder="value"></td></tr>
+      <tr><td>Team Goals Met</td><td><input class="fill" placeholder="__ of 4"></td></tr>
+      <tr><td>Maximum Bonus This Month</td><td>0.5% of practice monthly revenue</td></tr>
+      <tr><td>Bonus Earned This Month</td><td><input class="fill" placeholder="$" style="font-weight:700;font-size:15px;"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sig-section">
+    <div class="sig-block">Employee Signature &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date</div>
+    <div class="sig-block">Natalie Fenner, Owner &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Skin Social</div>
+  <div>5840 Roswell Road &nbsp;·&nbsp; Sandy Springs, Georgia &nbsp;·&nbsp; Confidential</div>
+  <div>Plan Year 2026</div>
+</div>
+
+</body>
+</html>

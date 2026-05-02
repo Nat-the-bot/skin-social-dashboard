@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Skin Social — Monthly Team Scorecard 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+:root {
+  --oat:#F5EFE7;--cream:#EADFCB;--tan:#D6BFA9;--pink:#E8C4C4;
+  --babypink:#F2E5E5;--sand:#CBB8A0;--charcoal:#3A3A3A;--mid:#6a6a6a;
+  --white:#fff;--green:#5a8a6a;--shadow:0 1px 12px rgba(0,0,0,0.07);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;background:var(--white);color:var(--charcoal);max-width:900px;margin:0 auto;line-height:1.7;}
+
+.header{background:var(--oat);border-bottom:3px solid var(--tan);padding:36px 48px 28px;}
+.practice{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
+h1{font-size:24px;font-weight:700;color:var(--charcoal);margin-bottom:4px;}
+.sub{font-size:13px;color:var(--mid);margin-bottom:20px;}
+.header-row{display:flex;gap:32px;align-items:center;flex-wrap:wrap;}
+.meta{font-size:12px;color:var(--mid);}
+.meta strong{color:var(--charcoal);display:block;font-size:13px;}
+.month-field{height:36px;border:1.5px solid var(--tan);border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;padding:0 14px;background:var(--white);min-width:180px;}
+
+.body{padding:36px 48px 60px;}
+.sec-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--tan);margin-bottom:16px;padding-bottom:6px;border-bottom:1px solid var(--cream);}
+
+/* POOL */
+.pool-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:8px;}
+.pool-box{border:1px solid var(--cream);border-radius:8px;padding:14px 10px;text-align:center;background:var(--oat);}
+.pool-box.target{background:var(--babypink);border-color:var(--tan);}
+.pool-rev{font-size:11px;color:var(--mid);margin-bottom:4px;}
+.pool-amt{font-size:20px;font-weight:700;color:var(--charcoal);}
+.pool-each{font-size:10px;color:var(--mid);margin-top:3px;}
+.pool-note{font-size:12px;color:var(--mid);margin-top:10px;margin-bottom:28px;line-height:1.7;}
+
+/* TEAM GOALS TABLE */
+.goals-table{width:100%;border-collapse:collapse;margin-bottom:28px;font-size:13px;}
+.goals-table thead tr{background:var(--cream);}
+.goals-table th{padding:10px 14px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;font-weight:700;color:var(--mid);}
+.goals-table td{padding:14px 14px;border-bottom:1px solid var(--oat);vertical-align:top;}
+.goals-table tr:last-child td{border-bottom:none;}
+.goals-table tbody tr:nth-child(even){background:var(--oat);}
+.goal-name-cell{font-weight:700;font-size:13px;min-width:160px;}
+.goal-target-cell{font-size:12px;color:var(--mid);min-width:140px;line-height:1.6;}
+.input-cell input{height:32px;border:1.5px solid var(--cream);border-radius:6px;font-family:'Poppins',sans-serif;font-size:13px;padding:0 10px;background:var(--white);width:100px;}
+.score-cell input{height:32px;width:54px;border:1.5px solid var(--tan);border-radius:6px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;text-align:center;background:var(--babypink);}
+
+/* RETENTION SUB-TABLE */
+.ret-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px;}
+.ret-table td{padding:5px 0;border-bottom:1px solid var(--oat);}
+.ret-table tr:last-child td{border-bottom:none;}
+.ret-label{color:var(--mid);width:80px;}
+.ret-target{color:var(--charcoal);font-weight:600;width:80px;}
+.ret-actual input{height:28px;width:80px;border:1.5px solid var(--cream);border-radius:6px;font-family:'Poppins',sans-serif;font-size:12px;padding:0 8px;background:var(--white);}
+
+/* INDIVIDUAL SECTION */
+.ind-table{width:100%;border-collapse:collapse;margin-bottom:28px;font-size:13px;}
+.ind-table thead tr{background:var(--charcoal);}
+.ind-table th{padding:10px 14px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;font-weight:700;color:var(--tan);}
+.ind-table td{padding:14px 14px;border-bottom:1px solid var(--oat);vertical-align:middle;}
+.ind-table tr:last-child td{border-bottom:none;}
+.ind-table tbody tr:nth-child(even){background:var(--oat);}
+.name-cell{font-weight:700;}
+.role-cell{font-size:12px;color:var(--mid);}
+.goal-cell{font-size:12px;color:var(--mid);}
+
+/* CALCULATION */
+.calc-box{background:var(--charcoal);border-radius:10px;padding:28px;margin-bottom:28px;}
+.calc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--tan);margin-bottom:18px;}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.calc-item{background:rgba(255,255,255,0.08);border-radius:8px;padding:16px;}
+.ci-label{font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:6px;}
+.ci-input{width:100%;height:38px;border:1.5px solid var(--tan);border-radius:6px;font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;padding:0 12px;background:rgba(255,255,255,0.1);color:var(--tan);}
+.calc-note{font-size:12px;color:rgba(255,255,255,0.5);margin-top:16px;line-height:1.8;}
+
+/* PAYOUT SCALE */
+.scale-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:28px;}
+.scale-box{border:1px solid var(--cream);border-radius:8px;padding:12px 8px;text-align:center;background:var(--oat);}
+.scale-box.max{background:var(--babypink);border-color:var(--tan);}
+.scale-range{font-size:11px;color:var(--mid);margin-bottom:4px;}
+.scale-pct{font-size:20px;font-weight:700;color:var(--charcoal);}
+.scale-note{font-size:11px;color:var(--mid);margin-top:3px;}
+
+/* COMMITMENTS */
+.commit-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
+.commit-item{border:1px solid var(--cream);border-radius:8px;padding:16px;}
+.commit-label{font-size:12px;font-weight:700;color:var(--charcoal);margin-bottom:8px;}
+.commit-input{width:100%;border:1.5px solid var(--cream);border-radius:6px;font-family:'Poppins',sans-serif;font-size:12px;padding:8px 10px;background:var(--oat);height:36px;}
+
+/* NOTES */
+.notes-area{width:100%;min-height:80px;border:1.5px solid var(--cream);border-radius:8px;font-family:'Poppins',sans-serif;font-size:13px;padding:12px 14px;background:var(--oat);resize:vertical;}
+
+.footer{background:var(--oat);border-top:1px solid var(--cream);padding:16px 48px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mid);}
+.footer-brand{font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:11px;color:var(--charcoal);}
+
+@media print{body{background:white;}.goals-table,.ind-table,.pool-box,.scale-box,.calc-box,.commit-item{break-inside:avoid;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="practice">Skin Social &nbsp;·&nbsp; Sandy Springs, Georgia</div>
+  <h1>Monthly Team Performance Scorecard</h1>
+  <div class="sub">Reviewed together on the 1st of every month. Everyone contributes. Everyone wins together.</div>
+  <div class="header-row">
+    <div class="meta"><strong>Month</strong><input class="month-field" placeholder="e.g. May 2026" type="text"></div>
+    <div class="meta"><strong>Reviewed By</strong>Natalie Fenner, Owner</div>
+    <div class="meta"><strong>Team</strong>Hannah · Amanda · Lexii · Evelyn · Samantha · Rose</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- STEP 1: BONUS POOL -->
+  <div class="sec-label">Step 1 — Determine the Bonus Pool</div>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:16px;line-height:1.7;">The total bonus pool available this month is determined by practice revenue. Locate the revenue tier below and circle the applicable pool. This pool is the 80% team portion — divided equally among all six team members.</p>
+  <div class="pool-grid">
+    <div class="pool-box">
+      <div class="pool-rev">Under $90,000</div>
+      <div class="pool-amt" style="color:#c0544f">$0</div>
+      <div class="pool-each">No bonus this month</div>
+    </div>
+    <div class="pool-box">
+      <div class="pool-rev">$90,000 – $99,999</div>
+      <div class="pool-amt">$500</div>
+      <div class="pool-each">$83 max per person</div>
+    </div>
+    <div class="pool-box target">
+      <div class="pool-rev">$100,000 – $109,999</div>
+      <div class="pool-amt">$1,500</div>
+      <div class="pool-each">$250 max per person &nbsp;·&nbsp; Our target</div>
+    </div>
+    <div class="pool-box">
+      <div class="pool-rev">$110,000 – $124,999</div>
+      <div class="pool-amt">$2,500</div>
+      <div class="pool-each">$417 max per person</div>
+    </div>
+    <div class="pool-box">
+      <div class="pool-rev">$125,000+</div>
+      <div class="pool-amt">$3,500</div>
+      <div class="pool-each">$583 max per person</div>
+    </div>
+  </div>
+  <div class="pool-note">Note: The amounts above are the maximum team payout per person, assuming all goals are met and the highest score is achieved. Actual payout is reduced if goals are missed or scores are below the maximum. Individual personal goals (20%) are calculated separately and added on top.</div>
+
+  <!-- STEP 2: TEAM GOALS -->
+  <div class="sec-label">Step 2 — Score the Four Team Goals</div>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:16px;line-height:1.7;">Pull each number from the sources listed. Enter the actual result and assign a score from 1 to 5 using the targets as your guide. A score of 3 means the team met the goal. Below 3 means it was missed. A minimum average score of 3.0 across all four goals is required to earn any team bonus.</p>
+
+  <table class="goals-table">
+    <thead>
+      <tr>
+        <th>Goal</th>
+        <th>Targets</th>
+        <th>Actual This Month</th>
+        <th>Score (1–5)</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="goal-name-cell">Practice Revenue</td>
+        <td class="goal-target-cell">
+          Score 3: $90,000 – $99,999<br>
+          Score 4: $100,000 – $109,999<br>
+          Score 5: $110,000+
+        </td>
+        <td class="input-cell"><input type="text" placeholder="$"></td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+        <td style="font-size:11px;color:var(--mid);">Boulevard monthly revenue report</td>
+      </tr>
+      <tr>
+        <td class="goal-name-cell">Patient Retention<br><span style="font-size:11px;font-weight:400;color:var(--mid);">30 / 60 / 90 day</span></td>
+        <td class="goal-target-cell">
+          Score 3: Hit 1 of 3 targets<br>
+          Score 4: Hit 2 of 3 targets<br>
+          Score 5: Hit all 3 targets<br>
+          <span style="font-size:11px;">(30-day: 30% · 60-day: 40% · 90-day: 45%)</span>
+        </td>
+        <td>
+          <table class="ret-table">
+            <tr>
+              <td class="ret-label">30-day</td>
+              <td class="ret-target">Target: 30%</td>
+              <td class="ret-actual"><input type="text" placeholder="%"></td>
+            </tr>
+            <tr>
+              <td class="ret-label">60-day</td>
+              <td class="ret-target">Target: 40%</td>
+              <td class="ret-actual"><input type="text" placeholder="%"></td>
+            </tr>
+            <tr>
+              <td class="ret-label">90-day</td>
+              <td class="ret-target">Target: 45%</td>
+              <td class="ret-actual"><input type="text" placeholder="%"></td>
+            </tr>
+          </table>
+        </td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+        <td style="font-size:11px;color:var(--mid);">Boulevard rebooking report, practice-wide</td>
+      </tr>
+      <tr>
+        <td class="goal-name-cell">New Google Reviews</td>
+        <td class="goal-target-cell">
+          Score 3: 25 – 39 new reviews<br>
+          Score 4: 40 – 54 new reviews<br>
+          Score 5: 55+ new reviews
+        </td>
+        <td class="input-cell"><input type="text" placeholder="count"></td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+        <td style="font-size:11px;color:var(--mid);">Google Business profile, net new reviews</td>
+      </tr>
+      <tr>
+        <td class="goal-name-cell">Skincare Retail Sales</td>
+        <td class="goal-target-cell">
+          Score 3: $3,000 – $4,999<br>
+          Score 4: $5,000 – $7,499<br>
+          Score 5: $7,500+
+        </td>
+        <td class="input-cell"><input type="text" placeholder="$"></td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+        <td style="font-size:11px;color:var(--mid);">Boulevard product sales report</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- PAYOUT SCALE -->
+  <div class="sec-label">Payout Scale — Applies to Both Team and Personal Scores</div>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:14px;line-height:1.7;">Once the average score is calculated, use this scale to determine the percentage of the maximum bonus that is earned.</p>
+  <div class="scale-grid">
+    <div class="scale-box">
+      <div class="scale-range">Score 0 – 2.99</div>
+      <div class="scale-pct" style="color:#c0544f">0%</div>
+      <div class="scale-note">Minimum not met</div>
+    </div>
+    <div class="scale-box">
+      <div class="scale-range">Score 3.00 – 3.49</div>
+      <div class="scale-pct">42%</div>
+      <div class="scale-note">of maximum</div>
+    </div>
+    <div class="scale-box">
+      <div class="scale-range">Score 3.50 – 3.99</div>
+      <div class="scale-pct">56%</div>
+      <div class="scale-note">of maximum</div>
+    </div>
+    <div class="scale-box">
+      <div class="scale-range">Score 4.00 – 4.49</div>
+      <div class="scale-pct">75%</div>
+      <div class="scale-note">of maximum</div>
+    </div>
+    <div class="scale-box max">
+      <div class="scale-range">Score 4.50 – 5.00</div>
+      <div class="scale-pct">100%</div>
+      <div class="scale-note">Full bonus earned</div>
+    </div>
+  </div>
+
+  <!-- STEP 3: INDIVIDUAL GOALS -->
+  <div class="sec-label">Step 3 — Individual Personal Goals</div>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:16px;line-height:1.7;">Each team member has one personal goal tied to their specific role. These are scored and paid separately from the team goals. A team member can earn their full personal bonus even in a month where the team misses its goals — and vice versa.</p>
+
+  <table class="ind-table">
+    <thead>
+      <tr>
+        <th>Team Member</th>
+        <th>Role</th>
+        <th>Personal Goal</th>
+        <th>Actual</th>
+        <th>Score (1–5)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name-cell">Hannah Johnson</td>
+        <td class="role-cell">Provider</td>
+        <td class="goal-cell">Personal revenue vs $25,000 target</td>
+        <td class="input-cell"><input type="text" placeholder="$"></td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+      </tr>
+      <tr>
+        <td class="name-cell">Amanda Bailey</td>
+        <td class="role-cell">Provider</td>
+        <td class="goal-cell">Personal rebooking rate vs 35% target (30-day)</td>
+        <td class="input-cell"><input type="text" placeholder="%"></td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+      </tr>
+      <tr>
+        <td class="name-cell">Lexii Fitzgerald</td>
+        <td class="role-cell">Esthetician</td>
+        <td class="goal-cell">Personal retail sales ($2,500) and rebooking rate (35%)</td>
+        <td class="input-cell"><input type="text" placeholder="$ / %"></td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+      </tr>
+      <tr>
+        <td class="name-cell">Evelyn Ignacio</td>
+        <td class="role-cell">Front Desk</td>
+        <td class="goal-cell">Average lead response time — target under 5 minutes</td>
+        <td class="input-cell"><input type="text" placeholder="min"></td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+      </tr>
+      <tr>
+        <td class="name-cell">Samantha Miguel Mendoza</td>
+        <td class="role-cell">Front Desk</td>
+        <td class="goal-cell">Average lead response time — target under 5 minutes</td>
+        <td class="input-cell"><input type="text" placeholder="min"></td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+      </tr>
+      <tr>
+        <td class="name-cell">Rose Gammill</td>
+        <td class="role-cell">Social Media</td>
+        <td class="goal-cell">New patient count vs 90 patient target</td>
+        <td class="input-cell"><input type="text" placeholder="count"></td>
+        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- STEP 4: CALCULATION -->
+  <div class="calc-box">
+    <div class="calc-label">Step 4 — Final Calculation</div>
+    <div class="calc-grid">
+      <div class="calc-item">
+        <div class="ci-label">Team Score Average (4 goals)</div>
+        <input class="ci-input" type="text" placeholder="e.g. 3.75">
+      </div>
+      <div class="calc-item">
+        <div class="ci-label">Bonus Pool This Month</div>
+        <input class="ci-input" type="text" placeholder="e.g. $1,500">
+      </div>
+      <div class="calc-item">
+        <div class="ci-label">Team Payout Per Person (80%)</div>
+        <input class="ci-input" type="text" placeholder="e.g. $140">
+      </div>
+    </div>
+    <div class="calc-note">
+      <strong style="color:var(--tan);">How to calculate team payout per person:</strong> Average the four team goal scores. Find the corresponding percentage on the payout scale above. Multiply the bonus pool by that percentage, then divide by six.<br><br>
+      <strong style="color:var(--tan);">How to calculate individual payout:</strong> Each person's individual maximum is listed in their personal plan. Apply the payout scale to their personal goal score to determine their individual 20%. Add the team payout and individual payout together for each person's total bonus this month.
+    </div>
+  </div>
+
+  <!-- COMMITMENTS -->
+  <div class="sec-label">Next Month — Team Commitments</div>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:16px;line-height:1.7;">Before closing this meeting, agree on one specific action per goal for next month. Write it down. Hold each other accountable.</p>
+  <div class="commit-grid">
+    <div class="commit-item">
+      <div class="commit-label">Revenue — Next month we will:</div>
+      <input class="commit-input" type="text" placeholder="">
+    </div>
+    <div class="commit-item">
+      <div class="commit-label">Patient Retention — Next month we will:</div>
+      <input class="commit-input" type="text" placeholder="">
+    </div>
+    <div class="commit-item">
+      <div class="commit-label">Google Reviews — Next month we will:</div>
+      <input class="commit-input" type="text" placeholder="">
+    </div>
+    <div class="commit-item">
+      <div class="commit-label">Skincare Retail — Next month we will:</div>
+      <input class="commit-input" type="text" placeholder="">
+    </div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="sec-label">Notes and Recognition</div>
+  <textarea class="notes-area" placeholder="What went well this month? Who deserves recognition? What will we do differently next month?"></textarea>
+
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Skin Social</div>
+  <div>5840 Roswell Road &nbsp;·&nbsp; Sandy Springs, Georgia &nbsp;·&nbsp; Confidential</div>
+  <div>Plan Year 2026</div>
+</div>
+
+</body>
+</html>
