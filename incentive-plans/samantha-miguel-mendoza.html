@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skin Social — Samantha Miguel Mendoza Incentive Plan 2026</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+:root {
+  --oat: #F5EFE7; --cream: #EADFCB; --tan: #D6BFA9; --pink: #E8C4C4;
+  --babypink: #F2E5E5; --sand: #CBB8A0; --charcoal: #3A3A3A; --mid: #6a6a6a;
+  --white: #fff; --green: #6aaa7e; --yellow: #e0b84a; --red: #d97b7b;
+  --shadow: 0 2px 20px rgba(0,0,0,0.07);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Poppins', sans-serif; background: var(--oat); color: var(--charcoal); line-height: 1.7; max-width: 780px; margin: 0 auto; padding: 0; }
+.header { background: linear-gradient(135deg, #E8C4C4 0%, #D6BFA9 60%, #EADFCB 100%); padding: 48px 40px 40px; border-bottom: 3px solid var(--tan); }
+.logo { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--mid); margin-bottom: 6px; }
+.header h1 { font-size: 26px; font-weight: 700; color: var(--charcoal); margin-bottom: 4px; }
+.header .sub { font-size: 13px; color: var(--mid); }
+.header .badges { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.badge { background: var(--white); border: 1px solid var(--tan); border-radius: 20px; padding: 4px 14px; font-size: 11px; color: var(--mid); }
+.badge.highlight { background: var(--charcoal); color: var(--tan); border-color: var(--charcoal); font-weight: 600; }
+.container { padding: 36px 40px 60px; }
+.section { margin-bottom: 40px; }
+.section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--mid); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--cream); }
+.card { background: var(--white); border-radius: 14px; padding: 24px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.card.pink { border-left: 4px solid var(--pink); }
+.card.green { border-left: 4px solid var(--green); }
+.card.tan { border-left: 4px solid var(--tan); }
+.card.yellow { border-left: 4px solid var(--yellow); }
+.card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.card p { font-size: 13px; color: var(--mid); line-height: 1.7; }
+table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); font-size: 13px; }
+thead tr { background: linear-gradient(90deg, var(--pink), var(--cream)); }
+thead th { padding: 12px 16px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+tbody td { padding: 12px 16px; border-bottom: 1px solid var(--oat); }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) { background: var(--oat); }
+.score-row { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; background: var(--white); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; box-shadow: var(--shadow); }
+.score-name { font-size: 13px; font-weight: 600; }
+.score-weight { font-size: 12px; color: var(--mid); background: var(--oat); border-radius: 20px; padding: 3px 12px; }
+.score-field { width: 60px; height: 32px; border: 1.5px solid var(--cream); border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 14px; text-align: center; background: var(--oat); }
+.score-desc { font-size: 12px; color: var(--mid); margin-top: 4px; line-height: 1.5; }
+.payout-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 8px; }
+.payout-box { background: var(--white); border-radius: 12px; padding: 14px 10px; text-align: center; box-shadow: var(--shadow); }
+.payout-range { font-size: 11px; color: var(--mid); margin-bottom: 4px; }
+.payout-pct { font-size: 18px; font-weight: 700; color: var(--charcoal); }
+.payout-amt { font-size: 11px; color: var(--green); font-weight: 600; margin-top: 2px; }
+.payout-box.max { background: linear-gradient(135deg, var(--pink), var(--cream)); }
+.big-number { font-size: 36px; font-weight: 700; color: var(--charcoal); }
+.big-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--mid); margin-top: 2px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.stat-box { background: var(--white); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); text-align: center; }
+.reset-box { background: var(--charcoal); color: var(--tan); border-radius: 14px; padding: 20px 24px; margin-top: 16px; }
+.reset-box h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
+.reset-box p { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+.sig-area { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.sig-line { border-top: 1px solid var(--charcoal); padding-top: 8px; font-size: 11px; color: var(--mid); }
+.footer { background: var(--charcoal); color: rgba(255,255,255,0.5); text-align: center; padding: 24px; font-size: 11px; }
+.footer .brand { color: var(--tan); font-weight: 600; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+@media print { body { background: white; } .card, table, .score-row, .payout-box, .stat-box { box-shadow: none; border: 1px solid #eee; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Skin Social · Sandy Springs, GA</div>
+  <h1>✨ Samantha Miguel Mendoza</h1>
+  <div class="sub">Individual Incentive Plan · Client Experience Coordinator</div>
+  <div class="badges">
+    <span class="badge">📅 Plan Year: 2026</span>
+    <span class="badge">🏥 Front Desk</span>
+    <span class="badge highlight">Max Bonus: 0.3% of practice monthly revenue</span>
+    <span class="badge">% of Practice Revenue · Min 3.0 Score</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <div class="section-title">How Your Bonus Works</div>
+    <div class="card pink"><h3>💰 How Your Bonus Is Calculated</h3><p>Your bonus is <strong>0.3% of Skin Social's total monthly revenue</strong>. As the practice grows, your bonus grows with it automatically. At $100K = $300 max. At $125K = $375 max. Your score on 5 goals determines what % you receive.</p></div><div class="card green"><h3>📈 Your Earning Potential</h3><p><strong>$100K practice month:</strong> Max = $300 &nbsp;·&nbsp; <strong>$115K month:</strong> Max = $345 &nbsp;·&nbsp; <strong>$125K month:</strong> Max = $375. Score 5.0 on all goals = 100% of max. You're invested in the whole practice's success.</p></div><div class="card tan"><h3>📅 When You're Paid</h3><p>Bonus calculated on the 1st of the following month. Paid with the second paycheck of that month.</p></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Monthly Performance Goals — Score Each 1 to 5</div>
+    <div class="card tan" style="margin-bottom:20px;">
+      <h3>⭐ Rating Scale</h3>
+      <p><strong>1 — Far Below Expectations</strong> &nbsp;·&nbsp; <strong>2 — Below Expectations</strong> &nbsp;·&nbsp; <strong>3 — Meets Expectations ✓</strong> &nbsp;·&nbsp; <strong>4 — Exceeds Expectations</strong> &nbsp;·&nbsp; <strong>5 — Far Exceeds Expectations 🔥</strong><br><br>
+      A minimum score of <strong>3.0</strong> is required to earn any bonus. Scores below 3.0 result in $0 payout that month.</p>
+    </div>
+    
+        <div class="score-row">
+          <div>
+            <div class="score-name">Lead & DM Response Time — Under 5 Minutes</div>
+            <div class="score-desc">Goal: Respond to all inbound leads, DMs, and inquiries within 5 minutes during business hours. Score 3 = avg 5–8 min | Score 4 = avg 3–5 min | Score 5 = avg under 3 min. Fast response = more bookings.</div>
+          </div>
+          <div class="score-weight">30%</div>
+          <input class="score-field" type="number" min="1" max="5" placeholder="—">
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="score-name">Practice Revenue Goal — $100K+/month</div>
+            <div class="score-desc">Goal: Practice achieves $100,000+ in monthly revenue. Score 3 = $90K–$99K | Score 4 = $100K–$109K | Score 5 = $110K+. You directly influence this through booking quality, upsells, and rebooking at checkout.</div>
+          </div>
+          <div class="score-weight">30%</div>
+          <input class="score-field" type="number" min="1" max="5" placeholder="—">
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="score-name">Google Reviews — Monthly Practice Goal</div>
+            <div class="score-desc">Goal: 20 new Google reviews per month on your shift. Score 3 = 13–15 | Score 4 = 16–19 | Score 5 = 20+. Script: 'Would you mind leaving us a quick Google review? It takes 30 seconds and means the world to us!'</div>
+          </div>
+          <div class="score-weight">20%</div>
+          <input class="score-field" type="number" min="1" max="5" placeholder="—">
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="score-name">Rebooking Offered at Every Checkout</div>
+            <div class="score-desc">Goal: Offer to rebook every single patient before they leave. Score 3 = consistently offered | Score 4 = strong compliance, improving | Score 5 = near 100%, practice rebooking ≥35%. Script: 'I'd love to get your next appointment on the books — when works for you?'</div>
+          </div>
+          <div class="score-weight">15%</div>
+          <input class="score-field" type="number" min="1" max="5" placeholder="—">
+        </div>
+        <div class="score-row">
+          <div>
+            <div class="score-name">Core Values — Warmth, Responsiveness, Excellence</div>
+            <div class="score-desc">Evaluated by Natalie monthly. Includes: punctuality, patient-first attitude, phone/desk etiquette, team communication, and representing Skin Social with warmth.</div>
+          </div>
+          <div class="score-weight">5%</div>
+          <input class="score-field" type="number" min="1" max="5" placeholder="—">
+        </div>
+    <div style="background:var(--babypink);border-radius:12px;padding:14px 18px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;">
+      <strong style="font-size:14px;">TOTAL WEIGHTED SCORE</strong>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <span style="font-size:12px;color:var(--mid)">100%</span>
+        <input class="score-field" type="number" style="background:white;" placeholder="—">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Payout Scale</div>
+    <div class="payout-grid">
+      
+        <div class="payout-box ">
+          <div class="payout-range">0–2.99</div>
+          <div class="payout-pct">0%</div>
+          <div class="payout-amt">$0</div>
+        </div>
+        <div class="payout-box ">
+          <div class="payout-range">3.00–3.49</div>
+          <div class="payout-pct">42%</div>
+          <div class="payout-amt">~$126 at $100K</div>
+        </div>
+        <div class="payout-box ">
+          <div class="payout-range">3.50–3.99</div>
+          <div class="payout-pct">56%</div>
+          <div class="payout-amt">~$168 at $100K</div>
+        </div>
+        <div class="payout-box ">
+          <div class="payout-range">4.00–4.49</div>
+          <div class="payout-pct">75%</div>
+          <div class="payout-amt">~$225 at $100K</div>
+        </div>
+        <div class="payout-box max">
+          <div class="payout-range">4.50–5.00</div>
+          <div class="payout-pct">100%</div>
+          <div class="payout-amt">$300 at $100K 🔥</div>
+        </div>
+    </div>
+  </div>
+
+  
+        <div class="reset-box">
+          <h4>📈 Goal Escalation Policy</h4>
+          <p>Goals will be reviewed and automatically stepped up when Skin Social sustains $125,000+ in monthly revenue for 2 consecutive months. This plan is designed to grow with you — as the practice grows, so does your earning potential.</p>
+        </div>
+
+  <div class="section" style="margin-top:40px;">
+    <div class="section-title">Monthly Summary</div>
+    <table>
+      <thead><tr><th>Field</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Employee Name</td><td><strong>Samantha Miguel Mendoza</strong></td></tr>
+        <tr><td>Role</td><td>Client Experience Coordinator</td></tr>
+        <tr><td>Plan Year</td><td>2026</td></tr>
+        <tr><td>Month Being Reviewed</td><td>_______________</td></tr>
+        <tr><td>Total Weighted Score</td><td>_______  / 5.00</td></tr>
+        <tr><td>% of Maximum Bonus Earned</td><td>_______ %</td></tr>
+        <tr><td>Maximum Bonus</td><td>0.3% of practice monthly revenue</td></tr>
+        <tr><td><strong>Bonus Amount This Month</strong></td><td><strong>$ _____________</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sig-area">
+    <div>
+      <div class="sig-line">Employee Signature &amp; Date</div>
+    </div>
+    <div>
+      <div class="sig-line">Natalie Fenner, Owner · Skin Social</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="brand">SKIN SOCIAL</div>
+  5840 Roswell Rd · Sandy Springs, GA · @skinsocialspa · Confidential
+</div>
+
+</body>
+</html>
