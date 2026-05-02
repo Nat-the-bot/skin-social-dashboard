@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Skin Social — Amanda Bailey Incentive Plan 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+:root {
+  --oat:#F5EFE7;--cream:#EADFCB;--tan:#D6BFA9;--pink:#E8C4C4;
+  --babypink:#F2E5E5;--sand:#CBB8A0;--charcoal:#3A3A3A;--mid:#6a6a6a;
+  --white:#fff;--green:#6aaa7e;--yellow:#e0b84a;--red:#d97b7b;
+  --shadow:0 2px 20px rgba(0,0,0,0.07);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;background:var(--oat);color:var(--charcoal);line-height:1.7;max-width:800px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#E8C4C4 0%,#D6BFA9 60%,#EADFCB 100%);padding:48px 40px 40px;border-bottom:3px solid var(--tan);}
+.logo{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
+.header h1{font-size:26px;font-weight:700;color:var(--charcoal);margin-bottom:4px;}
+.header .sub{font-size:13px;color:var(--mid);}
+.badges{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.badge{background:var(--white);border:1px solid var(--tan);border-radius:20px;padding:4px 14px;font-size:11px;color:var(--mid);}
+.badge.hl{background:var(--charcoal);color:var(--tan);border-color:var(--charcoal);font-weight:600;}
+.container{padding:36px 40px 60px;}
+.sec{margin-bottom:36px;}
+.sec-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--mid);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--cream);}
+.card{background:var(--white);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:14px;}
+.card.pink{border-left:4px solid var(--pink);}
+.card.green{border-left:4px solid var(--green);}
+.card.tan{border-left:4px solid var(--tan);}
+.card.gold{border-left:4px solid var(--yellow);}
+.card h3{font-size:14px;font-weight:700;margin-bottom:8px;}
+.card p{font-size:13px;color:var(--mid);line-height:1.75;}
+.goal-block{background:var(--white);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:12px;}
+.goal-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
+.goal-name{font-size:14px;font-weight:700;color:var(--charcoal);}
+.goal-weight{background:var(--oat);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;color:var(--charcoal);white-space:nowrap;}
+.goal-weight.personal{background:var(--babypink);color:#a05050;}
+.goal-desc{font-size:12px;color:var(--mid);line-height:1.65;margin-bottom:10px;}
+.goal-tiers{display:flex;gap:6px;flex-wrap:wrap;}
+.tier{background:var(--oat);border-radius:8px;padding:6px 10px;font-size:11px;color:var(--mid);text-align:center;flex:1;min-width:80px;}
+.tier .tv{font-size:13px;font-weight:700;color:var(--charcoal);display:block;}
+.tier.t3{border:1.5px solid var(--tan);}
+.tier.t4{border:1.5px solid var(--green);}
+.tier.t5{border:1.5px solid var(--green);background:var(--babypink);}
+.payout-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.pbox{background:var(--white);border-radius:12px;padding:14px 8px;text-align:center;box-shadow:var(--shadow);}
+.pbox.max{background:linear-gradient(135deg,var(--pink),var(--cream));}
+.prange{font-size:10px;color:var(--mid);margin-bottom:4px;}
+.ppct{font-size:20px;font-weight:700;color:var(--charcoal);}
+.pamt{font-size:11px;color:var(--green);font-weight:600;margin-top:3px;}
+table{width:100%;border-collapse:collapse;background:var(--white);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);font-size:13px;}
+thead tr{background:linear-gradient(90deg,var(--pink),var(--cream));}
+thead th{padding:12px 16px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;font-weight:700;}
+tbody td{padding:12px 16px;border-bottom:1px solid var(--oat);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even){background:var(--oat);}
+.reset{background:var(--charcoal);color:var(--tan);border-radius:14px;padding:20px 24px;margin-top:20px;}
+.reset h4{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.reset p{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;}
+.sig-area{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;}
+.sig-line{border-top:1px solid var(--charcoal);padding-top:8px;font-size:11px;color:var(--mid);}
+.footer{background:var(--charcoal);color:rgba(255,255,255,0.5);text-align:center;padding:24px;font-size:11px;}
+.footer .brand{color:var(--tan);font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+@media print{body{background:white;}.card,.goal-block,.pbox,table{box-shadow:none;border:1px solid #eee;}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">Skin Social · Sandy Springs, GA</div>
+  <h1>✨ Amanda Bailey</h1>
+  <div class="sub">Individual Incentive Plan · Provider — Injector</div>
+  <div class="badges">
+    <span class="badge">📅 2026</span>
+    <span class="badge">🏥 Medical Services</span>
+    <span class="badge hl">Max Bonus: $300/month + 8% commission</span>
+    <span class="badge">Hybrid: 80% Team + 20% Personal</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="sec">
+    <div class="sec-title">How Your Bonus Works</div>
+    <div class="card pink"><h3>💰 Your Bonus Structure</h3><p>Your <strong>8% commission</strong> on all personal revenue is your primary earning path — unlimited. This bonus plan adds up to <strong>$300/month</strong> on top, rewarding team performance and your personal rebooking rate. 80% of your $300 max comes from the 4 team goals. 20% comes from your personal rebooking rate.</p></div><div class="card green"><h3>🔑 Commission Is Your Real Engine</h3><p>$30K production month = $2,400 commission. $40K = $3,200. The rebooking goal directly feeds your commission — retained patients are your most valuable asset. Every patient you rebook is guaranteed future commission.</p></div><div class="card tan"><h3>📅 Payment Schedule</h3><p>Bonus calculated on the 1st of the following month. Paid with the second paycheck. Commission paid per your existing agreement.</p></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Part 1 — Team Goals (80% of your bonus)</div>
+    <div class="card tan">
+      <h3>🤝 These goals belong to everyone</h3>
+      <p>Every person on the team contributes to these 4 metrics. When the team wins, everyone earns the same team payout — regardless of role. A great month from Hannah doesn't matter if the team misses rebooking. A great month from Rose doesn't matter if the team misses reviews. <strong>You win together.</strong></p>
+    </div>
+    
+    <div class="goal-block">
+      <div class="goal-top">
+        <div class="goal-name">💰 Practice Revenue ≥ $100,000</div>
+        <div class="goal-weight">25%</div>
+      </div>
+      <div class="goal-desc">The team's north star. Every role contributes — providers fill their schedules, front desk upsells and rebooks, social media drives new patients, esthetician maximizes each visit.</div>
+      <div class="goal-tiers"><div class="tier "><span class="tv">Under $90K</span>Score 1–2</div><div class="tier "><span class="tv">$90K–$99K</span>Score 3 ✓</div><div class="tier t3"><span class="tv">$100K–$109K</span>Score 4</div><div class="tier t4"><span class="tv">$110K+</span>Score 5 🔥</div></div>
+      <div style="font-size:11px;color:var(--mid);margin-top:8px;">📊 Tracked via: Boulevard monthly revenue report</div>
+    </div>
+    <div class="goal-block">
+      <div class="goal-top">
+        <div class="goal-name">📅 Practice Rebooking Rate ≥ 35%</div>
+        <div class="goal-weight">25%</div>
+      </div>
+      <div class="goal-desc">The single biggest lever for sustainable revenue. Every provider, esthetician, and front desk team member plays a role. Providers suggest the next visit. Front desk books it at checkout. Every patient, every time.</div>
+      <div class="goal-tiers"><div class="tier "><span class="tv">Under 28%</span>Score 1–2</div><div class="tier "><span class="tv">28–34%</span>Score 3 ✓</div><div class="tier t3"><span class="tv">35–44%</span>Score 4</div><div class="tier t4"><span class="tv">45%+</span>Score 5 🔥</div></div>
+      <div style="font-size:11px;color:var(--mid);margin-top:8px;">📊 Tracked via: Boulevard rebooking report (practice-wide)</div>
+    </div>
+    <div class="goal-block">
+      <div class="goal-top">
+        <div class="goal-name">⭐ Google Reviews ≥ 40 New/Month</div>
+        <div class="goal-weight">25%</div>
+      </div>
+      <div class="goal-desc">Google is Skin Social's #1 source of new patients ($127K in revenue YTD). More reviews = higher ranking = more patients. Everyone asks. Front desk at checkout, providers after treatment, Rose posts monthly campaigns.</div>
+      <div class="goal-tiers"><div class="tier "><span class="tv">Under 25</span>Score 1–2</div><div class="tier "><span class="tv">25–39</span>Score 3 ✓</div><div class="tier t3"><span class="tv">40–54</span>Score 4</div><div class="tier t4"><span class="tv">55+</span>Score 5 🔥</div></div>
+      <div style="font-size:11px;color:var(--mid);margin-top:8px;">📊 Tracked via: Google Business profile — net new reviews this month</div>
+    </div>
+    <div class="goal-block">
+      <div class="goal-top">
+        <div class="goal-name">💆 Skincare Retail ≥ $5,000/Month</div>
+        <div class="goal-weight">25%</div>
+      </div>
+      <div class="goal-desc">Product revenue is currently 3–5% of sales. Industry standard is 10–15%. There's $5,000–$10,000/month sitting on the shelf. Lexii leads in the treatment room. Providers recommend pairings post-treatment. Front desk presents at checkout.</div>
+      <div class="goal-tiers"><div class="tier "><span class="tv">Under $3,000</span>Score 1–2</div><div class="tier "><span class="tv">$3,000–$4,999</span>Score 3 ✓</div><div class="tier t3"><span class="tv">$5,000–$7,499</span>Score 4</div><div class="tier t4"><span class="tv">$7,500+</span>Score 5 🔥</div></div>
+      <div style="font-size:11px;color:var(--mid);margin-top:8px;">📊 Tracked via: Boulevard product sales report — monthly total</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Part 2 — Your Personal Goal (20% of your bonus)</div>
+    <div class="card pink">
+      <h3>⚡ This one is yours to own</h3>
+      <p>One metric. Fully within your control. This is where your individual effort separates you. Score a 5 here while the team scores a 3 — you still earn your full personal 20%.</p>
+    </div>
+    
+    <div class="goal-block">
+      <div class="goal-top">
+        <div class="goal-name">Personal Rebooking Rate ≥ 35%</div>
+        <div class="goal-weight personal">Personal — 20%</div>
+      </div>
+      <div class="goal-desc">Your individual patient rebooking rate — % of your patients who book their next appointment before leaving. This is the fastest way to grow your commission income.</div>
+      <div class="goal-tiers"><div class="tier "><span class="tv">Under 25%</span>Score 1–2</div><div class="tier "><span class="tv">25–34%</span>Score 3 ✓</div><div class="tier t3"><span class="tv">35–44%</span>Score 4</div><div class="tier t4"><span class="tv">45%+</span>Score 5 🔥</div></div>
+      <div style="font-size:11px;color:var(--mid);margin-top:8px;">📊 Tracked via: Boulevard rebooking report — per provider</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Rating Scale</div>
+    <div class="card tan">
+      <p><strong>1</strong> — Far Below Expectations &nbsp;·&nbsp; <strong>2</strong> — Below Expectations &nbsp;·&nbsp; <strong>3</strong> — Meets Expectations ✓ &nbsp;·&nbsp; <strong>4</strong> — Exceeds Expectations &nbsp;·&nbsp; <strong>5</strong> — Far Exceeds 🔥<br><br>Minimum score of <strong>3.0</strong> required to earn any bonus. Below 3.0 = $0 that month.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Payout Scale</div>
+    <div class="payout-grid"><div class="pbox ">
+          <div class="prange">0–2.99</div>
+          <div class="ppct">0%</div>
+          <div class="pamt">$0</div>
+        </div><div class="pbox ">
+          <div class="prange">3.00–3.49</div>
+          <div class="ppct">42%</div>
+          <div class="pamt">42%</div>
+        </div><div class="pbox ">
+          <div class="prange">3.50–3.99</div>
+          <div class="ppct">56%</div>
+          <div class="pamt">56%</div>
+        </div><div class="pbox ">
+          <div class="prange">4.00–4.49</div>
+          <div class="ppct">75%</div>
+          <div class="pamt">75%</div>
+        </div><div class="pbox max">
+          <div class="prange">4.50–5.00</div>
+          <div class="ppct">100%</div>
+          <div class="pamt">100% MAX 🔥</div>
+        </div></div>
+    <p style="font-size:12px;color:var(--mid);margin-top:12px;">Team score and personal score are calculated separately, then combined: 80% team + 20% personal = your final bonus amount.</p>
+  </div>
+
+  <div class="reset">
+    <h4>📈 Goal Escalation Policy</h4>
+    <p>Goals will be reviewed and stepped up automatically when Skin Social sustains $125,000+ in monthly revenue for 2 consecutive months. This plan grows with you — no awkward renegotiation conversations.</p>
+  </div>
+
+  <div class="sec" style="margin-top:32px;">
+    <div class="sec-title">Monthly Summary</div>
+    <table>
+      <thead><tr><th>Field</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Employee</td><td><strong>Amanda Bailey</strong></td></tr>
+        <tr><td>Role</td><td>Provider — Injector</td></tr>
+        <tr><td>Month</td><td>_______________</td></tr>
+        <tr><td>Team Score (avg of 4 goals)</td><td>_______ / 5.00</td></tr>
+        <tr><td>Personal Goal Score</td><td>_______ / 5.00</td></tr>
+        <tr><td>Combined Score (80/20)</td><td>_______ / 5.00</td></tr>
+        <tr><td>% of Max Bonus Earned</td><td>_______ %</td></tr>
+        <tr><td>Maximum Bonus This Month</td><td>$300/month + 8% commission</td></tr>
+        <tr><td><strong>Bonus Payout This Month</strong></td><td><strong>$ _____________</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sig-area">
+    <div><div class="sig-line">Employee Signature &amp; Date</div></div>
+    <div><div class="sig-line">Natalie Fenner, Owner · Skin Social</div></div>
+  </div>
+
+</div>
+<div class="footer">
+  <div class="brand">SKIN SOCIAL</div>
+  5840 Roswell Rd · Sandy Springs, GA · @skinsocialspa · Confidential
+</div>
+</body></html>
