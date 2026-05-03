@@ -121,7 +121,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(
 
   <div class="intro">
     <p>This document outlines your individual incentive plan for 2026. It is designed to be straightforward: there are four team goals that the entire Skin Social team works toward together, and one personal goal that reflects your specific role and contribution.</p>
-    <p>Your bonus has two components. Eighty percent comes from the team goals — meaning your bonus is directly tied to how well the practice performs as a whole. Twenty percent comes from your personal goal — the one area where your individual effort has the most direct impact. Both are measured monthly and paid together.</p>
+    <p>Your bonus has two components. The first is your <strong>team bonus</strong> — based on the 4 team goals scored 1 to 5, paid equally among all 6 team members. The second is your <strong>personal bonus</strong> — simply 3% of whatever revenue you personally generate that month. No scoring, no scale. Just your revenue times 3%. Both are calculated on the 1st of the following month and paid together.</p>
     <p>This plan is built to grow with you. As Skin Social grows, the bonus pool grows. As your performance improves, your payout increases. There are no tricks and no fine print — just clear targets and a direct path to earning more.</p>
   </div>
 
@@ -394,55 +394,58 @@ body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(
     </div>
   </div>
 
-  <!-- PERSONAL GOAL -->
-  <div class="section-label" style="margin-top:32px;">Personal Goal &nbsp;&mdash;&nbsp; 20% of Your Bonus</div>
-  <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.7;">This goal is yours alone. It reflects the area of the practice where your role has the most direct impact. Your personal goal score is calculated independently from the team score — a strong personal performance earns your personal bonus regardless of how the team month goes.</p>
+  <!-- PERSONAL BONUS -->
+  <div class="section-label" style="margin-top:32px;">Personal Bonus &nbsp;&mdash;&nbsp; 3% of Your Monthly Revenue</div>
+  <p style="font-size:13px;color:var(--mid);margin-bottom:20px;line-height:1.7;">Your personal bonus is straightforward — no scoring, no rubric. It is simply <strong style="color:var(--charcoal);">3% of whatever revenue you personally generate that month</strong>, as reported in Boulevard. The more you produce, the more you earn. There is no cap.</p>
 
   <div class="goal">
     <div class="goal-header">
-      <div class="goal-title">Personal Production Revenue</div>
-      <div class="goal-tag personal">Personal Goal</div>
+      <div class="goal-title">Personal Production Revenue &nbsp;&mdash;&nbsp; 3% Bonus</div>
+      <div class="goal-tag personal">Personal Bonus</div>
     </div>
     <div class="goal-body">
-      <div class="goal-why">As a provider, your personal revenue — the total value of treatments you perform each month — is the clearest measure of your individual contribution to the practice. This goal rewards your effort to maintain a full schedule, grow your patient relationships, and deliver consistent, high-quality care. The target of $25,000 per month reflects your current patient volume and is designed to be achievable while still requiring consistent effort. As your book grows, this target will grow with you.</div>
-      <div class="goal-targets">
-        <div class="target"><div class="target-label">Minimum to Qualify</div><div class="target-value">$25,000</div></div><div class="target"><div class="target-label">Target</div><div class="target-value">$30,000</div></div><div class="target"><div class="target-label">Above Target</div><div class="target-value">$35,000</div></div><div class="target"><div class="target-label">Exceptional</div><div class="target-value">$40,000+</div></div>
-      </div>
-      
-      <div style="margin:14px 0;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--mid);margin-bottom:8px;">Scoring Rubric</div>
-        <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <div class="goal-why">Your personal revenue is the total value of all treatments you perform in a month, as recorded in Boulevard. There is no scoring scale for this portion of your bonus — the math is simple. Minimum personal revenue of $25,000 is required to qualify for any bonus in a given month.</div>
+
+      <div style="background:var(--oat);border-radius:10px;padding:20px 22px;margin:14px 0;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mid);margin-bottom:12px;">The Formula</div>
+        <div style="font-size:15px;font-weight:700;color:var(--charcoal);margin-bottom:14px;">Your Revenue &times; 3% = Your Personal Bonus</div>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
           <thead>
             <tr style="background:var(--cream);">
-              <th style="padding:7px 10px;text-align:left;width:70px;font-size:11px;font-weight:700;color:var(--mid);">Score</th>
-              <th style="padding:7px 10px;text-align:left;font-size:11px;font-weight:700;color:var(--mid);">What It Means</th>
+              <th style="padding:8px 12px;text-align:left;font-size:11px;font-weight:700;color:var(--mid);">Your Revenue This Month</th>
+              <th style="padding:8px 12px;text-align:center;font-size:11px;font-weight:700;color:var(--mid);">Your Personal Bonus</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom:1px solid var(--oat);">
-              <td style="padding:8px 10px;font-weight:700;color:var(--charcoal);">1</td>
-              <td style="padding:8px 10px;color:var(--mid);">Personal revenue is below $25,000. No bonus is earned this month.</td>
+              <td style="padding:9px 12px;color:var(--red);">Under $25,000</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--red);font-weight:700;">$0 &nbsp;(minimum not met)</td>
             </tr>
             <tr style="border-bottom:1px solid var(--oat);">
-              <td style="padding:8px 10px;font-weight:700;color:var(--charcoal);">2</td>
-              <td style="padding:8px 10px;color:var(--mid);">Personal revenue is between $25,000 and $27,499.</td>
+              <td style="padding:9px 12px;">$25,000</td>
+              <td style="padding:9px 12px;text-align:center;font-weight:700;">$750</td>
             </tr>
-            <tr style="background:var(--babypink);border-bottom:1px solid var(--oat);">
-              <td style="padding:8px 10px;font-weight:700;color:var(--charcoal);">3</td>
-              <td style="padding:8px 10px;color:var(--mid);">Personal revenue is between $27,500 and $29,999.</td>
+            <tr style="border-bottom:1px solid var(--oat);">
+              <td style="padding:9px 12px;">$28,000</td>
+              <td style="padding:9px 12px;text-align:center;font-weight:700;">$840</td>
             </tr>
-            <tr style="background:#e8f5ec;border-bottom:1px solid var(--oat);">
-              <td style="padding:8px 10px;font-weight:700;color:var(--charcoal);">4</td>
-              <td style="padding:8px 10px;color:var(--mid);">Personal revenue is between $30,000 and $34,999.</td>
+            <tr style="border-bottom:1px solid var(--oat);background:var(--babypink);">
+              <td style="padding:9px 12px;">$30,000</td>
+              <td style="padding:9px 12px;text-align:center;font-weight:700;">$900</td>
             </tr>
-            <tr style="background:#e8f5ec;border-bottom:1px solid var(--oat);">
-              <td style="padding:8px 10px;font-weight:700;color:var(--charcoal);">5</td>
-              <td style="padding:8px 10px;color:var(--mid);">Personal revenue is $35,000 or above.</td>
+            <tr style="border-bottom:1px solid var(--oat);background:var(--babypink);">
+              <td style="padding:9px 12px;">$35,000</td>
+              <td style="padding:9px 12px;text-align:center;font-weight:700;">$1,050</td>
+            </tr>
+            <tr style="background:var(--babypink);">
+              <td style="padding:9px 12px;">$40,000</td>
+              <td style="padding:9px 12px;text-align:center;font-weight:700;color:var(--green);">$1,200</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="goal-track"><strong>How it is tracked:</strong> Boulevard provider revenue report, pulled on the 1st of the following month.</div>
+
+      <div class="goal-track"><strong>How it is tracked:</strong> Boulevard provider revenue report, pulled on the 1st of the following month. Your revenue figure is confirmed by Natalie before bonus is calculated.</div>
     </div>
   </div>
 
@@ -463,13 +466,15 @@ body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(
         </div>
       </div>
       <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:18px;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--tan);margin-bottom:10px;">Part 2 — Personal Goal &nbsp;(20%)</div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--tan);margin-bottom:10px;">Part 2 — Personal Revenue Bonus</div>
         <div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.8;">
-          Your personal max = 3% of your revenue that month.<br><br>
-          <strong style="color:var(--tan);">Example:</strong><br>
-          You generate $28,000 &rarr; pool = <strong style="color:white;">$840</strong><br>
-          You score 5.0 &rarr; you earn <strong style="color:white;">$840 (100%)</strong><br>
-          You score 3.25 &rarr; you earn <strong style="color:white;">$353 (42%)</strong>
+          No scoring. Just simple math.<br><br>
+          <strong style="color:var(--tan);">Formula:</strong><br>
+          Your revenue &times; 3% = your personal bonus<br><br>
+          <strong style="color:var(--tan);">Examples:</strong><br>
+          $25,000 &rarr; <strong style="color:white;">$750</strong><br>
+          $30,000 &rarr; <strong style="color:white;">$900</strong><br>
+          $35,000 &rarr; <strong style="color:white;">$1,050</strong>
         </div>
       </div>
     </div>
@@ -655,15 +660,21 @@ body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(
         <td><input class="fill" placeholder="result" style="width:80px;font-weight:700;text-align:center;"></td>
       </tr>
       <tr style="background:var(--oat);">
-        <td colspan="3" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--mid);padding:10px 16px;">Personal Goal</td>
+        <td colspan="3" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--mid);padding:10px 16px;">Personal Bonus — 3% of Your Revenue</td>
       </tr>
       <tr>
-        <td>Personal Goal Result</td>
-        <td><input class="fill" placeholder="value" style="width:130px;"></td>
-        <td>Score: <input class="fill" placeholder="1–5" style="width:60px;text-align:center;"></td>
+        <td>Hannah's Revenue This Month</td>
+        <td><input class="fill" placeholder="$" style="width:130px;"></td>
+        <td style="font-size:12px;color:var(--mid);">from Boulevard provider report</td>
       </tr>
-      <tr><td>Maximum Bonus This Month</td><td>3% of personal monthly revenue</td></tr>
-      <tr><td>Bonus Earned This Month</td><td><input class="fill" placeholder="$" style="font-weight:700;font-size:15px;"></td></tr>
+      <tr style="background:var(--babypink);">
+        <td><strong>Personal Bonus (Revenue &times; 3%)</strong></td>
+        <td colspan="2"><input class="fill" placeholder="$______ &times; 3% = $______" style="width:220px;font-weight:700;"></td>
+      </tr>
+      <tr style="background:var(--charcoal);">
+        <td style="color:white;font-weight:700;">Total Bonus This Month</td>
+        <td colspan="2" style="color:white;"><strong>Team Bonus + Personal Bonus = </strong><input style="width:120px;height:32px;border:1.5px solid var(--tan);border-radius:6px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;padding:0 10px;background:rgba(255,255,255,0.1);color:var(--tan);" placeholder="$"></td>
+      </tr>
     </tbody>
   </table>
 
