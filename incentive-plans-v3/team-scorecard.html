@@ -275,43 +275,43 @@ h1{font-size:24px;font-weight:700;color:var(--charcoal);margin-bottom:4px;}
       <tr>
         <td class="name-cell">Hannah Johnson</td>
         <td class="role-cell">Provider</td>
-        <td class="goal-cell">Personal revenue vs $25,000 target</td>
-        <td class="input-cell"><input type="text" placeholder="$"></td>
-        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+        <td class="goal-cell">Personal revenue × 3% (no scoring — straight math)<br><span style="font-size:11px;color:var(--mid);">Min $25K to qualify</span></td>
+        <td class="input-cell"><input type="text" placeholder="$ revenue"></td>
+        <td style="padding:14px;font-size:12px;color:var(--mid);">Revenue × 3%</td>
       </tr>
       <tr>
         <td class="name-cell">Amanda Bailey</td>
         <td class="role-cell">Provider</td>
-        <td class="goal-cell">Personal rebooking rate vs 35% target (30-day)</td>
-        <td class="input-cell"><input type="text" placeholder="%"></td>
-        <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
+        <td class="goal-cell">Personal revenue × 8% commission (no scoring — straight math)<br><span style="font-size:11px;color:var(--mid);">Flat $300 max team bonus personal portion</span></td>
+        <td class="input-cell"><input type="text" placeholder="$ revenue"></td>
+        <td style="padding:14px;font-size:12px;color:var(--mid);">Revenue × 8%</td>
       </tr>
       <tr>
         <td class="name-cell">Lexii Fitzgerald</td>
         <td class="role-cell">Esthetician</td>
-        <td class="goal-cell">Personal retail sales ($2,500) and rebooking rate (35%)</td>
-        <td class="input-cell"><input type="text" placeholder="$ / %"></td>
+        <td class="goal-cell">Personal 30-day rebooking rate — target 40%<br><span style="font-size:11px;color:var(--mid);">Score 3=35–39% · Score 4=40–49% · Score 5=50%+</span></td>
+        <td class="input-cell"><input type="text" placeholder="%"></td>
         <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
       </tr>
       <tr>
         <td class="name-cell">Evelyn Ignacio</td>
         <td class="role-cell">Front Desk</td>
-        <td class="goal-cell">Average lead response time — target under 5 minutes</td>
-        <td class="input-cell"><input type="text" placeholder="min"></td>
+        <td class="goal-cell">Response time (60%) + New memberships (40%)<br><span style="font-size:11px;color:var(--mid);">Combined score — flat $200–$300 payout</span></td>
+        <td class="input-cell"><input type="text" placeholder="min / count"></td>
         <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
       </tr>
       <tr>
         <td class="name-cell">Samantha Miguel Mendoza</td>
         <td class="role-cell">Front Desk</td>
-        <td class="goal-cell">Average lead response time — target under 5 minutes</td>
-        <td class="input-cell"><input type="text" placeholder="min"></td>
+        <td class="goal-cell">Response time (60%) + New memberships (40%)<br><span style="font-size:11px;color:var(--mid);">Combined score — flat $200–$300 payout</span></td>
+        <td class="input-cell"><input type="text" placeholder="min / count"></td>
         <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
       </tr>
       <tr>
         <td class="name-cell">Rose Gammill</td>
         <td class="role-cell">Social Media</td>
-        <td class="goal-cell">New patient count vs 90 patient target</td>
-        <td class="input-cell"><input type="text" placeholder="count"></td>
+        <td class="goal-cell">Follower growth (60%) + New patients (40%)<br><span style="font-size:11px;color:var(--mid);">Combined score — flat $200–$300 payout</span></td>
+        <td class="input-cell"><input type="text" placeholder="followers / patients"></td>
         <td class="score-cell"><input type="number" min="1" max="5" placeholder="—"></td>
       </tr>
     </tbody>
@@ -336,7 +336,13 @@ h1{font-size:24px;font-weight:700;color:var(--charcoal);margin-bottom:4px;}
     </div>
     <div class="calc-note">
       <strong style="color:var(--tan);">How to calculate team payout per person:</strong> Average the four team goal scores. Find the corresponding percentage on the payout scale above. Multiply the bonus pool by that percentage, then divide by six.<br><br>
-      <strong style="color:var(--tan);">How to calculate individual payout:</strong> Each person's individual maximum is listed in their personal plan. Apply the payout scale to their personal goal score to determine their individual 20%. Add the team payout and individual payout together for each person's total bonus this month.
+      <strong style="color:var(--tan);">How to calculate individual payout:</strong><br>
+      • <strong style="color:white;">Hannah:</strong> Revenue × 3% = her personal bonus (no scoring needed)<br>
+      • <strong style="color:white;">Amanda:</strong> Revenue × 8% = her commission (separate from bonus plan) + flat $300 max personal bonus<br>
+      • <strong style="color:white;">Lexii:</strong> Score rebooking rate 1–5 → look up dollar amount in her plan<br>
+      • <strong style="color:white;">Evelyn &amp; Sam:</strong> Score response time + memberships separately → apply 60/40 formula → flat payout ($200–$300)<br>
+      • <strong style="color:white;">Rose:</strong> Score follower growth + new patients separately → apply 60/40 formula → flat payout ($200–$300)<br><br>
+      Add team payout + personal payout = each person’s total bonus this month.
     </div>
   </div>
 
